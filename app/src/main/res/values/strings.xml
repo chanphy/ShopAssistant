@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ShopAssistant</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- menu -->
+    <string name="navdrawer_item_main">主页</string>
+    <string name="navdrawer_item_huodong">活动</string>
+    <string name="navdrawer_item_coupon">优惠券</string>
+    <string name="navdrawer_item_food">餐饮</string>
+    <string name="navdrawer_item_my_profile">我的</string>
+    <string name="drawer_close">打开</string>
+    <string name="drawer_open">关闭</string>
+
+</resources>
