@@ -8,20 +8,16 @@
     <FrameLayout
         android:id="@+id/flv_main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <fragment
-            android:id="@+id/fg_main"
-            android:name="com.phy0312.shopassistant.activity.MainFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/app_background_color">
     </FrameLayout>
 
     <ListView
         android:id="@+id/lv_menu"
-        android:layout_width="240dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#FFFFFF"
+        android:background="@color/lightransparent"
         android:choiceMode="singleChoice" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -16,4 +16,24 @@
     <string name="drawer_close">打开</string>
     <string name="drawer_open">关闭</string>
 
+
+    <string name="menu_title_member">会员卡</string>
+    <string name="menu_title_product">淘精品</string>
+    <string name="menu_title_film">看电影</string>
+    <string name="menu_title_ktv">大歌星</string>
+    <string name="menu_title_wifi">无线网</string>
+    <string name="menu_title_store">找商户</string>
+    <string name="menu_title_augmented_reality">扫广场</string>
+    <string name="menu_title_parking">找我车</string>
+
+
+    <string name="main_item_week_recommend">每周推荐</string>
+    <string name="main_item_coupon">优惠券</string>
+    <string name="main_item_huodong">活动</string>
+    <string name="main_item_flim">电影</string>
+
+    <string name="image_description">Image</string>
+
+    <string name="more">更多</string>
+
 </resources>

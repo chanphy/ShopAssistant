@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.phy0312.shopassistant.R;
-
-
+import com.phy0312.shopassistant.activity.MainActivity;
 
 
 /**
@@ -26,11 +25,11 @@ public class DrawerMenuAdapter extends BaseAdapter {
         this.inflater = inflater;
     }
 
-    protected static final int NAVDRAWER_ITEM_MAIN = 0;
-    protected static final int NAVDRAWER_ITEM_HUODONG = 1;
-    protected static final int NAVDRAWER_ITEM_COUPON = 2;
-    protected static final int NAVDRAWER_ITEM_FOOD = 3;
-    protected static final int NAVDRAWER_ITEM_MY_PROFILE = 4;
+    public static final int NAVDRAWER_ITEM_MAIN = 0;
+    public static final int NAVDRAWER_ITEM_HUODONG = 1;
+    public static final int NAVDRAWER_ITEM_COUPON = 2;
+    public static final int NAVDRAWER_ITEM_FOOD = 3;
+    public static final int NAVDRAWER_ITEM_MY_PROFILE = 4;
 
 
     private static final int[] NAVDRAWER_TITLE_RES_ID = new int[]{

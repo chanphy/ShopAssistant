@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.phy0312.shopassistant.activity.MainFragment"
+    android:background="@color/app_background_color">
+
+    <com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout
+        android:id="@+id/fl_banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:aspectRatio="2.2192">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="10dip" />
+    </com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11.0dp"
+        android:layout_marginRight="11.0dp"
+        android:layout_marginTop="11.0dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_membercard"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_member"
+            android:text="@string/menu_title_member" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <TextView
+            android:id="@+id/btn_product"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_product"
+            android:text="@string/menu_title_product" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <TextView
+            android:id="@+id/btn_cinema"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_flim"
+            android:text="@string/menu_title_film" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <TextView
+            android:id="@+id/btn_ktv"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_ktv"
+            android:text="@string/menu_title_ktv" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11.0dp"
+        android:layout_marginRight="11.0dp"
+        android:layout_marginTop="11.0dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_wifi"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_wifi"
+            android:text="@string/menu_title_wifi" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <TextView
+            android:id="@+id/btn_store"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_store"
+            android:text="@string/menu_title_store" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <TextView
+            android:id="@+id/btn_augmented_reality"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_augmented_reality"
+            android:text="@string/menu_title_augmented_reality" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <TextView
+            android:id="@+id/btn_parking"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_parking"
+            android:text="@string/menu_title_parking" />
+    </LinearLayout>
+
+</LinearLayout>
