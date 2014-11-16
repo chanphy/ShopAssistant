@@ -1,9 +1,11 @@
 package com.phy0312.shopassistant.data;
 
+import com.phy0312.shopassistant.model.HuoDong;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,9 +17,10 @@ public class DataManager {
 
     /**
      * 获取首页数据结构
+     *
      * @return
      */
-    public static List<MainColumnGroup> GetMainColumnInfos(){
+    public static List<MainColumnGroup> GetMainColumnInfos() {
 
         List<MainColumnGroup> list = new ArrayList<MainColumnGroup>();
 
@@ -47,5 +50,23 @@ public class DataManager {
         list.add(huodongGroup);
 
         return list;
+    }
+
+    public static List<HuoDong> getHuoDongs() {
+        List<HuoDong> huoDongs = new ArrayList<HuoDong>();
+
+        HuoDong huoDong1 = new HuoDong(1, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
+        HuoDong huoDong2 = new HuoDong(2, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
+        HuoDong huoDong3 = new HuoDong(3, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
+        HuoDong huoDong4 = new HuoDong(4, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
+        HuoDong huoDong5 = new HuoDong(5, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
+
+        huoDongs.add(huoDong1);
+        huoDongs.add(huoDong2);
+        huoDongs.add(huoDong3);
+        huoDongs.add(huoDong4);
+        huoDongs.add(huoDong5);
+
+        return huoDongs;
     }
 }

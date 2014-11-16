@@ -36,4 +36,8 @@
 
     <string name="more">更多</string>
 
+    <string name="hot_huodong">热门活动</string>
+    <string name="new_huodong">最新活动</string>
+    <string name="nextweek_huodong">下周活动</string>
+
 </resources>

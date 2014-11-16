@@ -3,6 +3,17 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="list_divider_height">1.0px</dimen>
+    <dimen name="listitem_default_height">76.0dip</dimen>
+    <dimen name="listitem_message_center_padding_vertical">10.0dip</dimen>
+    <dimen name="listitem_photo_margin_right">10.0dip</dimen>
+    <dimen name="listitem_default_margin_horizontal">13.0dip</dimen>
+    <dimen name="listitem_default_padding_vertical">10.0dip</dimen>
+    <dimen name="listitem_default_padding_horizontal">10.0dip</dimen>
+    <dimen name="listitem_default_image_size">62.0dip</dimen>
+    <dimen name="list_empty_icon_width">72.0dip</dimen>
+    <dimen name="list_empty_icon_height">72.0dip</dimen>
+
     <dimen name="h1">23.0dip</dimen>
     <dimen name="h2">20.0dip</dimen>
     <dimen name="h3">17.0dip</dimen>

@@ -70,4 +70,38 @@
         <item name="android:footerDividersEnabled">false</item>
         <item name="android:smoothScrollbar">true</item>
     </style>
+
+    <style name="ListItemPhotoStyle">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">@dimen/listitem_default_image_size</item>
+        <item name="android:layout_height">@dimen/listitem_default_image_size</item>
+        <item name="android:layout_marginRight">@dimen/listitem_photo_margin_right</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:cropToPadding">true</item>
+        <item name="android:contentDescription">@string/image_description</item>
+    </style>
+    <style name="ListItemDefaultStyle">
+        <item name="android:background">@drawable/listitem_bg_selector</item>
+        <item name="android:paddingLeft">@dimen/listitem_default_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/listitem_default_padding_vertical</item>
+        <item name="android:paddingRight">@dimen/listitem_default_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/listitem_default_padding_vertical</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/listitem_default_height</item>
+    </style>
+
+    <style name="ListItemDividerStyle">
+        <item name="android:background">@color/divider_color</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/list_divider_height</item>
+    </style>
+
+    <style name="TextViewVerticalWeightStyle">
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
 </resources>

@@ -1,12 +1,15 @@
 package com.phy0312.shopassistant.activity;
 
-import android.app.Activity;
+import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +22,7 @@ import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 /**
  * 主activity
  */
-public class MainActivity extends Activity implements ListView.OnItemClickListener{
+public class MainActivity extends FragmentActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
 
 
     private DrawerLayout drawerLayout;
@@ -39,7 +42,7 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         lv_menu.setOnItemClickListener(this);
         initDrawerMenu();
         MainFragment mainFragment = new MainFragment();
-        getFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
     }
 
 
@@ -72,7 +75,7 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle(mTitle);
+                getActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
@@ -116,28 +119,48 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         switch (position) {
             case DrawerMenuAdapter.NAVDRAWER_ITEM_MAIN:
                 MainFragment mainFragment = new MainFragment();
-                getFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
+                mDrawerTitle = getString(R.string.navdrawer_item_main);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG:
                 HuoDongFragment huoDongFragment = new HuoDongFragment();
-                getFragmentManager().beginTransaction().replace(R.id.flv_main_content, huoDongFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, huoDongFragment).commit();
+                mDrawerTitle = getString(R.string.navdrawer_item_huodong);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON:
                 CouponFragment couponFragment = new CouponFragment();
-                getFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
+                mDrawerTitle = getString(R.string.navdrawer_item_coupon);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_FOOD:
                 FoodFragment foodFragment = new FoodFragment();
-                getFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
+                mDrawerTitle = getString(R.string.navdrawer_item_food);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_MY_PROFILE:
                 MyProfileFragment myProfileFragment = new MyProfileFragment();
-                getFragmentManager().beginTransaction().replace(R.id.flv_main_content, myProfileFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, myProfileFragment).commit();
+                mDrawerTitle = getString(R.string.navdrawer_item_my_profile);
                 break;
             default:
                 break;
         }
         drawerLayout.closeDrawers();
+
+    }
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
     }
 }
