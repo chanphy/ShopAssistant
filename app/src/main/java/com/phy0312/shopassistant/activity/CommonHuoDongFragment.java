@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.activity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,12 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.HuoDongAdapter;
 import com.phy0312.shopassistant.data.DataManager;
-import com.phy0312.shopassistant.model.HuoDong;
+import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -28,7 +30,8 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  *
  */
-public class CommonHuoDongFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener{
+public class CommonHuoDongFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
+        AdapterView.OnItemClickListener{
 
     public static final int HOT = 0;
     public static final int NEW = 1;
@@ -44,6 +47,7 @@ public class CommonHuoDongFragment extends Fragment implements PullToRefreshLayo
     private HuoDongAdapter adpter;
     private int type;
 
+    @SuppressLint("ValidFragment")
     public CommonHuoDongFragment(int type) {
         this.type = type;
     }
@@ -73,12 +77,13 @@ public class CommonHuoDongFragment extends Fragment implements PullToRefreshLayo
         View headerView = lif.inflate(R.layout.ads_header, lv_content, false);
         lv_content.addHeaderView(headerView);
         lv_content.setAdapter(null);
+        lv_content.setOnItemClickListener(this);
 
         viewPager = (ViewPager)headerView.findViewById(R.id.pager);
         initAdsBanner();
         indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
-        startLoad();
+        startLoad(false, false);
         return view;
     }
 
@@ -125,16 +130,16 @@ public class CommonHuoDongFragment extends Fragment implements PullToRefreshLayo
 
     @Override
     public void onRefreshingUp() {
-
+        startLoad(true, false);
     }
 
     @Override
     public void onRefreshingBottom() {
-
+        startLoad(false, true);
     }
 
 
-    private void startLoad() {
+    private void startLoad(final boolean isUp, final boolean isBottom) {
         ThreadUtil.executeMore(new Runnable(){
 
             @Override
@@ -151,10 +156,23 @@ public class CommonHuoDongFragment extends Fragment implements PullToRefreshLayo
                         }
                         lv_content.setAdapter(adpter);
                         adpter.notifyDataSetChanged();
+
+                        if(isUp) {
+                            ptl_container.setRefreshUpEnd();
+                        }
+
+                        if(isBottom) {
+                            ptl_container.setRefreshingBottomEnd();
+                        }
                     }
                 });
             }
         });
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }

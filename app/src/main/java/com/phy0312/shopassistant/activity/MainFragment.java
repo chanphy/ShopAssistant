@@ -34,7 +34,6 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
     List<View> viewList;
     private Handler handler;
     private MainItemAdpter adpter;
-    private SmoothProgressBar ptr_progress_up;
 
 
     @Nullable
@@ -45,7 +44,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
         ptl_container = (PullToRefreshLayout)view.findViewById(R.id.ptl_container);
         lv_content = (ListView)view.findViewById(R.id.lv_content);
         ptl_container.setListView(lv_content);
-        ptr_progress_up = (SmoothProgressBar)view.findViewById(R.id.ptr_progress_up);
+        SmoothProgressBar ptr_progress_up = (SmoothProgressBar)view.findViewById(R.id.ptr_progress_up);
         ptl_container.setUpProgressBar(ptr_progress_up);
         ptl_container.setOnPullRefreshListener(this);
 
@@ -158,11 +157,11 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
                         adpter.notifyDataSetChanged();
 
                         if(isUp) {
-
+                            ptl_container.setRefreshUpEnd();
                         }
 
                         if(isBottom) {
-
+                            ptl_container.setRefreshingBottomEnd();
                         }
 
 

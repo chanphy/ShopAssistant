@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_activity_photo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image_description"
+                    android:scaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/tv_activity_name"
+                    style="@style/DetailNameStyle" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_activity_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_horizontal_margin"
+                android:layout_marginRight="@dimen/default_horizontal_margin"
+                android:layout_marginTop="@dimen/default_vertical_margin"
+                android:background="@drawable/status_bg"
+                android:text="@string/activity_status_off_shelf"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/h4"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_activity_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_horizontal_margin"
+                android:layout_marginRight="@dimen/default_horizontal_margin"
+                android:layout_marginTop="@dimen/default_vertical_margin"
+                android:textColor="@color/c3"
+                android:textSize="@dimen/h5" />
+
+            <LinearLayout style="@style/DetailItemBackgroundStyle">
+
+                <TextView
+                    style="@style/DetailTitleStyle"
+                    android:drawableLeft="@drawable/icon_time"
+                    android:drawablePadding="10.0dip"
+                    android:text="@string/activity_time" />
+
+                <View style="@style/HorizontalDividerDefaultStyle" />
+
+                <TextView
+                    android:id="@+id/tv_activity_valid_time"
+                    style="@style/DetailNoClickableItemContainerStyle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_store_info"
+                style="@style/DetailItemBackgroundStyle">
+
+                <LinearLayout
+                    android:id="@+id/ll_store_name"
+                    style="@style/DetailClickableItemContainerStyle">
+
+                    <TextView
+                        style="@style/DetailItemLeftStyle"
+                        android:drawableLeft="@drawable/icon_detail_store"
+                        android:text="@string/store_label" />
+
+                    <TextView
+                        android:id="@+id/tv_store_name"
+                        style="@style/DetailItemRightStyle"
+                        android:drawableRight="@drawable/detail_item_arrow_selector" />
+                </LinearLayout>
+
+                <View style="@style/HorizontalDividerDefaultStyle" />
+
+                <LinearLayout
+                    android:id="@+id/ll_store_number"
+                    style="@style/DetailClickableItemContainerStyle">
+
+                    <TextView
+                        style="@style/DetailItemLeftStyle"
+                        android:drawableLeft="@drawable/icon_detail_adress"
+                        android:text="@string/address_label" />
+
+                    <TextView
+                        android:id="@+id/tv_store_number"
+                        style="@style/DetailItemRightStyle"
+                        android:drawableRight="@drawable/detail_item_arrow_selector" />
+                </LinearLayout>
+
+                <View style="@style/HorizontalDividerDefaultStyle" />
+
+                <LinearLayout
+                    android:id="@+id/ll_store_tel"
+                    style="@style/DetailClickableItemContainerStyle">
+
+                    <TextView
+                        style="@style/DetailItemLeftStyle"
+                        android:drawableLeft="@drawable/icon_detail_tel"
+                        android:text="@string/telephone_label" />
+
+                    <TextView
+                        android:id="@+id/tv_store_telephone"
+                        style="@style/DetailItemRightStyle"
+                        android:drawableRight="@drawable/detail_item_arrow_selector"
+                        android:textColor="@color/c6" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_detail_activity_allstore"
+                style="@style/DetailItemBackgroundStyle"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/default_detail_clickable_item_selector"
+                    android:clickable="false"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/detail_item_min_height"
+                    android:orientation="horizontal"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="@dimen/detail_item_padding_horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_detail_activity_allstore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:paddingLeft="@dimen/detail_item_padding_horizontal"
+                        android:paddingRight="0dp"
+                        android:text="@string/all_store"
+                        android:textColor="@color/c3"
+                        android:textSize="@dimen/h4" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_activity_storenumber"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:drawablePadding="5.0dip"
+                        android:drawableRight="@drawable/detail_item_arrow_selector"
+                        android:enabled="false"
+                        android:gravity="right|center"
+                        android:textColor="@color/c2"
+                        android:textSize="@dimen/h4" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_detail"
+                style="@style/DetailItemBackgroundStyle"
+                android:layout_marginBottom="@dimen/default_vertical_margin">
+
+                <TextView
+                    style="@style/DetailTitleStyle"
+                    android:drawableLeft="@drawable/icon_detail"
+                    android:drawablePadding="10.0dip"
+                    android:text="@string/activity_detail" />
+
+                <View style="@style/HorizontalDividerDefaultStyle" />
+
+                <TextView
+                    android:id="@+id/tv_activity_detail"
+                    style="@style/DetailNoClickableItemContainerStyle" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

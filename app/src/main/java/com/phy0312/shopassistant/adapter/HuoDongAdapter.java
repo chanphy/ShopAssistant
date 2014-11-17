@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.model.HuoDong;
+import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.tools.DateUtil;
 import com.squareup.picasso.Picasso;
 
@@ -57,10 +57,10 @@ public class HuoDongAdapter extends BaseAdapter{
         }
         viewHolder =  (ViewHolder)view.getTag();
         HuoDong huoDong = list.get(i);
-        viewHolder.tv_activity_name.setText(huoDong.getTitle());
-        Picasso.with(context).load(huoDong.getIconUrl()).into(viewHolder.iv_activity_photo);
-        viewHolder.tv_activity_valid_time.setText(DateUtil.dateToStr(huoDong.getStartDate())+"-"+
-        DateUtil.dateToStr(huoDong.getEndDate()));
+        viewHolder.tv_activity_name.setText(huoDong.getName());
+        Picasso.with(context).load(huoDong.getIcon()).into(viewHolder.iv_activity_photo);
+        viewHolder.tv_activity_valid_time.setText(DateUtil.parseLongToTime(huoDong.getStartTime())+"-"+
+        DateUtil.parseLongToTime(huoDong.getEndTime()));
         return view;
     }
 

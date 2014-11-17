@@ -25,6 +25,20 @@ public class HuoDong {
         this.id = id;
     }
 
+
+    public HuoDong(Long id, String huoDongId, String storeId, Long startTime, Long endTime, Integer category, String description, String name, String icon, Integer status) {
+        this.id = id;
+        HuoDongId = huoDongId;
+        StoreId = storeId;
+        StartTime = startTime;
+        EndTime = endTime;
+        Category = category;
+        Description = description;
+        Name = name;
+        Icon = icon;
+        Status = status;
+    }
+
     public HuoDong(Long id, String HuoDongId, String StoreId, Long StartTime, Long EndTime, Integer Category, String Description, String Name, String Icon, Integer Status, java.util.Date CreateTime) {
         this.id = id;
         this.HuoDongId = HuoDongId;

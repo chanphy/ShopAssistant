@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.data;
 
-import com.phy0312.shopassistant.model.HuoDong;
+import com.phy0312.shopassistant.activity.CommonHuoDongFragment;
+import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
 
@@ -55,11 +56,11 @@ public class DataManager {
     public static List<HuoDong> getHuoDongs() {
         List<HuoDong> huoDongs = new ArrayList<HuoDong>();
 
-        HuoDong huoDong1 = new HuoDong(1, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
-        HuoDong huoDong2 = new HuoDong(2, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
-        HuoDong huoDong3 = new HuoDong(3, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
-        HuoDong huoDong4 = new HuoDong(4, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
-        HuoDong huoDong5 = new HuoDong(5, "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", new Date(), new Date());
+        HuoDong huoDong1 = new HuoDong(1L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong2 = new HuoDong(2L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong3 = new HuoDong(3L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong4 = new HuoDong(4L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong5 = new HuoDong(5L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
 
         huoDongs.add(huoDong1);
         huoDongs.add(huoDong2);
