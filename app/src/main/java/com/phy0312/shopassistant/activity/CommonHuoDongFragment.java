@@ -3,6 +3,7 @@ package com.phy0312.shopassistant.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -173,6 +174,12 @@ public class CommonHuoDongFragment extends Fragment implements PullToRefreshLayo
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Intent intent = new Intent();
+        intent.setClassName(getActivity(), HuoDongDetailActivity.class.getName());
+        try{
+            getActivity().startActivity(intent);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }

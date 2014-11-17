@@ -7,6 +7,7 @@ package com.phy0312.shopassistant.tools;
  */
 
 
+import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -384,4 +385,10 @@ public class DateUtil {
         return sb.toString();
     }
 
+    public static String parseLongToDate(long l) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(l);
+        return formatter.format(calendar.getTime());
+    }
 }

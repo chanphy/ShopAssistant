@@ -59,8 +59,8 @@ public class HuoDongAdapter extends BaseAdapter{
         HuoDong huoDong = list.get(i);
         viewHolder.tv_activity_name.setText(huoDong.getName());
         Picasso.with(context).load(huoDong.getIcon()).into(viewHolder.iv_activity_photo);
-        viewHolder.tv_activity_valid_time.setText(DateUtil.parseLongToTime(huoDong.getStartTime())+"-"+
-        DateUtil.parseLongToTime(huoDong.getEndTime()));
+        viewHolder.tv_activity_valid_time.setText(DateUtil.parseLongToDate(huoDong.getStartTime())+"-"+
+        DateUtil.parseLongToDate(huoDong.getEndTime()));
         return view;
     }
 

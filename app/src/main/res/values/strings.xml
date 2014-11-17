@@ -4,6 +4,7 @@
     <string name="app_name">ShopAssistant</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_share">分享</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- menu -->
@@ -38,6 +39,6 @@
     <string name="address_label">地址：</string>
     <string name="telephone_label">电话：</string>
     <string name="all_store">全部适用商户</string>
-    <string name="title_activity_huo_dong_detail">HuoDongDetailActivity</string>
+    <string name="title_activity_huo_dong_detail">活动详情</string>
 
 </resources>
