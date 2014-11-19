@@ -133,7 +133,9 @@ public class CouponDao extends AbstractDao<Coupon, Long> {
             cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5), // EndTime
             cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6), // Category
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // Description
-            cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)) // CreateTime
+            cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)),
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9),
+            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10)
         );
         return entity;
     }

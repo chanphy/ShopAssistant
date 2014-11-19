@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout
+        android:id="@+id/fl_banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        ptr:aspectRatio="3.555">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="10dip" />
+    </com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="36.0dip"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/sp_category_name"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/h4" />
+
+        <View style="@style/VerticalDividerDefaultStyle" />
+
+        <Spinner
+            android:id="@+id/sp_category_sort"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/h4" />
+    </LinearLayout>
+
+</LinearLayout>

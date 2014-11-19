@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.data;
 
 import com.phy0312.shopassistant.activity.CommonHuoDongFragment;
+import com.phy0312.shopassistant.db.Coupon;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
@@ -69,5 +70,28 @@ public class DataManager {
         huoDongs.add(huoDong5);
 
         return huoDongs;
+    }
+
+    public static List<Coupon> getCoupons() {
+        List<Coupon> coupons = new ArrayList<Coupon>();
+
+        Coupon coupon1 = new Coupon(1L, "1", "1","优惠券", System.currentTimeMillis(),
+                System.currentTimeMillis(), 0, "优惠券描述", new Date(), "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
+        Coupon coupon2 = new Coupon(1L, "1", "1","优惠券", System.currentTimeMillis(),
+                System.currentTimeMillis(), 0, "优惠券描述", new Date(), "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
+        Coupon coupon3 = new Coupon(1L, "1", "1","优惠券", System.currentTimeMillis(),
+                System.currentTimeMillis(), 0, "优惠券描述", new Date(), "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
+        Coupon coupon4 = new Coupon(1L, "1", "1","优惠券", System.currentTimeMillis(),
+                System.currentTimeMillis(), 0, "优惠券描述", new Date(), "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
+        Coupon coupon5 = new Coupon(1L, "1", "1","优惠券", System.currentTimeMillis(),
+                System.currentTimeMillis(), 0, "优惠券描述", new Date(), "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
+
+        coupons.add(coupon1);
+        coupons.add(coupon2);
+        coupons.add(coupon3);
+        coupons.add(coupon4);
+        coupons.add(coupon5);
+
+        return coupons;
     }
 }

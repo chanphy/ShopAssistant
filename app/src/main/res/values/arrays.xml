@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="coupon_categoty">
+        <item>全部</item>
+        <item>服饰</item>
+        <item>鞋包</item>
+        <item>数码</item>
+        <item>其它</item>
+    </string-array>
+
+    <string-array name="coupon_order">
+        <item>默认</item>
+        <item>最热</item>
+        <item>最新</item>
+    </string-array>
+
+</resources>

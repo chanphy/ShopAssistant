@@ -14,7 +14,9 @@ public class Coupon {
     private Long EndTime;
     private Integer Category;
     private String Description;
+    private String iconPath;
     private java.util.Date CreateTime;
+    private int count;
 
     public Coupon() {
     }
@@ -23,7 +25,10 @@ public class Coupon {
         this.id = id;
     }
 
-    public Coupon(Long id, String CouponId, String StoreId, String Name, Long StartTime, Long EndTime, Integer Category, String Description, java.util.Date CreateTime) {
+    public Coupon(Long id, String CouponId, String StoreId, String Name, Long StartTime, Long EndTime,
+                  Integer Category, String Description,
+                  java.util.Date CreateTime,
+                  String iconPath, int count) {
         this.id = id;
         this.CouponId = CouponId;
         this.StoreId = StoreId;
@@ -33,6 +38,8 @@ public class Coupon {
         this.Category = Category;
         this.Description = Description;
         this.CreateTime = CreateTime;
+        this.iconPath = iconPath;
+        this.count = count;
     }
 
     public Long getId() {
@@ -107,4 +114,19 @@ public class Coupon {
         this.CreateTime = CreateTime;
     }
 
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }
