@@ -3,13 +3,11 @@ package com.phy0312.shopassistant.activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +20,7 @@ import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 /**
  * 主activity
  */
-public class MainActivity extends FragmentActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
+public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
 
 
     private DrawerLayout drawerLayout;
@@ -75,21 +73,21 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
 
         // Set the drawer toggle as the DrawerListener
         drawerLayout.setDrawerListener(mDrawerToggle);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
     }
 
