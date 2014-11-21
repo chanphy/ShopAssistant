@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#ff000000</color>
-    <color name="white">#ffffffff</color>
+
+    <color name="tansparent_white_color"> #1AFFFFFF</color>
     <color name="showcase_view_bgcolor">#80505050</color>
     <color name="showcase_view_default_bgcolor">#3333b5e5</color>
     <color name="showcase_view_title">#ff49c0ec</color>

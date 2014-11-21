@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.activity.base.PagerItem;
+import com.phy0312.shopassistant.view.PagerSlidingTabStrip;
 import com.phy0312.shopassistant.view.SlidingTabLayout;
 
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ import java.util.List;
 public class HuoDongFragment extends Fragment {
 
     private ViewPager vp_container;
-    private SlidingTabLayout mSlidingTabLayout;
+    //private SlidingTabLayout mSlidingTabLayout;
+    private PagerSlidingTabStrip sliding_tabs;
     List<PagerItem> mTabs = new ArrayList<PagerItem>();
 
 
@@ -74,7 +76,7 @@ public class HuoDongFragment extends Fragment {
         vp_container = (ViewPager) view.findViewById(R.id.vp_container);
         vp_container.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager()));
 
-        mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
+       /* mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setLayout_weight(true);
         mSlidingTabLayout.setViewPager(vp_container);
 
@@ -92,7 +94,12 @@ public class HuoDongFragment extends Fragment {
 
 
 
-        });
+        });*/
+
+
+        sliding_tabs = (PagerSlidingTabStrip)view.findViewById(R.id.sliding_tabs);
+        sliding_tabs.setViewPager(vp_container);
+
 
         return view;
     }

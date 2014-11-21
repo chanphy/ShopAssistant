@@ -5,8 +5,10 @@ import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,12 +31,14 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private int itemId = 0;
-
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         lv_menu = (ListView)findViewById(R.id.lv_menu);
         lv_menu.setOnItemClickListener(this);
