@@ -11,8 +11,17 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:background="@color/material_500"
-        />
+        android:background="@color/indigo_500"
+        android:gravity="center"
+        >
+        <Spinner
+            android:id="@+id/sp_plazas"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+    </android.support.v7.widget.Toolbar>
 
 
     <android.support.v4.widget.DrawerLayout

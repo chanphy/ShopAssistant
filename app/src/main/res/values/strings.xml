@@ -11,7 +11,7 @@
     <string name="navdrawer_item_main">主页</string>
     <string name="navdrawer_item_huodong">活动</string>
     <string name="navdrawer_item_coupon">优惠券</string>
-    <string name="navdrawer_item_food">餐饮</string>
+    <string name="navdrawer_item_tuangou">团购</string>
     <string name="navdrawer_item_my_profile">我的</string>
     <string name="drawer_close">打开</string>
     <string name="drawer_open">关闭</string>
@@ -40,7 +40,10 @@
     <string name="telephone_label">电话：</string>
     <string name="all_store">全部适用商户</string>
     <string name="title_activity_huo_dong_detail">活动详情</string>
-
     <string name="coupon_count">已下载%1$s</string>
+    <string name="valid_time_title">有效期</string>
+    <string name="ticket_detail">优惠券详情</string>
+    <string name="title_activity_coupon_detail">优惠券详情</string>
+    <string name="exit_confirm">再按一次退出逛街助手</string>
 
 </resources>

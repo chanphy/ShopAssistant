@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -16,10 +17,8 @@ import android.widget.Spinner;
 
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.CouponAdapter;
-import com.phy0312.shopassistant.adapter.HuoDongAdapter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.Coupon;
-import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -97,7 +96,13 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Intent intent = new Intent();
+        intent.setClassName(getActivity(), CouponDetailActivity.class.getName());
+        try{
+            getActivity().startActivity(intent);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

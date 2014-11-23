@@ -19,10 +19,14 @@
         <activity
             android:name=".activity.HuoDongDetailActivity"
             android:label="@string/title_activity_huo_dong_detail"
-            android:parentActivityName=".activity.MainActivity">
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.CouponDetailActivity"
+            android:label="@string/title_activity_coupon_detail" >
         </activity>
     </application>
 

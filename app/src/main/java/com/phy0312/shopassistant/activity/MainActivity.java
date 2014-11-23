@@ -5,7 +5,6 @@ import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
@@ -24,6 +26,8 @@ import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
  */
 public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
 
+    private final int waitTime = 2000;
+    private long touchTime = 0;
 
     private DrawerLayout drawerLayout;
     private ListView lv_menu;
@@ -32,15 +36,20 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
     private CharSequence mTitle;
     private int itemId = 0;
     private Toolbar toolbar;
+    private Spinner sp_plazas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        sp_plazas = (Spinner) findViewById(R.id.sp_plazas);
+        sp_plazas.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, new String[]{"东方百货", "宝龙", "万象城"}));
         setSupportActionBar(toolbar);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        lv_menu = (ListView)findViewById(R.id.lv_menu);
+        getSupportActionBar().setDisplayUseLogoEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        lv_menu = (ListView) findViewById(R.id.lv_menu);
         lv_menu.setOnItemClickListener(this);
         initDrawerMenu();
         MainFragment mainFragment = new MainFragment();
@@ -113,33 +122,43 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        if(position == itemId) {
+        if (position == itemId) {
             drawerLayout.closeDrawers();
             return;
         }
         itemId = position;
         switch (position) {
             case DrawerMenuAdapter.NAVDRAWER_ITEM_MAIN:
+                getSupportActionBar().setDisplayShowTitleEnabled(false);
+                sp_plazas.setVisibility(View.VISIBLE);
                 MainFragment mainFragment = new MainFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
-                mDrawerTitle = getString(R.string.navdrawer_item_main);
+                mDrawerTitle = "";
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG:
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                sp_plazas.setVisibility(View.GONE);
                 HuoDongFragment huoDongFragment = new HuoDongFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, huoDongFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_huodong);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON:
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                sp_plazas.setVisibility(View.GONE);
                 CouponFragment couponFragment = new CouponFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_coupon);
                 break;
-            case DrawerMenuAdapter.NAVDRAWER_ITEM_FOOD:
+            case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                sp_plazas.setVisibility(View.GONE);
                 FoodFragment foodFragment = new FoodFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
-                mDrawerTitle = getString(R.string.navdrawer_item_food);
+                mDrawerTitle = getString(R.string.navdrawer_item_tuangou);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_MY_PROFILE:
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                sp_plazas.setVisibility(View.GONE);
                 MyProfileFragment myProfileFragment = new MyProfileFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, myProfileFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_my_profile);
@@ -164,5 +183,16 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if ((currentTime - touchTime) >= waitTime) {
+            Toast.makeText(this, getString(R.string.exit_confirm), Toast.LENGTH_SHORT).show();
+            touchTime = currentTime;
+        } else {
+            finish();
+        }
     }
 }

@@ -28,7 +28,7 @@ public class DrawerMenuAdapter extends BaseAdapter {
     public static final int NAVDRAWER_ITEM_MAIN = 0;
     public static final int NAVDRAWER_ITEM_HUODONG = 1;
     public static final int NAVDRAWER_ITEM_COUPON = 2;
-    public static final int NAVDRAWER_ITEM_FOOD = 3;
+    public static final int NAVDRAWER_ITEM_TUANGOU = 3;
     public static final int NAVDRAWER_ITEM_MY_PROFILE = 4;
 
 
@@ -36,7 +36,7 @@ public class DrawerMenuAdapter extends BaseAdapter {
             R.string.navdrawer_item_main,
             R.string.navdrawer_item_huodong,
             R.string.navdrawer_item_coupon,
-            R.string.navdrawer_item_food,
+            R.string.navdrawer_item_tuangou,
             R.string.navdrawer_item_my_profile
     };
 
@@ -74,5 +74,7 @@ public class DrawerMenuAdapter extends BaseAdapter {
         view.setTag(position);
         return view;
     }
+
+
 
 }

@@ -5,9 +5,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/material_500</item>
-        <item name="colorPrimaryDark">@color/material_700</item>
-        <item name="colorAccent">@color/material_a200</item>
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/indigo_500</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/indigo_700</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/pink_a200</item>
+
         <item name="android:textColorPrimary">@color/white</item>
     </style>
 
@@ -226,6 +230,28 @@
         <item name="android:background">@color/divider_color</item>
         <item name="android:layout_width">1.0dip</item>
         <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="DetailBottomBarStyle">
+        <item name="android:background">@color/sixty_percent_transparent</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="HighLightButtonAlignParentBottomStyle" parent="@style/HighLightButtonStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_marginLeft">@dimen/default_horizontal_margin</item>
+        <item name="android:layout_marginTop">3.0dip</item>
+        <item name="android:layout_marginRight">@dimen/default_horizontal_margin</item>
+        <item name="android:layout_marginBottom">3.0dip</item>
+    </style>
+
+    <style name="HighLightButtonStyle">
+        <item name="android:textSize">@dimen/h2</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/btn_highlight_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 
