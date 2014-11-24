@@ -1,22 +1,23 @@
 package com.phy0312.shopassistant.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGORY_WEEKRECOMMEND;
 import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGORY_COUPON;
+import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGORY_WEEKRECOMMEND;
 import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGOTY_FLIM;
 import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGOTY_HUODONG;
 
@@ -29,10 +30,21 @@ public class MainItemAdpter extends BaseAdapter {
 
     List<MainColumnGroup> list;
     Context context;
+    DisplayImageOptions options;
 
     public MainItemAdpter(List<MainColumnGroup> list, Context context) {
         this.list = list;
         this.context = context;
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_stub)
+                .showImageForEmptyUri(R.drawable.ic_empty)
+                .showImageOnFail(R.drawable.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .displayer(new RoundedBitmapDisplayer(20))
+                .build();
     }
 
     public List<MainColumnGroup> getList() {
@@ -123,17 +135,17 @@ public class MainItemAdpter extends BaseAdapter {
             if (i == 0) {
                 holder.tv_home_left_summary.setText(info.getTitle());
                 holder.tv_home_left_price.setText(info.getPrice());
-                Picasso.with(context).load(info.getIcon()).into(holder.iv_home_left_photo);
+                ImageLoader.getInstance().displayImage(info.getIcon(), holder.iv_home_left_photo, options);
                 continue;
             } else if (i == 1) {
                 holder.tv_home_right_top_summary.setText(info.getTitle());
                 holder.tv_home_right_top_price.setText(info.getPrice());
-                Picasso.with(context).load(info.getIcon()).into(holder.iv_home_right_top_photo);
+                ImageLoader.getInstance().displayImage(info.getIcon(), holder.iv_home_right_top_photo, options);
                 continue;
             } else if (i == 2) {
                 holder.tv_home_right_bottom_summary.setText(info.getTitle());
                 holder.tv_home_right_bottom_price.setText(info.getPrice());
-                Picasso.with(context).load(info.getIcon()).into(holder.iv_home_right_bottom_photo);
+                ImageLoader.getInstance().displayImage(info.getIcon(), holder.iv_home_right_bottom_photo, options);
                 continue;
             }
         }

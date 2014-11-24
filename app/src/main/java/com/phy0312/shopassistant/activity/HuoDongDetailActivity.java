@@ -8,11 +8,13 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.db.Store;
 import com.phy0312.shopassistant.tools.DateUtil;
-import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
@@ -37,6 +39,8 @@ public class HuoDongDetailActivity extends Activity {
     private TextView tv_store_telephone;
     private TextView tv_activity_detail;
 
+    DisplayImageOptions options;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,7 @@ public class HuoDongDetailActivity extends Activity {
         ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.title_activity_huo_dong_detail));
         initData();
         iv_activity_photo = (ImageView) findViewById(R.id.iv_activity_photo);
-        Picasso.with(this).load(huoDong.getIcon()).into(iv_activity_photo);
+        ImageLoader.getInstance().displayImage(huoDong.getIcon(), iv_activity_photo, options);
         ((TextView) findViewById(R.id.tv_activity_name)).setText(huoDong.getName());
         ((TextView) findViewById(R.id.tv_activity_description)).setText(huoDong.getName());
         ((TextView) findViewById(R.id.tv_activity_valid_time)).setText(DateUtil.parseLongToDate(huoDong.getStartTime()) + "至" +
@@ -79,6 +83,16 @@ public class HuoDongDetailActivity extends Activity {
                 CommonHuoDongFragment.HOT, "活动详情", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
         store = new Store(1L, "3", "3", 1, "闲逛记", "1F", 0, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg",
                 "0591-839236541", 1, 1, new Date(), "");
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_stub)
+                .showImageForEmptyUri(R.drawable.ic_empty)
+                .showImageOnFail(R.drawable.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .displayer(new RoundedBitmapDisplayer(20))
+                .build();
     }
 
 }

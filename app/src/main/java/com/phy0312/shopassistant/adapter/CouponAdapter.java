@@ -8,9 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.db.Coupon;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -25,9 +27,21 @@ public class CouponAdapter extends BaseAdapter {
 
     private List<Coupon> list;
 
+    DisplayImageOptions options;
+
     public CouponAdapter(Context context, List<Coupon> list) {
         this.context = context;
         this.list = list;
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_stub)
+                .showImageForEmptyUri(R.drawable.ic_empty)
+                .showImageOnFail(R.drawable.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .displayer(new RoundedBitmapDisplayer(20))
+                .build();
     }
 
     @Override
@@ -61,7 +75,7 @@ public class CouponAdapter extends BaseAdapter {
         }
         Coupon coupon = list.get(position);
         viewHolder =  (ViewHolder)convertView.getTag();
-        Picasso.with(context).load(coupon.getIconPath()).into(viewHolder.iv_coupon_photo);
+        ImageLoader.getInstance().displayImage(coupon.getIconPath(), viewHolder.iv_coupon_photo, options);
         viewHolder.tv_coupon_name.setText(coupon.getName());
         viewHolder.tv_coupon_summary.setText(coupon.getDescription());
         viewHolder.tv_coupon_type.setText(coupon.getCategory()+"");

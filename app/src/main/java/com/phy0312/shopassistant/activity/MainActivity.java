@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,9 @@ import android.widget.Toast;
 
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
+import com.phy0312.shopassistant.adapter.PlazaAdapter;
+
+import java.util.ArrayList;
 
 /**
  * 主activity
@@ -44,7 +48,12 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         sp_plazas = (Spinner) findViewById(R.id.sp_plazas);
-        sp_plazas.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, new String[]{"东方百货", "宝龙", "万象城"}));
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("东方百货");
+        list.add("万象城");
+        list.add("宝龙城市广场");
+        sp_plazas.setAdapter(new PlazaAdapter(list, LayoutInflater.from(this)));
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -86,6 +95,9 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
+                if(mDrawerTitle.equals("")){
+                    sp_plazas.setVisibility(View.VISIBLE);
+                }
                 getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
@@ -93,7 +105,9 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                sp_plazas.setVisibility(View.GONE);
+                getSupportActionBar().setTitle(getString(R.string.app_name));
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -129,36 +143,26 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         itemId = position;
         switch (position) {
             case DrawerMenuAdapter.NAVDRAWER_ITEM_MAIN:
-                getSupportActionBar().setDisplayShowTitleEnabled(false);
-                sp_plazas.setVisibility(View.VISIBLE);
                 MainFragment mainFragment = new MainFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
                 mDrawerTitle = "";
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG:
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                sp_plazas.setVisibility(View.GONE);
                 HuoDongFragment huoDongFragment = new HuoDongFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, huoDongFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_huodong);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON:
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                sp_plazas.setVisibility(View.GONE);
                 CouponFragment couponFragment = new CouponFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_coupon);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                sp_plazas.setVisibility(View.GONE);
                 FoodFragment foodFragment = new FoodFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_tuangou);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_MY_PROFILE:
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                sp_plazas.setVisibility(View.GONE);
                 MyProfileFragment myProfileFragment = new MyProfileFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, myProfileFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_my_profile);

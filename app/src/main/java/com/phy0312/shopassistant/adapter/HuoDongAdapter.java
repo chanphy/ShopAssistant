@@ -8,10 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.tools.DateUtil;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -24,9 +26,20 @@ public class HuoDongAdapter extends BaseAdapter{
 
     private List<HuoDong> list;
 
+    DisplayImageOptions options;
+
     public HuoDongAdapter(List<HuoDong> list, Context context) {
         this.context = context;
         this.list = list;
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_stub)
+                .showImageForEmptyUri(R.drawable.ic_empty)
+                .showImageOnFail(R.drawable.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .displayer(new RoundedBitmapDisplayer(20))
+                .build();
     }
 
     @Override
@@ -58,7 +71,7 @@ public class HuoDongAdapter extends BaseAdapter{
         viewHolder =  (ViewHolder)view.getTag();
         HuoDong huoDong = list.get(i);
         viewHolder.tv_activity_name.setText(huoDong.getName());
-        Picasso.with(context).load(huoDong.getIcon()).into(viewHolder.iv_activity_photo);
+        ImageLoader.getInstance().displayImage(huoDong.getIcon(), viewHolder.iv_activity_photo, options);
         viewHolder.tv_activity_valid_time.setText(DateUtil.parseLongToDate(huoDong.getStartTime())+"-"+
         DateUtil.parseLongToDate(huoDong.getEndTime()));
         return view;

@@ -8,19 +8,19 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:background="@color/indigo_500"
         android:gravity="center"
         >
         <Spinner
             android:id="@+id/sp_plazas"
-            android:gravity="center"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:background="?android:selectableItemBackground"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:dropDownSelector="?android:selectableItemBackground" />
     </android.support.v7.widget.Toolbar>
 
 
