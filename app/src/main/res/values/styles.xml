@@ -29,6 +29,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">5.0dip</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <declare-styleable name="FlowLayout">

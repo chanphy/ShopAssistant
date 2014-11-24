@@ -34,18 +34,18 @@
         android:layout_marginTop="11.0dp"
         android:orientation="horizontal">
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_membercard"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_member"
-            android:text="@string/menu_title_member" />
+            android:text="@string/menu_title_food" />
 
         <View
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_product"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_product"
@@ -56,7 +56,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_cinema"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_flim"
@@ -67,7 +67,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_ktv"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_ktv"
@@ -82,7 +82,7 @@
         android:layout_marginTop="11.0dp"
         android:orientation="horizontal">
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_wifi"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_wifi"
@@ -93,7 +93,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_store"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_store"
@@ -104,7 +104,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_augmented_reality"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_augmented_reality"
@@ -115,7 +115,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
 
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/btn_parking"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_parking"

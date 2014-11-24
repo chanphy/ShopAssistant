@@ -10,8 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.MainItemAdpter;
 import com.phy0312.shopassistant.data.DataManager;
@@ -31,15 +35,26 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
     private ListView lv_content;
     private ViewPager viewPager;
     private CirclePageIndicator indicator;
-    List<View> viewList;
+    List<ImageView> viewList;
     private Handler handler;
     private MainItemAdpter adpter;
+    DisplayImageOptions options;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         handler = new Handler();
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_stub)
+                .showImageForEmptyUri(R.drawable.ic_empty)
+                .showImageOnFail(R.drawable.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .build();
+
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ptl_container = (PullToRefreshLayout)view.findViewById(R.id.ptl_container);
         lv_content = (ListView)view.findViewById(R.id.lv_content);
@@ -98,12 +113,14 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
 
     private void initAdsBanner() {
         LayoutInflater mInflater = getActivity().getLayoutInflater().from(getActivity());
-        View v1 = mInflater.inflate(R.layout.banner_ads, null);
-        View v2 = mInflater.inflate(R.layout.banner_ads, null);
-        View v3 = mInflater.inflate(R.layout.banner_ads, null);
+        ImageView v1 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
+        ImageView v2 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
+        ImageView v3 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
+
+
 
         //添加页面数据
-        viewList = new ArrayList<View>();
+        viewList = new ArrayList<ImageView>();
         viewList.add(v1);
         viewList.add(v2);
         viewList.add(v3);
@@ -123,6 +140,8 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
                 container.addView(viewList.get(position));
+                ImageLoader.getInstance().displayImage("http://d02.res.meilishuo.net/pic/d/87/8c/9ae13726e933e85711c2b3de7c8a_750_220.gif",
+                        viewList.get(position), options);
                 return viewList.get(position);
             }
 

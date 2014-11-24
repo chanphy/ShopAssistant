@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
+import com.phy0312.shopassistant.config.MainSp;
 
 import java.util.ArrayList;
 
@@ -63,6 +64,12 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         initDrawerMenu();
         MainFragment mainFragment = new MainFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
+
+        MainSp sp = new MainSp(this);
+        if(sp.isFirstUse()) {
+            drawerLayout.openDrawer(Gravity.LEFT);
+            sp.setFirstUse(false);
+        }
     }
 
 
@@ -85,7 +92,8 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
      * 初始化匣子菜单
      */
     private void initDrawerMenu() {
-        mTitle = mDrawerTitle = getTitle();
+        mTitle = getTitle();
+        mDrawerTitle = "";
 
         lv_menu.setAdapter(new DrawerMenuAdapter(this.getLayoutInflater()));
 
@@ -191,6 +199,12 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
 
     @Override
     public void onBackPressed() {
+
+        if(drawerLayout.isDrawerOpen(Gravity.LEFT)){
+            drawerLayout.closeDrawers();
+            return;
+        }
+
         long currentTime = System.currentTimeMillis();
         if ((currentTime - touchTime) >= waitTime) {
             Toast.makeText(this, getString(R.string.exit_confirm), Toast.LENGTH_SHORT).show();
@@ -199,4 +213,7 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
             finish();
         }
     }
+
+
+
 }
