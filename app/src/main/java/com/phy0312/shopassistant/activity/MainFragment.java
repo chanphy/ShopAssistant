@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -12,14 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.MainItemAdpter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.model.MainColumnGroup;
+import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -39,6 +41,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
     private Handler handler;
     private MainItemAdpter adpter;
     DisplayImageOptions options;
+    TextView tv_food;
 
 
     @Nullable
@@ -65,8 +68,19 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
 
         LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View headerView = lif.inflate(R.layout.main_header, lv_content, false);
+
         lv_content.addHeaderView(headerView);
         lv_content.setAdapter(adpter);
+
+        tv_food = (TextView)headerView.findViewById(R.id.tv_food);
+        tv_food.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName(MainFragment.this.getActivity(), FoodActivity.class.getName());
+                AndroidUtil.startActivity(MainFragment.this.getActivity(), intent);
+            }
+        });
 
         viewPager = (ViewPager)headerView.findViewById(R.id.pager);
         initAdsBanner();
@@ -112,7 +126,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
     }
 
     private void initAdsBanner() {
-        LayoutInflater mInflater = getActivity().getLayoutInflater().from(getActivity());
+        LayoutInflater mInflater = LayoutInflater.from(getActivity());
         ImageView v1 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
         ImageView v2 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
         ImageView v3 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);

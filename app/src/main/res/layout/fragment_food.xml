@@ -7,54 +7,22 @@
     android:orientation="vertical"
     tools:context="com.phy0312.shopassistant.activity.FoodFragment">
 
-    <com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout
-        android:id="@+id/fl_banner_container"
+    <include layout="@layout/common_header" />
+
+    <com.phy0312.shopassistant.view.PagerSlidingTabStrip
+        android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:aspectRatio="2.2192">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:pstsIndicatorColor="@color/pink_a200"
+        app:pstsPaddingMiddle="false"
+        app:pstsShouldExpand="true" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
-
-        <com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator
-            android:id="@+id/indicator"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:padding="10dip" />
-    </com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout>
-
-    <android.support.v4.app.FragmentTabHost
-        android:id="@+id/tabhost_container"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" />
-
-            <FrameLayout
-                android:id="@+id/fl_tabcontent"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-    </android.support.v4.app.FragmentTabHost>
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
 
 </LinearLayout>

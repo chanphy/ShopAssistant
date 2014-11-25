@@ -7,13 +7,9 @@ import android.support.v4.app.Fragment;
 public abstract class PagerItem {
 
     private  CharSequence mTitle;
-    private  int mIndicatorColor;
-    private  int mDividerColor;
 
-    public PagerItem(CharSequence title, int indicatorColor, int dividerColor) {
+    public PagerItem(CharSequence title) {
         mTitle = title;
-        mIndicatorColor = indicatorColor;
-        mDividerColor = dividerColor;
     }
 
     abstract  public Fragment createFragment();
@@ -25,16 +21,4 @@ public abstract class PagerItem {
     public CharSequence getTitle() {
         return mTitle;
     }
-
-
-    public int getIndicatorColor() {
-        return mIndicatorColor;
-    }
-
-
-    public int getDividerColor() {
-        return mDividerColor;
-    }
-
-
 }

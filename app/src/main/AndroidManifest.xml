@@ -29,6 +29,10 @@
             android:name=".activity.CouponDetailActivity"
             android:label="@string/title_activity_coupon_detail" >
         </activity>
+        <activity
+            android:name=".activity.FoodActivity"
+            android:label="@string/menu_title_food" >
+        </activity>
     </application>
 
     <!-- This is required for Picasso to work. -->

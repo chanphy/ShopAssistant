@@ -35,7 +35,7 @@
         android:orientation="horizontal">
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_membercard"
+            android:id="@+id/tv_food"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_member"
             android:text="@string/menu_title_food" />

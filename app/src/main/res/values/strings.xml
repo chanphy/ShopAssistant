@@ -44,5 +44,12 @@
     <string name="ticket_detail">优惠券详情</string>
     <string name="title_activity_coupon_detail">优惠券详情</string>
     <string name="exit_confirm">再按一次退出逛街助手</string>
+    <string name="food">餐厅</string>
+    <string name="food_coupon">优惠</string>
+    <string name="food_huodong">活动</string>
+    <string name="food_tuangou">团购</string>
+    <string name="store_food_reservation">预定</string>
+    <string name="store_food_takeout">外卖</string>
+
 
 </resources>

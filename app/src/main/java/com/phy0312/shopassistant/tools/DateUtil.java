@@ -386,7 +386,7 @@ public class DateUtil {
     }
 
     public static String parseLongToDate(long l) {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(l);
         return formatter.format(calendar.getTime());
