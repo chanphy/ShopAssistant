@@ -1,8 +1,7 @@
-package com.phy0312.shopassistant.activity;
+package com.phy0312.shopassistant.activity.food;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.Window;
 
 import com.phy0312.shopassistant.R;
 
@@ -11,7 +10,7 @@ import com.phy0312.shopassistant.R;
  * author: Administrator<br/>
  * date: 2014/11/25<br/>
  */
-public class FoodActivity extends FragmentActivity {
+public class Food extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

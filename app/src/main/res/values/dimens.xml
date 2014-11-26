@@ -40,4 +40,5 @@
     <dimen name="listitem_store_icon_space">5.0dip</dimen>
     <dimen name="listitem_store_icon_point_mark_size">24.669983dip</dimen>
     <dimen name="listitem_store_icon_size">15.329987dip</dimen>
+    <dimen name="subtab_height">40.0dip</dimen>
 </resources>

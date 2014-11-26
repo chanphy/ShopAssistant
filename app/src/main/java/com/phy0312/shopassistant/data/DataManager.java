@@ -1,8 +1,9 @@
 package com.phy0312.shopassistant.data;
 
-import com.phy0312.shopassistant.activity.CommonHuoDongFragment;
+import com.phy0312.shopassistant.activity.activity.ActivityFragment;
 import com.phy0312.shopassistant.db.Coupon;
 import com.phy0312.shopassistant.db.HuoDong;
+import com.phy0312.shopassistant.db.Store;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
 
@@ -54,14 +55,14 @@ public class DataManager {
         return list;
     }
 
-    public static List<HuoDong> getHuoDongs() {
+    public static List<HuoDong> getHuoDongs(int type) {
         List<HuoDong> huoDongs = new ArrayList<HuoDong>();
 
-        HuoDong huoDong1 = new HuoDong(1L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong2 = new HuoDong(2L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong3 = new HuoDong(3L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong4 = new HuoDong(4L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong5 = new HuoDong(5L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), CommonHuoDongFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong1 = new HuoDong(1L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), ActivityFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong2 = new HuoDong(2L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), ActivityFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong3 = new HuoDong(3L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), ActivityFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong4 = new HuoDong(4L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), ActivityFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        HuoDong huoDong5 = new HuoDong(5L, "1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), ActivityFragment.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
 
         huoDongs.add(huoDong1);
         huoDongs.add(huoDong2);
@@ -93,5 +94,29 @@ public class DataManager {
         coupons.add(coupon5);
 
         return coupons;
+    }
+
+
+    /**
+     * 获取美食商家的信息
+     * @return
+     */
+    public static List<Store> getFoodStores() {
+        List<Store> stores = new ArrayList<Store>();
+
+        Store store = new Store(1L, "1", "1", 1, "大丰收","3F-306", 75, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", "0591-83956234", 3, 1, new Date(), "年年大丰收");
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        stores.add(store);
+        return stores;
     }
 }

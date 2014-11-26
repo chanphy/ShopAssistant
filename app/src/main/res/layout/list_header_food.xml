@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout
+        android:id="@+id/fl_banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:aspectRatio="3.555">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="10dip" />
+    </com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_tab_bar"
+        style="@style/TabRadioGroupStyle">
+
+        <RadioButton
+            android:id="@+id/rb_tab_store"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/food_tab_store" />
+
+        <RadioButton
+            android:id="@+id/rb_tab_coupon"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/food_tab_coupon" />
+
+        <RadioButton
+            android:id="@+id/rb_tab_activity"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/food_tab_activity" />
+
+        <RadioButton
+            android:id="@+id/rb_tab_deal"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/food_tab_deal" />
+    </RadioGroup>
+
+</LinearLayout>

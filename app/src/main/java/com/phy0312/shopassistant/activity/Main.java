@@ -14,12 +14,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.phy0312.shopassistant.R;
+import com.phy0312.shopassistant.activity.activity.ActivityFragment;
+import com.phy0312.shopassistant.activity.coupon.CouponFragment;
+import com.phy0312.shopassistant.activity.food.FoodFragment;
 import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
 import com.phy0312.shopassistant.config.MainSp;
@@ -29,7 +31,7 @@ import java.util.ArrayList;
 /**
  * 主activity
  */
-public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
+public class Main extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
 
     private final int waitTime = 2000;
     private long touchTime = 0;
@@ -156,8 +158,8 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
                 mDrawerTitle = "";
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG:
-                HuoDongFragment huoDongFragment = new HuoDongFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, huoDongFragment).commit();
+                ActivityFragment activityFragment = new ActivityFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, activityFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_huodong);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON:

@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.tools.DateUtil;
+import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 
 import java.util.List;
 
@@ -28,18 +28,10 @@ public class HuoDongAdapter extends BaseAdapter{
 
     DisplayImageOptions options;
 
-    public HuoDongAdapter(List<HuoDong> list, Context context) {
+    public HuoDongAdapter(Context context, List<HuoDong> list) {
         this.context = context;
         this.list = list;
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_stub)
-                .showImageForEmptyUri(R.drawable.ic_empty)
-                .showImageOnFail(R.drawable.ic_error)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .displayer(new RoundedBitmapDisplayer(20))
-                .build();
+        options = ImageLoaderUtil.newDisplayImageOptionsInstance();
     }
 
     @Override
@@ -61,7 +53,7 @@ public class HuoDongAdapter extends BaseAdapter{
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         if(view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.listitem_huodong, null);
+            view = LayoutInflater.from(context).inflate(R.layout.listitem_activity, null);
             viewHolder = new ViewHolder();
             viewHolder.iv_activity_photo = (ImageView)view.findViewById(R.id.iv_activity_photo);
             viewHolder.tv_activity_name = (TextView)view.findViewById(R.id.tv_activity_name);
@@ -79,6 +71,10 @@ public class HuoDongAdapter extends BaseAdapter{
 
     public void setList(List<HuoDong> list) {
         this.list = list;
+    }
+
+    public List<HuoDong> getList() {
+        return list;
     }
 
     class ViewHolder {

@@ -255,5 +255,26 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="TabRadioGroupStyle">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/subtab_height</item>
+        <item name="android:layout_marginBottom">5.0dip</item>
+        <item name="android:divider">@null</item>
+    </style>
+
+    <style name="UnderlineTabItemStyle">
+        <item name="android:textSize">@dimen/h4</item>
+        <item name="android:textColor">@color/underline_tab_text</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/tabitem_underline_selector</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
 
 </resources>

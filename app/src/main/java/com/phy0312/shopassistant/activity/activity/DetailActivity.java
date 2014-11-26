@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity;
+package com.phy0312.shopassistant.activity.activity;
 
 
 import android.app.Activity;
@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.db.Store;
 import com.phy0312.shopassistant.tools.DateUtil;
+import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 
 import java.util.Date;
 
@@ -23,7 +23,7 @@ import java.util.Date;
  * author: dingdj<br/>
  * date: 2014/11/17<br/>
  */
-public class HuoDongDetailActivity extends Activity {
+public class DetailActivity extends Activity {
 
 
     private HuoDong huoDong;
@@ -64,7 +64,7 @@ public class HuoDongDetailActivity extends Activity {
         findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HuoDongDetailActivity.this.finish();
+                DetailActivity.this.finish();
             }
         });
 
@@ -72,7 +72,7 @@ public class HuoDongDetailActivity extends Activity {
         findViewById(R.id.iv_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HuoDongDetailActivity.this.finish();
+                DetailActivity.this.finish();
             }
         });
     }
@@ -80,19 +80,11 @@ public class HuoDongDetailActivity extends Activity {
 
     private void initData() {
         huoDong = new HuoDong(1L, "1", "3", System.currentTimeMillis(), System.currentTimeMillis(),
-                CommonHuoDongFragment.HOT, "活动详情", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+                ActivityFragment.HOT, "活动详情", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
         store = new Store(1L, "3", "3", 1, "闲逛记", "1F", 0, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg",
                 "0591-839236541", 1, 1, new Date(), "");
 
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_stub)
-                .showImageForEmptyUri(R.drawable.ic_empty)
-                .showImageOnFail(R.drawable.ic_error)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .displayer(new RoundedBitmapDisplayer(20))
-                .build();
+        options = ImageLoaderUtil.newDisplayImageOptionsInstance();
     }
 
 }

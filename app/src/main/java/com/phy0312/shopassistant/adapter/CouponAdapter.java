@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.db.Coupon;
+import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 
 import java.util.List;
 
@@ -33,15 +34,7 @@ public class CouponAdapter extends BaseAdapter {
         this.context = context;
         this.list = list;
 
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_stub)
-                .showImageForEmptyUri(R.drawable.ic_empty)
-                .showImageOnFail(R.drawable.ic_error)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .displayer(new RoundedBitmapDisplayer(20))
-                .build();
+        options = ImageLoaderUtil.newDisplayImageOptionsInstance();
     }
 
     @Override

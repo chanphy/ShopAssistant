@@ -7,6 +7,7 @@ import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.phy0312.shopassistant.tools.CrashHandler;
 
 /**
  * description: <br/>
@@ -16,13 +17,8 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 public class MainApplication extends Application {
 
     public void onCreate() {
-        /*if (Constants.Config.DEVELOPER_MODE && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
-        }*/
-
         super.onCreate();
-
+        CrashHandler.getInstance(this);
         initImageLoader(getApplicationContext());
     }
 

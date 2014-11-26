@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,6 +14,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
+import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 
 import java.util.List;
 
@@ -35,16 +37,7 @@ public class MainItemAdpter extends BaseAdapter {
     public MainItemAdpter(List<MainColumnGroup> list, Context context) {
         this.list = list;
         this.context = context;
-
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_stub)
-                .showImageForEmptyUri(R.drawable.ic_empty)
-                .showImageOnFail(R.drawable.ic_error)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .displayer(new RoundedBitmapDisplayer(20))
-                .build();
+        options = ImageLoaderUtil.newDisplayImageOptionsInstance();
     }
 
     public List<MainColumnGroup> getList() {

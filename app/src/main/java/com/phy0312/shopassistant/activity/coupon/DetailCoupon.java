@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity;
+package com.phy0312.shopassistant.activity.coupon;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,7 @@ import android.view.Window;
 
 import com.phy0312.shopassistant.R;
 
-public class CouponDetailActivity extends FragmentActivity {
+public class DetailCoupon extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
