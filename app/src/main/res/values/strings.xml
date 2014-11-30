@@ -64,4 +64,43 @@
     <string name="food_tab_deal">团购</string>
 
 
+    <string name="my_profile_ticket_package">我的券包</string>
+    <string name="my_profile_my_tickets">我的门票</string>
+    <string name="my_profile_order_manager">@string/my_profile_my_order</string>
+    <string name="my_profile_my_order">我的订单</string>
+    <string name="my_profile_my_reservation">我的预定</string>
+    <string name="my_profile_member">我的会员卡</string>
+    <string name="my_profile_message">消息中心</string>
+    <string name="my_profile_password_manager">登录密码管理</string>
+    <string name="my_profile_pay_password_manager">支付密码管理</string>
+    <string name="my_profile_wx_bind">微信绑定</string>
+    <string name="my_profile_my_collect">我的收藏</string>
+    <string name="my_profile_my_cinema_ticket">我的影票</string>
+    <string name="my_profile_my_cloud_parking">我的停车</string>
+    <string name="select_all">全部选择</string>
+    <string name="unselect_all">全部取消</string>
+    <string name="my_profile_message_detail">消息详情</string>
+    <string name="my_profile_bouns_detail">我的积分</string>
+    <string name="my_profile_point_detail">积分明细</string>
+    <string name="my_profile_consume_list">广场消费记录</string>
+    <string name="my_profile_consume_summary">我的广场消费</string>
+    <string name="my_profile_consume_detail">消费详情</string>
+    <string name="my_profile_goto_all_consume">查看全部消费</string>
+    <string name="my_profile_consume_recommend_prompt">根据您的消费记录，为您推荐...</string>
+    <string name="my_profile_consume_recommend_prompt_for_no_consume">为您推荐下列优惠， 赶紧去广场消费吧</string>
+    <string name="my_profile_consume_no_data">抱歉，您还没有广场消费记录</string>
+    <string name="my_profile_consume_records">我的广场消费</string>
+    <string name="my_profile_change_password">密码修改</string>
+    <string name="my_profile_my_grade">我的等级</string>
+    <string name="my_profile_my_point">我的积分</string>
+    <string name="my_profile_mine_point">我的积分：%1$s</string>
+    <string name="my_profile_look_my_info">登录即可查看我的积分、优惠券</string>
+    <string name="my_profile_login">现在登录</string>
+    <string name="my_profile_consume_share">秀给小伙伴</string>
+    <string name="my_profile_logout">退出账号</string>
+    <string name="my_profile_register1">没有账号？</string>
+    <string name="my_profile_register2">快速注册</string>
+    <string name="my_profile_register3">一个新账号</string>
+
+
 </resources>

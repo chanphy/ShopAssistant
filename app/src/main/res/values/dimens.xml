@@ -41,4 +41,11 @@
     <dimen name="listitem_store_icon_point_mark_size">24.669983dip</dimen>
     <dimen name="listitem_store_icon_size">15.329987dip</dimen>
     <dimen name="subtab_height">40.0dip</dimen>
+
+    <dimen name="myprofile_login_button_width">140.0dip</dimen>
+    <dimen name="myprofile_login_button_height">36.0dip</dimen>
+    <dimen name="myprofile_login_area_height">122.0dip</dimen>
+    <dimen name="myprofile_register_button_height">20.0dip</dimen>
+    <dimen name="myprofile_login_vertical_margin">21.0dip</dimen>
+    <dimen name="myprofile_login_button_horizontal_padding">10.0dip</dimen>
 </resources>

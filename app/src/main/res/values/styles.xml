@@ -158,27 +158,6 @@
         <item name="android:layout_marginRight">@dimen/listitem_default_padding_horizontal</item>
     </style>
 
-    <style name="DetailTitleStyle" parent="@style/DetailItemStyle">
-        <item name="android:textSize">@dimen/h4</item>
-        <item name="android:textColor">@color/c4</item>
-        <item name="android:layout_height">35.0dip</item>
-    </style>
-    <style name="DetailContentStyle" parent="@style/DetailItemStyle">
-        <item name="android:textSize">@dimen/h4</item>
-        <item name="android:textColor">@color/c3</item>
-    </style>
-    <style name="DetailRichContentStyle" parent="@style/DetailItemStyle">
-        <item name="android:textSize">@dimen/h4</item>
-        <item name="android:textColor">@color/c2</item>
-        <item name="android:singleLine">false</item>
-    </style>
-    <style name="DetailDottedLineStyle">
-        <item name="android:background">@drawable/dotted_line</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">1.0dip</item>
-        <item name="android:layout_marginLeft">@dimen/detail_dotted_line_margin_horizontal</item>
-        <item name="android:layout_marginRight">@dimen/detail_dotted_line_margin_horizontal</item>
-    </style>
 
     <style name="DetailNoClickableItemContainerStyle" parent="@style/DetailItemStyle">
         <item name="android:textSize">@dimen/h4</item>
@@ -274,6 +253,48 @@
         <item name="android:layout_height">fill_parent</item>
         <item name="android:button">@null</item>
         <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="DetailItemCheckableStyle">
+        <item name="android:textSize">@dimen/h4</item>
+        <item name="android:textColor">@color/c3</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="DetailClickableTitleItemStyle" parent="@style/DetailItemStyle">
+        <item name="android:textSize">@dimen/h3</item>
+        <item name="android:textColor">@color/c2</item>
+        <item name="android:background">@drawable/default_detail_clickable_item_selector</item>
+        <item name="android:drawableRight">@drawable/detail_item_arrow_selector</item>
+    </style>
+    <style name="DetailClickableContentItemStyle" parent="@style/DetailClickableTitleItemStyle">
+        <item name="android:textSize">@dimen/h4</item>
+        <item name="android:textColor">@color/c3</item>
+    </style>
+    <style name="DetailTitleStyle" parent="@style/DetailItemStyle">
+        <item name="android:textSize">@dimen/h4</item>
+        <item name="android:textColor">@color/c4</item>
+        <item name="android:layout_height">35.0dip</item>
+    </style>
+    <style name="DetailContentStyle" parent="@style/DetailItemStyle">
+        <item name="android:textSize">@dimen/h4</item>
+        <item name="android:textColor">@color/c3</item>
+    </style>
+    <style name="DetailRichContentStyle" parent="@style/DetailItemStyle">
+        <item name="android:textSize">@dimen/h4</item>
+        <item name="android:textColor">@color/c2</item>
+        <item name="android:singleLine">false</item>
+    </style>
+    <style name="DetailDottedLineStyle">
+        <item name="android:background">@drawable/dotted_line</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1.0dip</item>
+        <item name="android:layout_marginLeft">@dimen/detail_dotted_line_margin_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/detail_dotted_line_margin_horizontal</item>
     </style>
 
 
