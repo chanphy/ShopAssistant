@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_listheader_container"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/default_horizontal_margin"
+        android:paddingRight="0dip">
+
+        <FrameLayout
+            android:id="@+id/fl_store_photo"
+            android:layout_width="@dimen/detail_store_food_image_size"
+            android:layout_height="@dimen/detail_store_food_image_size"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/iv_store_photo"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/image_description"
+                android:padding="18.0dip" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/icon_store_photo_plate_bg"
+                android:contentDescription="@string/image_description" />
+
+            <TextView
+                android:id="@+id/tv_store_look_blackboard"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/icon_blackboard_bg"
+                android:gravity="center"
+                android:paddingBottom="3.0dip"
+                android:paddingTop="3.0dip"
+                android:text="@string/store_food_look_blackboard"
+                android:textColor="@color/c2"
+                android:textSize="@dimen/h6" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_horizontal_margin"
+            android:layout_toRightOf="@id/fl_store_photo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@id/tv_store_name"
+                style="@style/DetailTitleStyle"
+                android:layout_width="wrap_content"
+                android:drawablePadding="10.0dip"
+                android:minHeight="0.0dip"
+                android:textColor="@color/c2"
+                android:textSize="@dimen/h3" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_store_short_name"
+                    style="@style/DetailContentStyle"
+                    android:layout_weight="1.0"
+                    android:minHeight="0.0dip"
+                    android:textColor="@color/c4" />
+
+                <TextView
+                    android:id="@+id/tv_store_price"
+                    style="@style/DetailContentStyle"
+                    android:layout_width="wrap_content"
+                    android:minHeight="0.0dip"
+                    android:textColor="@color/c4" />
+            </LinearLayout>
+
+            <View style="@style/HorizontalDividerDefaultStyle" />
+
+            <LinearLayout
+                android:id="@id/ll_store_number"
+                style="@style/DetailClickableItemContainerStyle">
+
+                <TextView
+                    style="@style/DetailItemLeftStyle"
+                    android:drawableLeft="@drawable/icon_detail_adress"
+                    android:text="@string/address_label" />
+
+                <TextView
+                    android:id="@id/tv_store_number"
+                    style="@style/DetailItemRightStyle"
+                    android:drawableRight="@drawable/detail_item_arrow_selector" />
+            </LinearLayout>
+
+            <View
+                style="@style/HorizontalDividerDefaultStyle"
+                android:layout_marginLeft="35.0dip" />
+
+            <LinearLayout
+                android:id="@id/ll_store_tel"
+                style="@style/DetailClickableItemContainerStyle">
+
+                <TextView
+                    style="@style/DetailItemLeftStyle"
+                    android:drawableLeft="@drawable/icon_detail_tel"
+                    android:text="@string/telephone_label" />
+
+                <TextView
+                    android:id="@+id/tv_store_phone"
+                    style="@style/DetailItemRightStyle"
+                    android:drawableRight="@drawable/detail_item_arrow_selector"
+                    android:textColor="@color/c6" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_dishes"
+        style="@style/DetailItemBackgroundStyle"
+        android:layout_height="160.0dip"
+        android:layout_marginTop="0.0dip"
+        android:background="@null"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="41.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableLeft="@drawable/icon_recommend"
+                android:drawablePadding="10.0dip"
+                android:gravity="left"
+                android:text="@string/store_food_advertise_dishes"
+                android:textColor="@color/c4"
+                android:textSize="@dimen/h4" />
+
+            <TextView
+                android:id="@+id/tv_store_all_dishes"
+                style="@style/DetailItemRightStyle"
+                android:layout_weight="0.0"
+                android:drawableRight="@drawable/detail_item_arrow_selector"
+                android:text="@string/store_food_all_dishes" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.phy0312.shopassistant.view.HorizontalListView
+                android:id="@+id/hlv_store_advertise_dishes"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@id/rg_tab_bar"
+        style="@style/TabRadioGroupStyle"
+        android:layout_marginBottom="0.0dip">
+
+        <RadioButton
+            android:id="@id/rb_tab_coupon"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/food_tab_coupon" />
+
+        <RadioButton
+            android:id="@id/rb_tab_activity"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/food_tab_activity" />
+
+        <RadioButton
+            android:id="@id/rb_tab_deal"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/food_tab_deal" />
+    </RadioGroup>
+
+</LinearLayout>

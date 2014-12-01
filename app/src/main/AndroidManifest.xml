@@ -33,6 +33,10 @@
             android:name=".activity.food.Food"
             android:label="@string/menu_title_food" >
         </activity>
+        <activity
+            android:name=".activity.food.FoodStoreActivity"
+            android:label="@string/title_activity_my" >
+        </activity>
     </application>
 
     <!-- This is required for Picasso to work. -->
@@ -47,9 +51,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- Used to load images for contact photos. -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
 </manifest>

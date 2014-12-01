@@ -62,6 +62,10 @@
     <string name="food_tab_coupon">优惠券</string>
     <string name="food_tab_activity">活动</string>
     <string name="food_tab_deal">团购</string>
-
+    <string name="store_food_look_blackboard">查看餐厅小黑板</string>
+    <string name="store_food_advertise_dishes">推荐菜品</string>
+    <string name="store_food_all_dishes">全部菜品</string>
+    <string name="title_activity_my">MyActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
