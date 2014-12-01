@@ -1,13 +1,292 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.phy0312.shopassistant.activity.MyProfileFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mine_login_area_bg">
+
+            <RelativeLayout
+                android:id="@+id/login_area_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingBottom="14.0dip"
+                android:paddingTop="17.0dip"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_myprofile_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/btn_login_bg_selector"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/myprofile_login_button_horizontal_padding"
+                    android:paddingRight="@dimen/myprofile_login_button_horizontal_padding"
+                    android:text="@string/my_profile_login"
+                    android:textColor="@color/c1"
+                    android:textSize="@dimen/h3"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_myprofile_desc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_myprofile_login"
+                    android:layout_marginTop="17.0dip"
+                    android:gravity="center"
+                    android:text="@string/my_profile_look_my_info"
+                    android:textColor="@color/c1"
+                    android:textSize="@dimen/h5" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_myprofile_desc"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/default_vertical_margin"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="@string/my_profile_register1"
+                        android:textColor="@color/c1"
+                        android:textSize="@dimen/h5" />
+
+                    <Button
+                        android:id="@+id/btn_myprofile_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_login_bg_selector"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/myprofile_login_button_horizontal_padding"
+                        android:paddingRight="@dimen/myprofile_login_button_horizontal_padding"
+                        android:text="@string/my_profile_register2"
+                        android:textColor="@color/c1"
+                        android:textSize="@dimen/h5"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="@string/my_profile_register3"
+                        android:textColor="@color/c1"
+                        android:textSize="@dimen/h5" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/login_data_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/default_vertical_large_margin"
+                android:paddingRight="@dimen/default_vertical_large_margin"
+                android:paddingTop="@dimen/myprofile_login_vertical_margin"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/ll_myprofile_name"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="@dimen/default_horizontal_margin2"
+                    android:layout_toLeftOf="@+id/iv_right_arrow"
+                    android:gravity="center_vertical"
+                    android:minHeight="30.0dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_myprofile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="@dimen/default_horizontal_margin2"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxWidth="180.0dip"
+                        android:singleLine="true"
+                        android:textColor="@color/c1"
+                        android:textSize="@dimen/h2"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_myprofile_grade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@id/iv_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/image_description"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+                <TextView
+                    android:id="@+id/tv_myprofile_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_myprofile_name"
+                    android:layout_marginTop="@dimen/myprofile_login_vertical_margin"
+                    android:textColor="@color/c1"
+                    android:textSize="@dimen/h4" />
+            </RelativeLayout>
+        </FrameLayout>
+
+        <RelativeLayout style="@style/DetailItemBackgroundStyle">
+
+            <TextView
+                android:id="@+id/tv_myprofile_message"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_message"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_message"
+                android:textSize="@dimen/h4" />
+
+            <TextView
+                android:id="@+id/tv_message_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="35.0dip"
+                android:background="@drawable/mine_icon_message_bg"
+                android:gravity="center"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/h6"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <LinearLayout style="@style/DetailItemBackgroundStyle">
+
+            <TextView
+                android:id="@+id/tv_myprofile_ticket_package"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_package"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_ticket_package"
+                android:textSize="@dimen/h4" />
+
+            <View style="@style/HorizontalDividerDefaultStyle" />
+
+            <TextView
+                android:id="@+id/tv_myprofile_ticket"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_ticket"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_my_tickets"
+                android:textSize="@dimen/h4"
+                android:visibility="gone" />
+
+            <View
+                style="@style/HorizontalDividerDefaultStyle"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_myprofile_order_manager"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_order"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_order_manager"
+                android:textSize="@dimen/h4" />
+
+            <View style="@style/HorizontalDividerDefaultStyle" />
+
+            <TextView
+                android:id="@+id/tv_myprofile_my_reservation"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_reservation"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_my_reservation"
+                android:textSize="@dimen/h4" />
+
+            <View style="@style/HorizontalDividerDefaultStyle" />
+
+            <TextView
+                android:id="@+id/tv_myprofile_points_detail"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_point"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_bouns_detail"
+                android:textSize="@dimen/h4" />
+
+            <View style="@style/HorizontalDividerDefaultStyle" />
+
+            <TextView
+                android:id="@+id/tv_myprofile_member_card"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_member_card"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_member"
+                android:textSize="@dimen/h4" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/DetailItemBackgroundStyle"
+            android:layout_marginBottom="@dimen/myprofile_login_vertical_margin">
+
+            <TextView
+                android:id="@+id/tv_myprofile_password_manager"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_password"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_password_manager"
+                android:textSize="@dimen/h4" />
+
+            <View style="@style/HorizontalDividerDefaultStyle" />
+
+            <TextView
+                android:id="@+id/tv_myprofile_pay_password_manager"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_pay_password"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_pay_password_manager"
+                android:textSize="@dimen/h4" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/DetailItemBackgroundStyle"
+            android:layout_marginBottom="@dimen/myprofile_login_vertical_margin"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_myprofile_wx_bind"
+                style="@style/DetailClickableTitleItemStyle"
+                android:drawableLeft="@drawable/mine_icon_password"
+                android:drawablePadding="@dimen/default_horizontal_padding"
+                android:text="@string/my_profile_wx_bind"
+                android:textSize="@dimen/h4" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_myprofile_logout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/myprofile_login_vertical_margin"
+            android:layout_marginLeft="@dimen/default_horizontal_margin"
+            android:layout_marginRight="@dimen/default_horizontal_margin"
+            android:background="@drawable/btn_highlight_selector"
+            android:gravity="center"
+            android:text="@string/my_profile_logout"
+            android:textColor="@color/c1"
+            android:textSize="@dimen/h2"
+            android:visibility="gone" />
+    </LinearLayout>
+</ScrollView>
