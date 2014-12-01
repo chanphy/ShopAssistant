@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity.base;
+package com.phy0312.shopassistant.ui.base;
 
 
 import android.support.v4.app.Fragment;

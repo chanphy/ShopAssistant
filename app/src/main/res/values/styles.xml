@@ -297,5 +297,18 @@
         <item name="android:layout_marginRight">@dimen/detail_dotted_line_margin_horizontal</item>
     </style>
 
+    <style name="EditTextDefaultStyle">
+        <item name="android:textSize">@dimen/h3</item>
+        <item name="android:textColor">@color/c2</item>
+        <item name="android:textColorHint">@color/hint_text_color</item>
+        <item name="android:background">@null</item>
+        <item name="android:padding">@dimen/edittext_padding</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/edittext_height</item>
+    </style>
+    <style name="EditTextPhoneStyle" parent="@style/EditTextDefaultStyle">
+        <item name="android:maxLength">11</item>
+    </style>
+
 
 </resources>

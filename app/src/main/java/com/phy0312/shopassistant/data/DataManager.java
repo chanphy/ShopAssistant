@@ -1,6 +1,6 @@
 package com.phy0312.shopassistant.data;
 
-import com.phy0312.shopassistant.activity.activity.ActivityFragment;
+import com.phy0312.shopassistant.ui.activity.ActivityFragment;
 import com.phy0312.shopassistant.db.Coupon;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.db.Store;

@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity.food;
+package com.phy0312.shopassistant.ui.food;
 
 
 import android.os.Bundle;
@@ -55,7 +55,6 @@ public class FoodStoreActivity extends FragmentActivity {
 
             View headerView = inflater.inflate(R.layout.list_header_food_store, lv_content, false);
             lv_content.addHeaderView(headerView);
-
 
             return rootView;
         }

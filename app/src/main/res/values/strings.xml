@@ -67,7 +67,6 @@
     <string name="store_food_all_dishes">全部菜品</string>
     <string name="title_activity_my">MyActivity</string>
     <string name="hello_world">Hello world!</string>
-
     <string name="my_profile_ticket_package">我的券包</string>
     <string name="my_profile_my_tickets">我的门票</string>
     <string name="my_profile_order_manager">@string/my_profile_my_order</string>
@@ -105,6 +104,15 @@
     <string name="my_profile_register1">没有账号？</string>
     <string name="my_profile_register2">快速注册</string>
     <string name="my_profile_register3">一个新账号</string>
-
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login_mob_hint">请输入手机号</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login_login">登录</string>
+    <string name="login_free_register">免费注册</string>
+    <string name="find_password">找回密码</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="register_protocol_link_note">《逛街助手服务协议》</string>
+    <string name="register_protocol_note">我已阅读并同意</string>
+    <string name="register">提交</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity.coupon;
+package com.phy0312.shopassistant.ui.coupon;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.activity.base.UIUtil;
+import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.adapter.CouponAdapter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.Coupon;

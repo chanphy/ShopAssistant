@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity.food;
+package com.phy0312.shopassistant.ui.food;
 
 
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.activity.base.UIUtil;
+import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.adapter.FoodStoreAdapter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.Store;

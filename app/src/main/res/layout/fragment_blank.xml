@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.phy0312.shopassistant.activity.BlankFragment">
+    tools:context="com.phy0312.shopassistant.ui.BlankFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

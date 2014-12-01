@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.phy0312.shopassistant.activity.MainFragment"
+    tools:context="com.phy0312.shopassistant.ui.MainFragment"
     android:background="@color/app_background_color">
 
     <com.phy0312.shopassistant.view.FixedAspectRatioFrameLayout

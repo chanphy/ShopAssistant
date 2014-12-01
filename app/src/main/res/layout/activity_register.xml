@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header" />
+
+    <LinearLayout
+        android:id="@id/ll_myprofile_info"
+        style="@style/DetailItemBackgroundStyle"
+        android:layout_marginBottom="@dimen/default_vertical_margin"
+        android:layout_marginTop="@dimen/default_vertical_margin">
+
+        <EditText
+            android:id="@+id/et_register_first_phone"
+            style="@style/EditTextPhoneStyle"
+            android:hint="@string/login_mob_hint"
+            android:inputType="number">
+
+            <requestFocus />
+        </EditText>
+
+        <View style="@style/HorizontalDividerDefaultStyle" />
+
+        <EditText
+            android:id="@+id/et_register_first_password"
+            style="@style/EditTextDefaultStyle"
+            android:hint="@string/login_password_hint"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_horizontal_margin"
+        android:layout_marginRight="@dimen/default_horizontal_margin"
+        android:layout_marginTop="8.0dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_register_first_protocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:button="@drawable/checkbox_selector"
+            android:checked="true"
+            android:paddingLeft="22.0dip"
+            android:paddingRight="0.0dip"
+            android:text="@string/register_protocol_note"
+            android:textColor="@color/checkbox_text_color"
+            android:textSize="@dimen/h4" />
+
+        <TextView
+            android:id="@+id/tv_register_first_protocol_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/register_protocol_link_note"
+            android:textColor="@color/c6"
+            android:textSize="@dimen/h4" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/HighLightButtonAlignParentBottomStyle"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/default_vertical_margin"
+        android:layout_marginTop="10.0dip"
+        android:text="@string/register" />
+</LinearLayout>

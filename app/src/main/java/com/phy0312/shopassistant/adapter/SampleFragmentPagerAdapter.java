@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.phy0312.shopassistant.activity.base.PagerItem;
+import com.phy0312.shopassistant.ui.base.PagerItem;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity;
+package com.phy0312.shopassistant.ui.my;
 
 
 import android.os.Bundle;

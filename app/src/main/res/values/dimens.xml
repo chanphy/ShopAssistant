@@ -48,4 +48,7 @@
     <dimen name="myprofile_register_button_height">20.0dip</dimen>
     <dimen name="myprofile_login_vertical_margin">21.0dip</dimen>
     <dimen name="myprofile_login_button_horizontal_padding">10.0dip</dimen>
+
+    <dimen name="edittext_height">51.0dip</dimen>
+    <dimen name="edittext_padding">11.0dip</dimen>
 </resources>

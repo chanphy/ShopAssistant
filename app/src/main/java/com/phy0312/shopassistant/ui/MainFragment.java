@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity;
+package com.phy0312.shopassistant.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.activity.base.UIUtil;
-import com.phy0312.shopassistant.activity.food.Food;
+import com.phy0312.shopassistant.ui.base.UIUtil;
+import com.phy0312.shopassistant.ui.food.Food;
 import com.phy0312.shopassistant.adapter.MainItemAdpter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.model.MainColumnGroup;

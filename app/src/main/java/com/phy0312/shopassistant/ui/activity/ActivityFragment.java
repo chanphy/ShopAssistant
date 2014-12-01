@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity.activity;
+package com.phy0312.shopassistant.ui.activity;
 
 
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.activity.base.UIUtil;
+import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.adapter.HuoDongAdapter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.HuoDong;

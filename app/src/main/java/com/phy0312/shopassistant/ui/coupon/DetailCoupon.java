@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity.coupon;
+package com.phy0312.shopassistant.ui.coupon;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

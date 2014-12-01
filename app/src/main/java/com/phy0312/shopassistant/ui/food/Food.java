@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.activity.food;
+package com.phy0312.shopassistant.ui.food;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
