@@ -40,7 +40,6 @@ public class FoodStoreActivity extends FragmentActivity {
         private ListView lv_content;
         private HorizontalListView hlv_store_advertise_dishes;
 
-
         public PlaceholderFragment() {
         }
 

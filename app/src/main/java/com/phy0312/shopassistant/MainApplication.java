@@ -3,6 +3,8 @@ package com.phy0312.shopassistant;
 import android.app.Application;
 import android.content.Context;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -16,10 +18,17 @@ import com.phy0312.shopassistant.tools.CrashHandler;
  */
 public class MainApplication extends Application {
 
+    private RequestQueue requestQueue;
+
+
+    public static MainApplication appContext;
+
     public void onCreate() {
         super.onCreate();
         CrashHandler.getInstance(this);
         initImageLoader(getApplicationContext());
+        requestQueue = Volley.newRequestQueue(this);
+        appContext = this;
     }
 
     public static void initImageLoader(Context context) {
@@ -37,5 +46,9 @@ public class MainApplication extends Application {
                 .build();
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config);
+    }
+
+    public RequestQueue getRequestQueue() {
+        return requestQueue;
     }
 }

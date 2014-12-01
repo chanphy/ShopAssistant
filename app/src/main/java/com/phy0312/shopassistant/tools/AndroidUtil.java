@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
@@ -19,6 +20,8 @@ public class AndroidUtil {
     public static final String TAG = AndroidUtil.class.getSimpleName();
 
     public static final String MAILTO_EMAIL = "mailto:softtestddj@163.com";
+
+    public static final String DEFAULT_NUM = "0312";
 
     /**
      * 安全启动一个Activity
@@ -195,6 +198,76 @@ public class AndroidUtil {
             versionName = version_7;
         }
         return versionName;
+    }
+
+
+    /**
+     * 取得IMEI号
+     *
+     * @param ctx
+     * @return
+     */
+    public static String getIMEI(Context ctx) {
+        if (ctx == null)
+            return DEFAULT_NUM;
+
+        String imei = DEFAULT_NUM;
+        try {
+            TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
+            imei = tm.getDeviceId();
+            if (imei == null || "".equals(imei))
+                return DEFAULT_NUM;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return imei;
+    }
+
+    public static String getIMSI(Context ctx) {
+        if (ctx == null)
+            return DEFAULT_NUM;
+
+        String imsi = DEFAULT_NUM;
+        try {
+            TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
+            imsi = tm.getSubscriberId();
+            if (imsi == null || "".equals(imsi))
+                return DEFAULT_NUM;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return imsi;
+    }
+
+
+    /**
+     * 获取App安装包信息
+     * @return
+     */
+    public static PackageInfo getPackageInfo(Context context) {
+        PackageInfo info = null;
+        try {
+            info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace(System.err);
+        }
+        if(info == null) info = new PackageInfo();
+        return info;
+    }
+
+
+    /**
+     * @param context context
+     * @return
+     */
+    public static int getVersionCode(Context context) {
+        PackageInfo info = getPackageInfo(context);
+        if(info != null) {
+            return info.versionCode;
+        }
+        return 1000;
     }
 
 }

@@ -9,7 +9,7 @@ public class StringUtils {
 
     /**
      * 文件大小转换，单位：B KB MB GB
-     * @param num
+     * @param num long
      * @param scale 小数位精确值
      * @return String
      */
@@ -54,5 +54,15 @@ public class StringUtils {
             return -1 + "B";
         }
     }
+
+    /**
+     * 检查字符串是否为空
+     * @param str
+     * @return
+     */
+    public static boolean isEmpty(String str) {
+        return (str == null || str.equals(""));
+    }
+
 
 }

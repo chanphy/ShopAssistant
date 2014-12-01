@@ -225,17 +225,6 @@
                 android:text="@string/my_profile_bouns_detail"
                 android:textSize="@dimen/h4" />
 
-            <View style="@style/HorizontalDividerDefaultStyle" />
-
-            <TextView
-                android:id="@+id/tv_myprofile_member_card"
-                style="@style/DetailClickableTitleItemStyle"
-                android:drawableLeft="@drawable/mine_icon_member_card"
-                android:drawablePadding="@dimen/default_horizontal_padding"
-                android:text="@string/my_profile_member"
-                android:textSize="@dimen/h4" />
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -250,15 +239,6 @@
                 android:text="@string/my_profile_password_manager"
                 android:textSize="@dimen/h4" />
 
-            <View style="@style/HorizontalDividerDefaultStyle" />
-
-            <TextView
-                android:id="@+id/tv_myprofile_pay_password_manager"
-                style="@style/DetailClickableTitleItemStyle"
-                android:drawableLeft="@drawable/mine_icon_pay_password"
-                android:drawablePadding="@dimen/default_horizontal_padding"
-                android:text="@string/my_profile_pay_password_manager"
-                android:textSize="@dimen/h4" />
         </LinearLayout>
 
         <LinearLayout
