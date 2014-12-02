@@ -1,5 +1,6 @@
 package com.phy0312.shopassistant.data;
 
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.ui.activity.ActivityFragment;
 import com.phy0312.shopassistant.db.Coupon;
 import com.phy0312.shopassistant.db.HuoDong;
@@ -32,7 +33,7 @@ public class DataManager {
         recommendColumns[1] = new MainColumnInfo(MainColumnInfo.TYPE_HUODONG, 2, "活动", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
         recommendColumns[2] = new MainColumnInfo(MainColumnInfo.TYPE_HUODONG, 3, "活动2", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
 
-        MainColumnGroup recommendGroup = new MainColumnGroup(recommendColumns, MainColumnGroup.CATEGORY_WEEKRECOMMEND);
+        MainColumnGroup recommendGroup = new MainColumnGroup(recommendColumns, Constants.CATEGORY_WEEKRECOMMEND);
         list.add(recommendGroup);
 
 
@@ -41,7 +42,7 @@ public class DataManager {
         couponColumns[1] = new MainColumnInfo(MainColumnInfo.TYPE_COUPON, 2, "优惠券2", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
         couponColumns[2] = new MainColumnInfo(MainColumnInfo.TYPE_COUPON, 3, "优惠券3", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
 
-        MainColumnGroup couponGroup = new MainColumnGroup(couponColumns, MainColumnGroup.CATEGORY_COUPON);
+        MainColumnGroup couponGroup = new MainColumnGroup(couponColumns, Constants.CATEGORY_COUPON);
         list.add(couponGroup);
 
         MainColumnInfo[] huodongColumns = new MainColumnInfo[3];
@@ -49,7 +50,7 @@ public class DataManager {
         huodongColumns[1] = new MainColumnInfo(MainColumnInfo.TYPE_HUODONG, 2, "活动2", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
         huodongColumns[2] = new MainColumnInfo(MainColumnInfo.TYPE_HUODONG, 3, "活动3", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
 
-        MainColumnGroup huodongGroup = new MainColumnGroup(huodongColumns, MainColumnGroup.CATEGOTY_HUODONG);
+        MainColumnGroup huodongGroup = new MainColumnGroup(huodongColumns, Constants.CATEGOTY_ACTIVITY);
         list.add(huodongGroup);
 
         return list;

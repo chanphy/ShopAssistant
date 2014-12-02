@@ -61,11 +61,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * 自定义错误处理
      */
     private boolean handleException(final Throwable ex) {
-        Log.e(TAG, "handleException");
 
         if (ex == null) {
             return false;
         }
+        Log.e(TAG, Log.getStackTraceString(ex));
         handler.post(new Runnable() {
             @Override
             public void run() {

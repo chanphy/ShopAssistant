@@ -11,7 +11,7 @@
     <string name="navdrawer_item_huodong">活动</string>
     <string name="navdrawer_item_coupon">优惠券</string>
     <string name="navdrawer_item_tuangou">团购</string>
-    <string name="navdrawer_item_my_profile">我的</string>
+    <string name="navdrawer_item_my_profile">我的助手</string>
     <string name="drawer_close">打开</string>
     <string name="drawer_open">关闭</string>
     <string name="menu_title_food">美食</string>
@@ -114,5 +114,7 @@
     <string name="register_protocol_link_note">《逛街助手服务协议》</string>
     <string name="register_protocol_note">我已阅读并同意</string>
     <string name="register">提交</string>
+    <string name="login_title">用户登录</string>
+    <string name="user_register">用户注册</string>
 
 </resources>

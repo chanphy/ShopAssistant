@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.ui.my;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.phy0312.shopassistant.config.MainSp;
 import com.phy0312.shopassistant.net.JsonCookieSupportRequest;
 import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;
+import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.StringUtils;
 
 import org.json.JSONObject;
@@ -51,6 +53,8 @@ public class MyProfileFragment extends Fragment {
 
     private TextView tv_myprofile_logout;
 
+    private boolean loginState = false;
+
 
     public MyProfileFragment() {
         // Required empty public constructor
@@ -61,8 +65,10 @@ public class MyProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainSp mainSp = new MainSp(this.getActivity());
-        if (!StringUtils.isEmpty(mainSp.getCookie())) {
-            //自动登录
+        if(StringUtils.isEmpty(mainSp.getCookie())) {
+            loginState = false;
+        }else{//使用cookie自动登录
+
         }
 
     }
@@ -73,6 +79,7 @@ public class MyProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
         login_area_layout = (RelativeLayout) view.findViewById(R.id.login_area_layout);
+        login_data_layout = (RelativeLayout) view.findViewById(R.id.login_data_layout);
         tv_myprofile_login = (TextView) view.findViewById(R.id.tv_myprofile_login);
         tv_myprofile_desc = (TextView) view.findViewById(R.id.tv_myprofile_desc);
         tv_myprofile_name = (TextView) view.findViewById(R.id.tv_myprofile_name);
@@ -85,6 +92,29 @@ public class MyProfileFragment extends Fragment {
         tv_myprofile_wx_bind = (TextView) view.findViewById(R.id.tv_myprofile_wx_bind);
         tv_myprofile_logout = (TextView) view.findViewById(R.id.tv_myprofile_logout);
 
+        btn_myprofile_register = (Button) view.findViewById(R.id.btn_myprofile_register);
+        iv_myprofile_grade = (ImageView) view.findViewById(R.id.iv_myprofile_grade);
+        iv_right_arrow = (ImageView) view.findViewById(R.id.iv_right_arrow);
+
+        tv_myprofile_login.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName(getActivity(), LoginActivity.class.getName());
+                AndroidUtil.startActivity(getActivity(), intent);
+            }
+        });
+
+        btn_myprofile_register.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName(getActivity(), RegisterActivity.class.getName());
+                AndroidUtil.startActivity(getActivity(), intent);
+            }
+        });
+
+        updateView();
         return view;
     }
 
@@ -92,7 +122,9 @@ public class MyProfileFragment extends Fragment {
     /**
      * 请求登录
      */
-    private void requestLogin(String phoneNum, String pwd) {
+    private void requestLogin(final String phoneNum, String pwd) {
+        JSONObject jsonObject = new JSONObject();
+
         JsonCookieSupportRequest request = new JsonCookieSupportRequest(Request.Method.POST, URLManager.USER_LOGIN, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -100,7 +132,12 @@ public class MyProfileFragment extends Fragment {
                         new RequestResponseDataParseUtil.ResponseParse() {
                             @Override
                             public void parseResponseDataSection(JSONObject dataJsonObject) {//登录成功处理
-
+                                loginState = true;
+                                String userName = dataJsonObject.optString("userName");
+                                MainSp sp = new MainSp(getActivity());
+                                sp.setPhone(phoneNum);
+                                sp.setUserName(userName);
+                                updateView();
                             }
                         }.onResponse(jsonObject);
                     }
@@ -112,6 +149,21 @@ public class MyProfileFragment extends Fragment {
                     }
                 });
         MainApplication.appContext.getRequestQueue().add(request);
+    }
+
+
+    private void updateView() {
+        if(loginState) {
+            login_area_layout.setVisibility(View.GONE);
+            login_data_layout.setVisibility(View.VISIBLE);
+            MainSp sp = new MainSp(getActivity());
+            tv_myprofile_name.setText(sp.getUserName());
+            tv_myprofile_logout.setVisibility(View.VISIBLE);
+        }else{
+            login_area_layout.setVisibility(View.VISIBLE);
+            login_data_layout.setVisibility(View.GONE);
+            tv_myprofile_logout.setVisibility(View.GONE);
+        }
     }
 
 }

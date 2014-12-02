@@ -2,6 +2,7 @@ package com.phy0312.shopassistant.ui.food;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -10,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.phy0312.shopassistant.R;
+import com.phy0312.shopassistant.tools.AndroidUtil;
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.adapter.FoodStoreAdapter;
 import com.phy0312.shopassistant.data.DataManager;
@@ -112,6 +116,28 @@ public class FoodFragment extends Fragment implements PullToRefreshLayout.PullRe
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (type) {
+            case STORE:
+                FoodStoreAdapter adapter = (FoodStoreAdapter)((HeaderViewListAdapter)parent.getAdapter()).getWrappedAdapter();
+                Store store = adapter.getList().get(position);
+                Intent intent = new Intent();
+                intent.putExtra(Constants.TRANSFER_BUNDLE_STORE, store);
+                intent.setClassName(getActivity(), FoodStoreActivity.class.getName());
+                AndroidUtil.startActivity(getActivity(), intent);
+                break;
+            case COUPON:
+
+                break;
+            case ACTIVITY:
+
+                break;
+            case DEAL:
+
+                break;
+            default:
+
+                break;
+        }
 
     }
 

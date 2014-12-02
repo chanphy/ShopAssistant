@@ -1,7 +1,6 @@
 package com.phy0312.shopassistant.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
@@ -18,10 +16,10 @@ import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 
 import java.util.List;
 
-import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGORY_COUPON;
-import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGORY_WEEKRECOMMEND;
-import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGOTY_FLIM;
-import static com.phy0312.shopassistant.model.MainColumnGroup.CATEGOTY_HUODONG;
+import static com.phy0312.shopassistant.tools.Constants.CATEGORY_COUPON;
+import static com.phy0312.shopassistant.tools.Constants.CATEGORY_WEEKRECOMMEND;
+import static com.phy0312.shopassistant.tools.Constants.CATEGOTY_DEAL;
+import static com.phy0312.shopassistant.tools.Constants.CATEGOTY_ACTIVITY;
 
 /**
  * description: 主界面Adapter<br/>
@@ -109,12 +107,12 @@ public class MainItemAdpter extends BaseAdapter {
                 holder.tv_header_more.setVisibility(View.VISIBLE);
                 holder.tv_header_title.setText(R.string.main_item_coupon);
                 break;
-            case CATEGOTY_HUODONG:
+            case CATEGOTY_ACTIVITY:
                 holder.rv_header_container.setBackground(context.getResources().getDrawable(R.drawable.main_listitem_header_bg_hd));
                 holder.tv_header_more.setVisibility(View.VISIBLE);
                 holder.tv_header_title.setText(R.string.main_item_huodong);
                 break;
-            case CATEGOTY_FLIM:
+            case CATEGOTY_DEAL:
                 holder.rv_header_container.setBackground(context.getResources().getDrawable(R.drawable.main_listitem_header_bg_re));
                 holder.tv_header_more.setVisibility(View.VISIBLE);
                 holder.tv_header_title.setText(R.string.main_item_flim);

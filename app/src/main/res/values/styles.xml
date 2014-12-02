@@ -6,11 +6,11 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--   your app branding color for the app bar -->
-        <item name="colorPrimary">@color/indigo_500</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <!--   darker variant for the status bar and contextual app bars -->
-        <item name="colorPrimaryDark">@color/indigo_700</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--   theme UI controls like checkboxes and text fields -->
-        <item name="colorAccent">@color/pink_a200</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:textColorPrimary">@color/white</item>
     </style>

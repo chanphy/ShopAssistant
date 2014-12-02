@@ -1,17 +1,31 @@
 package com.phy0312.shopassistant.ui.my;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
+
 import com.phy0312.shopassistant.R;
 
-public class RegisterActivity extends ActionBarActivity {
+public class RegisterActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_register);
+        ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.user_register));
+
+        //后退按钮
+        findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterActivity.this.finish();
+            }
+        });
     }
 
 

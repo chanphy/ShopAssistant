@@ -7,11 +7,6 @@ package com.phy0312.shopassistant.model;
  */
 public class MainColumnGroup {
 
-    public static final int CATEGORY_WEEKRECOMMEND = 0;
-    public static final int CATEGORY_COUPON = 1;
-    public static final int CATEGOTY_HUODONG = 2;
-    public static final int CATEGOTY_FLIM = 3;
-
     private MainColumnInfo[] mainColumnInfos;
 
     public MainColumnGroup(MainColumnInfo[] mainColumnInfos, int category) {

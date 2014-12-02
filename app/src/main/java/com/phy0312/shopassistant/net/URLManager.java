@@ -7,5 +7,5 @@ package com.phy0312.shopassistant.net;
  */
 public class URLManager {
 
-    public static String USER_LOGIN = "http://www.baidu.com";
+    public static String USER_LOGIN = "http://IP/action.ashx/commonaction/";
 }
