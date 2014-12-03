@@ -34,7 +34,7 @@
             android:label="@string/menu_title_food" >
         </activity>
         <activity
-            android:name=".ui.food.FoodStoreActivity"
+            android:name=".ui.food.FoodStore"
             android:label="@string/title_activity_my" >
         </activity>
         <activity

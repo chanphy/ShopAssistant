@@ -8,9 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -28,17 +26,15 @@ import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.view.HorizontalListView;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
+import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 
 import java.util.List;
 
-public class FoodStoreActivity extends FragmentActivity {
-
-    private Store store;
+public class FoodStore extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.common_activity_fragment_container);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -46,15 +42,14 @@ public class FoodStoreActivity extends FragmentActivity {
                     .commit();
         }
 
-        store = getIntent().getParcelableExtra(Constants.TRANSFER_BUNDLE_STORE);
     }
 
 
     /**
      * A placeholder fragment containing a simple view.
      */
-    public class PlaceholderFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
-            AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener{
+    public static class PlaceholderFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
+            AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener {
 
         private int type = Constants.CATEGORY_COUPON;
         private PullToRefreshLayout ptl_container;
@@ -66,9 +61,13 @@ public class FoodStoreActivity extends FragmentActivity {
         private TextView tv_store_name;
         private TextView tv_store_short_name;
         private TextView tv_store_price;
+        private TextView tv_store_phone;
+        private TextView tv_store_number;
+
         DisplayImageOptions options;
 
 
+        private Store store;
 
         private CouponAdapter adapter;
 
@@ -80,25 +79,30 @@ public class FoodStoreActivity extends FragmentActivity {
             super.onCreate(savedInstanceState);
             handler = new Handler();
             options = ImageLoaderUtil.newDisplayImageOptionsInstance();
+            store = getActivity().getIntent().getParcelableExtra(Constants.TRANSFER_BUNDLE_STORE);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_food_store, container, false);
-            lv_content = (ListView) rootView.findViewById(R.id.lv_content);
-            ptl_container = (PullToRefreshLayout) rootView.findViewById(R.id.ptl_container);
+            View view = inflater.inflate(R.layout.fragment_food_store, container, false);
+            ((TextView) view.findViewById(R.id.tv_title)).setText(getActivity().getString(R.string.food_store_detail));
+
+            ptl_container = (PullToRefreshLayout) view.findViewById(R.id.ptl_container);
+            lv_content = (ListView) view.findViewById(R.id.lv_content);
             ptl_container.setListView(lv_content);
+            ptl_container.setUpProgressBar((SmoothProgressBar) view.findViewById(R.id.ptr_progress_up));
+            ptl_container.setOnPullRefreshListener(this);
 
             //后退按钮
-            rootView.findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
+            view.findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     getActivity().finish();
                 }
             });
 
-            hlv_store_advertise_dishes = (HorizontalListView) rootView.findViewById(R.id.hlv_store_advertise_dishes);
+            hlv_store_advertise_dishes = (HorizontalListView) view.findViewById(R.id.hlv_store_advertise_dishes);
 
             View headerView = inflater.inflate(R.layout.list_header_food_store, lv_content, false);
             lv_content.addHeaderView(headerView);
@@ -110,18 +114,22 @@ public class FoodStoreActivity extends FragmentActivity {
             tv_store_name = (TextView) headerView.findViewById(R.id.tv_store_name);
             tv_store_short_name = (TextView) headerView.findViewById(R.id.tv_store_short_name);
             tv_store_price = (TextView) headerView.findViewById(R.id.tv_store_price);
+            tv_store_number = (TextView) headerView.findViewById(R.id.tv_store_number);
+            tv_store_number.setText(store.getAddress());
+            tv_store_phone = (TextView) headerView.findViewById(R.id.tv_store_phone);
+            tv_store_phone.setText(store.getTelephone());
 
             ImageLoader.getInstance().displayImage(store.getIcon(), iv_store_photo, options);
             tv_store_name.setText(store.getName());
             tv_store_short_name.setText(store.getAddress());
-            tv_store_price.setText("$"+store.getAverageCost());
+            tv_store_price.setText("$" + store.getAverageCost());
 
             startLoad(false, false);
-            return rootView;
+            return view;
         }
 
         private void initRadioGroup(View headerView) {
-            RadioGroup rg_tab_bar = (RadioGroup)headerView.findViewById(R.id.rg_tab_bar);
+            RadioGroup rg_tab_bar = (RadioGroup) headerView.findViewById(R.id.rg_tab_bar);
             rg_tab_bar.setOnCheckedChangeListener(this);
 
             switch (type) {

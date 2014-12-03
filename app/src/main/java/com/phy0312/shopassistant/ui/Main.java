@@ -21,10 +21,10 @@ import android.widget.Toast;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.ui.activity.ActivityFragment;
 import com.phy0312.shopassistant.ui.coupon.CouponFragment;
-import com.phy0312.shopassistant.ui.food.FoodFragment;
 import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
 import com.phy0312.shopassistant.config.MainSp;
+import com.phy0312.shopassistant.ui.food.Food;
 import com.phy0312.shopassistant.ui.my.MyProfileFragment;
 
 import java.util.ArrayList;
@@ -169,7 +169,7 @@ public class Main extends ActionBarActivity implements ListView.OnItemClickListe
                 mDrawerTitle = getString(R.string.navdrawer_item_coupon);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
-                FoodFragment foodFragment = new FoodFragment();
+                Food.FoodFragment foodFragment = new Food.FoodFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_tuangou);
                 break;

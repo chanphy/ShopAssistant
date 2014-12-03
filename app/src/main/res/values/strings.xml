@@ -116,5 +116,6 @@
     <string name="register">提交</string>
     <string name="login_title">用户登录</string>
     <string name="user_register">用户注册</string>
+    <string name="food_store_detail">餐厅详情</string>
 
 </resources>
