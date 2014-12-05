@@ -58,6 +58,13 @@ public class DetailCoupon extends FragmentActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_coupon_detail, container, false);
+            //后退按钮
+            rootView.findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().finish();
+                }
+            });
             return rootView;
         }
     }

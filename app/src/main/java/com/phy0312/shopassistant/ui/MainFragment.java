@@ -24,6 +24,7 @@ import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
+import com.phy0312.shopassistant.ui.product.ProductActivity;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
@@ -43,6 +44,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
     private MainItemAdpter adpter;
     DisplayImageOptions options;
     TextView tv_food;
+    TextView tv_product;
 
 
     @Nullable
@@ -72,6 +74,17 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClassName(MainFragment.this.getActivity(), Food.class.getName());
+                AndroidUtil.startActivity(MainFragment.this.getActivity(), intent);
+
+            }
+        });
+
+        tv_product = (TextView)headerView.findViewById(R.id.tv_product);
+        tv_product.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName(MainFragment.this.getActivity(), ProductActivity.class.getName());
                 AndroidUtil.startActivity(MainFragment.this.getActivity(), intent);
 
             }

@@ -117,5 +117,10 @@
     <string name="login_title">用户登录</string>
     <string name="user_register">用户注册</string>
     <string name="food_store_detail">餐厅详情</string>
+    <string name="tab_product_hot">热门</string>
+    <string name="tab_product_promotion">促销</string>
+    <string name="tab_product_new">新品</string>
+    <string name="title_activity_product">ProductActivity</string>
+    <string name="product">淘精品</string>
 
 </resources>

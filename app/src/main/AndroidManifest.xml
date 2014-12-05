@@ -45,6 +45,10 @@
             android:name=".ui.my.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name=".ui.product.ProductActivity"
+            android:label="@string/title_activity_product" >
+        </activity>
     </application>
 
     <!-- This is required for Picasso to work. -->

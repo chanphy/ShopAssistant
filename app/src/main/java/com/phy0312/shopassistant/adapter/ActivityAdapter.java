@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by dingdj on 2014/11/16.
  */
-public class HuoDongAdapter extends BaseAdapter{
+public class ActivityAdapter extends BaseAdapter{
 
     private Context context;
 
@@ -28,7 +28,7 @@ public class HuoDongAdapter extends BaseAdapter{
 
     DisplayImageOptions options;
 
-    public HuoDongAdapter(Context context, List<HuoDong> list) {
+    public ActivityAdapter(Context context, List<HuoDong> list) {
         this.context = context;
         this.list = list;
         options = ImageLoaderUtil.newDisplayImageOptionsInstance();

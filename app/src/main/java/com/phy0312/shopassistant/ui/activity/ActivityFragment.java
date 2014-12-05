@@ -16,8 +16,9 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 
 import com.phy0312.shopassistant.R;
+import com.phy0312.shopassistant.adapter.ActivityAdapter;
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.ui.base.UIUtil;
-import com.phy0312.shopassistant.adapter.HuoDongAdapter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.tools.ThreadUtil;
@@ -34,16 +35,12 @@ import java.util.List;
 public class ActivityFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
         AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener{
 
-    public static final int HOT = 0;
-    public static final int LATEST = 1;
-    public static final int NEXTWEEK = 2;
-
     private PullToRefreshLayout ptl_container;
     private ListView lv_content;
     List<ImageView> viewList = new ArrayList<ImageView>();
     private Handler handler;
-    private HuoDongAdapter adpter;
-    private int type = HOT;
+    private ActivityAdapter adpter;
+    private int type = Constants.HOT;
 
 
 
@@ -71,13 +68,13 @@ public class ActivityFragment extends Fragment implements PullToRefreshLayout.Pu
         rg_tab_bar.setOnCheckedChangeListener(this);
 
         switch (type) {
-            case HOT:
+            case Constants.HOT:
                 rg_tab_bar.check(R.id.rb_tab_activity_hot);
                 break;
-            case LATEST:
+            case Constants.LATEST:
                 rg_tab_bar.check(R.id.rb_tab_activity_latest);
                 break;
-            case NEXTWEEK:
+            case Constants.NEXTWEEK:
                 rg_tab_bar.check(R.id.rb_tab_activity_come_soon);
                 break;
             default:
@@ -123,7 +120,7 @@ public class ActivityFragment extends Fragment implements PullToRefreshLayout.Pu
                     @Override
                     public void run() {
                         if (adpter == null) {
-                            adpter = new HuoDongAdapter(ActivityFragment.this.getActivity(), list);
+                            adpter = new ActivityAdapter(ActivityFragment.this.getActivity(), list);
                         } else {
                             if(append && adpter.getList() != null){
                                 adpter.getList().addAll(list);
@@ -164,22 +161,22 @@ public class ActivityFragment extends Fragment implements PullToRefreshLayout.Pu
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
             case R.id.rb_tab_activity_hot:
-                if(type != HOT) {
-                    type = HOT;
+                if(type != Constants.HOT) {
+                    type = Constants.HOT;
                     lv_content.setAdapter(null);
                     startLoad(false, false, false);
                 }
                 break;
             case R.id.rb_tab_activity_latest:
-                if(type != LATEST) {
-                    type = LATEST;
+                if(type != Constants.LATEST) {
+                    type = Constants.LATEST;
                     lv_content.setAdapter(null);
                     startLoad(false, false, false);
                 }
                 break;
             case R.id.rb_tab_activity_come_soon:
-                if(type != NEXTWEEK) {
-                    type = NEXTWEEK;
+                if(type != Constants.NEXTWEEK) {
+                    type = Constants.NEXTWEEK;
                     lv_content.setAdapter(null);
                     startLoad(false, false, false);
                 }

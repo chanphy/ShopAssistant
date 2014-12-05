@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
@@ -22,6 +25,8 @@ public class AndroidUtil {
     public static final String MAILTO_EMAIL = "mailto:softtestddj@163.com";
 
     public static final String DEFAULT_NUM = "0312";
+
+    private static float currentDensity = 0;
 
     /**
      * 安全启动一个Activity
@@ -270,4 +275,57 @@ public class AndroidUtil {
         return 1000;
     }
 
+
+    /**
+     * 网络是否可用
+     * @param context
+     * @return boolean
+     */
+    public synchronized static boolean isNetworkAvailable(Context context) {
+        boolean result = false;
+        if (context == null) {
+            return result;
+        }
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = null;
+        if (null != connectivityManager) {
+            networkInfo = connectivityManager.getActiveNetworkInfo();
+            if (null != networkInfo && networkInfo.isAvailable() && networkInfo.isConnected()) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * wifi是否启动
+     * @param ctx
+     * @return boolean
+     */
+    public static boolean isWifiEnable(Context ctx) {
+        if(ctx == null){
+            return false;
+        }
+        Object obj = ctx.getSystemService(Context.WIFI_SERVICE);
+        if (obj == null)
+            return false;
+
+        WifiManager wifiManager = (WifiManager) obj;
+        return wifiManager.isWifiEnabled();
+    }
+
+
+    /**
+     * dp转px
+     * @param context
+     * @param dipValue
+     * @return int
+     */
+    public static int dip2px(Context context, float dipValue) {
+        if (currentDensity > 0)
+            return (int) (dipValue * currentDensity + 0.5f);
+
+        currentDensity = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * currentDensity + 0.5f);
+    }
 }

@@ -16,6 +16,9 @@
 
 package com.android.volley;
 
+import com.phy0312.shopassistant.MainApplication;
+import com.phy0312.shopassistant.tools.AndroidUtil;
+
 import java.util.Collections;
 import java.util.Map;
 
@@ -85,12 +88,21 @@ public interface Cache {
 
         /** True if the entry is expired. */
         public boolean isExpired() {
-            return this.ttl < System.currentTimeMillis();
+            if(AndroidUtil.isNetworkAvailable(MainApplication.appContext)){
+                return this.ttl < System.currentTimeMillis();
+            }else{
+                return false;
+            }
+
         }
 
         /** True if a refresh is needed from the original data source. */
         public boolean refreshNeeded() {
-            return this.softTtl < System.currentTimeMillis();
+            if(AndroidUtil.isNetworkAvailable(MainApplication.appContext)){
+                return this.ttl < System.currentTimeMillis();
+            }else{
+                return false;
+            }
         }
     }
 

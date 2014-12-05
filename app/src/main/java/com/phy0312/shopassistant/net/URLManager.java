@@ -8,4 +8,8 @@ package com.phy0312.shopassistant.net;
 public class URLManager {
 
     public static String USER_LOGIN = "http://IP/action.ashx/commonaction/";
+    public static String FOOD_STORE_LIST = "http://IP/action.ashx/commonaction/";
+    public static String COUPON_LIST = "http://IP/action.ashx/commonaction/";
+    public static String ACTIVITY_LIST = "http://IP/action.ashx/commonaction/";
+    public static String PRODUCT_LIST = "http://IP/action.ashx/commonaction/";
 }

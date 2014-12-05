@@ -3,6 +3,7 @@ package com.phy0312.shopassistant.net;
 import android.os.Build;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Cache;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
@@ -10,6 +11,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.tools.AndroidUtil;
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ResponseUtil;
 
 import org.json.JSONException;
@@ -74,14 +76,11 @@ public class JsonCookieSupportRequest extends JsonObjectRequest {
             if (bodyEncryptType == ResponseUtil.ENCRYPT_GZIP) {
                 String jsonString = getRealString(response.data, HttpHeaderParser.parseCharset(response.headers));
                 jsonObject.put(ResponseUtil.RESULT_BODY, new JSONObject(jsonString));
-
             } else {
-                String jsonString =
-                        new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                String jsonString = new String(response.data,  HttpHeaderParser.parseCharset(response.headers));
                 jsonObject.put(ResponseUtil.RESULT_BODY, new JSONObject(jsonString));
             }
-            return Response.success(jsonObject,
-                    HttpHeaderParser.parseCacheHeaders(response));
+            return Response.success(jsonObject, parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (JSONException je) {
@@ -89,6 +88,10 @@ public class JsonCookieSupportRequest extends JsonObjectRequest {
         } catch (IOException ioe) {
             return Response.error(new ParseError(ioe));
         }
+    }
+
+    public Cache.Entry parseCacheHeaders(NetworkResponse response) {
+        return HttpHeaderParser.parseCacheHeaders(response, Constants.CACHE_TIME_SECONDS);
     }
 
     /**

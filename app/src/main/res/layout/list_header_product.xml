@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@id/rg_tab_bar"
+        style="@style/TabRadioGroupStyle"
+        android:layout_marginBottom="0.0dip">
+
+        <RadioButton
+            android:id="@+id/rb_tab_product_hot"
+            style="@style/UnderlineTabItemStyle"
+            android:checked="true"
+            android:text="@string/tab_product_hot" />
+
+        <RadioButton
+            android:id="@+id/rb_tab_product_promotion"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/tab_product_promotion" />
+
+        <RadioButton
+            android:id="@+id/rb_tab_product_new"
+            style="@style/UnderlineTabItemStyle"
+            android:text="@string/tab_product_new" />
+    </RadioGroup>
+
+</LinearLayout>

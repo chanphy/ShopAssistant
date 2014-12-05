@@ -46,7 +46,7 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_product"
+            android:id="@+id/tv_product"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_product"
             android:text="@string/menu_title_product" />

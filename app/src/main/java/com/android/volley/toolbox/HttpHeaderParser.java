@@ -134,4 +134,30 @@ public class HttpHeaderParser {
 
         return HTTP.DEFAULT_CONTENT_CHARSET;
     }
+
+    /**
+     * Extracts a {@link Cache.Entry} from a {@link NetworkResponse}.
+     *
+     * @param response The network response to parse headers from
+     * @return a cache entry for the given response, or null if the response is not cacheable.
+     */
+    public static Cache.Entry parseCacheHeaders(NetworkResponse response, long cacheSeconds) {
+        long now = System.currentTimeMillis();
+
+        Map<String, String> headers = response.headers;
+
+        long serverDate = 0;
+        String serverEtag = headers.get("ETag");
+        long softExpire = now + cacheSeconds*1000;
+
+        Cache.Entry entry = new Cache.Entry();
+        entry.data = response.data;
+        entry.etag = serverEtag;
+        entry.softTtl = softExpire;
+        entry.ttl = entry.softTtl;
+        entry.serverDate = serverDate;
+        entry.responseHeaders = headers;
+
+        return entry;
+    }
 }

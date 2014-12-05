@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.phy0312.shopassistant.R;
@@ -28,6 +29,7 @@ public class PullToRefreshLayout extends FrameLayout {
     private boolean isDragFromBottom;
 
     private ListView listView;
+    private GridView gridView;
     private SmoothProgressBar upProgressBar;
     private SmoothProgressBar bottomProgressBar;
 
@@ -185,22 +187,40 @@ public class PullToRefreshLayout extends FrameLayout {
 
     private boolean isReadyForPullFromTop() {
         boolean ready = false;
-        if (listView.getCount() == 0) {
-            ready = true;
-        } else if (listView.getFirstVisiblePosition() == 0) {
-            final View firstVisibleChild = listView.getChildAt(0);
-            ready = firstVisibleChild != null && firstVisibleChild.getTop() >= 0;
+        if(listView != null) {
+            if (listView.getCount() == 0) {
+                ready = true;
+            } else if (listView.getFirstVisiblePosition() == 0) {
+                final View firstVisibleChild = listView.getChildAt(0);
+                ready = firstVisibleChild != null && firstVisibleChild.getTop() >= 0;
+            }
+        }else if(gridView != null) {
+            if (gridView.getCount() == 0) {
+                ready = true;
+            } else if (gridView.getFirstVisiblePosition() == 0) {
+                final View firstVisibleChild = gridView.getChildAt(0);
+                ready = firstVisibleChild != null && firstVisibleChild.getTop() >= 0;
+            }
         }
         return ready;
     }
 
     private boolean isReadyForPullFromBottom() {
         boolean ready = false;
-        if (listView.getLastVisiblePosition() == listView.getCount() - 1) {
-            final View lastVisibleChild = listView.getChildAt(listView.getLastVisiblePosition() -
-                    listView.getFirstVisiblePosition());
-            ready = lastVisibleChild != null && (lastVisibleChild.getBottom() +
-                    listView.getListPaddingBottom() == listView.getHeight());
+        if(listView != null) {
+            if (listView.getLastVisiblePosition() == listView.getCount() - 1) {
+                final View lastVisibleChild = listView.getChildAt(listView.getLastVisiblePosition() -
+                        listView.getFirstVisiblePosition());
+                ready = lastVisibleChild != null && (lastVisibleChild.getBottom() +
+                        listView.getListPaddingBottom() == listView.getHeight());
+            }
+        }else if(gridView != null) {
+            if (gridView.getLastVisiblePosition() == gridView.getCount() - 1) {
+                final View lastVisibleChild = gridView.getChildAt(gridView.getLastVisiblePosition() -
+                        gridView.getFirstVisiblePosition());
+                ready = lastVisibleChild != null && (lastVisibleChild.getBottom() +
+                        gridView.getListPaddingBottom() == gridView.getHeight());
+            }
         }
         return ready;
     }
@@ -304,5 +324,9 @@ public class PullToRefreshLayout extends FrameLayout {
     public static interface PullRefreshListener {
         void onRefreshingUp();
         void onRefreshingBottom();
+    }
+
+    public void setGridView(GridView gridView) {
+        this.gridView = gridView;
     }
 }

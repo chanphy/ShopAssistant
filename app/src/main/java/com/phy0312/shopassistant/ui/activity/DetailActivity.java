@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.db.Store;
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.DateUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 
@@ -80,7 +81,7 @@ public class DetailActivity extends Activity {
 
     private void initData() {
         huoDong = new HuoDong(1L, "1", "3", System.currentTimeMillis(), System.currentTimeMillis(),
-                ActivityFragment.HOT, "活动详情", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+                Constants.HOT, "活动详情", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
         store = new Store(1L, "3", "3", 1, "闲逛记", "1F", 0, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg",
                 "0591-839236541", 1, 1, new Date(), "");
 

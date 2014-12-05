@@ -28,6 +28,7 @@ public class MainApplication extends Application {
         CrashHandler.getInstance(this);
         initImageLoader(getApplicationContext());
         requestQueue = Volley.newRequestQueue(this);
+
         appContext = this;
     }
 
