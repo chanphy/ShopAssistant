@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.DetailActivity"
+            android:name=".ui.activity.ActivityDetailActivty"
             android:label="@string/title_activity_huo_dong_detail"
             android:parentActivityName=".ui.MainActivity" >
             <meta-data
@@ -26,7 +26,7 @@
                 android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.coupon.DetailCouponActivity"
+            android:name=".ui.coupon.CouponDetailActivity"
             android:label="@string/title_activity_coupon_detail" >
         </activity>
         <activity
@@ -34,7 +34,7 @@
             android:label="@string/menu_title_food" >
         </activity>
         <activity
-            android:name=".ui.food.FoodStoreActivity"
+            android:name=".ui.food.FoodStoreDetailActivity"
             android:label="@string/title_activity_my" >
         </activity>
         <activity

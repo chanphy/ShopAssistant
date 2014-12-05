@@ -20,6 +20,7 @@ import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.HuoDong;
 import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ThreadUtil;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
@@ -32,8 +33,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ActivityFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
-        AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener{
+public class ActivityFragment extends BaseFragment{
 
     private PullToRefreshLayout ptl_container;
     private ListView lv_content;
@@ -95,21 +95,8 @@ public class ActivityFragment extends Fragment implements PullToRefreshLayout.Pu
         return view;
     }
 
-
-
-
     @Override
-    public void onRefreshingUp() {
-        startLoad(true, false, true);
-    }
-
-    @Override
-    public void onRefreshingBottom() {
-        startLoad(false, true, true);
-    }
-
-
-    private void startLoad(final boolean isUp, final boolean isBottom, final boolean append) {
+    protected void startLoad(final boolean isUp, final boolean isBottom, final boolean append) {
         ThreadUtil.executeMore(new Runnable() {
 
             @Override
@@ -149,7 +136,7 @@ public class ActivityFragment extends Fragment implements PullToRefreshLayout.Pu
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent();
-        intent.setClassName(getActivity(), DetailActivity.class.getName());
+        intent.setClassName(getActivity(), ActivityDetailActivty.class.getName());
         try{
             getActivity().startActivity(intent);
         }catch(Exception e) {

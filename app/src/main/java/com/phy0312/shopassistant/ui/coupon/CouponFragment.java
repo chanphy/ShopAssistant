@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.phy0312.shopassistant.R;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.adapter.CouponAdapter;
 import com.phy0312.shopassistant.data.DataManager;
@@ -30,8 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CouponFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
-        AdapterView.OnItemClickListener{
+public class CouponFragment extends BaseFragment{
 
     private PullToRefreshLayout ptl_container;
     private ListView lv_content;
@@ -78,7 +77,7 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
         indicator.setViewPager(viewPager);
 
         initSpinners(view);
-        startLoad(false, false);
+        startLoad(false, false, false);
         return view;
     }
 
@@ -99,7 +98,7 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent();
-        intent.setClassName(getActivity(), DetailCouponActivity.class.getName());
+        intent.setClassName(getActivity(), CouponDetailActivity.class.getName());
         try{
             getActivity().startActivity(intent);
         }catch(Exception e) {
@@ -107,18 +106,11 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
         }
     }
 
-    @Override
-    public void onRefreshingUp() {
-        startLoad(true, false);
-    }
+
+
 
     @Override
-    public void onRefreshingBottom() {
-        startLoad(false, true);
-    }
-
-
-    private void startLoad(final boolean isUp, final boolean isBottom) {
+    protected void startLoad(final boolean isUp, final boolean isBottom, final boolean append) {
         ThreadUtil.executeMore(new Runnable() {
 
             @Override
@@ -147,6 +139,10 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
                 });
             }
         });
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
 
     }
 }

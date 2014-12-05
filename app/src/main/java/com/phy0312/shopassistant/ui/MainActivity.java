@@ -169,7 +169,7 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
                 mDrawerTitle = getString(R.string.navdrawer_item_coupon);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
-                FoodActivity.FoodFragment foodFragment = new FoodActivity.FoodFragment();
+                FoodActivity.PlaceholderFragment foodFragment = new FoodActivity.PlaceholderFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_tuangou);
                 break;

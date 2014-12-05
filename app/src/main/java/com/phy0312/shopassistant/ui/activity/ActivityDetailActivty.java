@@ -24,7 +24,7 @@ import java.util.Date;
  * author: dingdj<br/>
  * date: 2014/11/17<br/>
  */
-public class DetailActivity extends Activity {
+public class ActivityDetailActivty extends Activity {
 
 
     private HuoDong huoDong;
@@ -65,7 +65,7 @@ public class DetailActivity extends Activity {
         findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailActivity.this.finish();
+                ActivityDetailActivty.this.finish();
             }
         });
 
@@ -73,7 +73,7 @@ public class DetailActivity extends Activity {
         findViewById(R.id.iv_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailActivity.this.finish();
+                ActivityDetailActivty.this.finish();
             }
         });
     }

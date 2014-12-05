@@ -30,7 +30,7 @@ import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 
 import java.util.List;
 
-public class FoodStoreActivity extends FragmentActivity {
+public class FoodStoreDetailActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

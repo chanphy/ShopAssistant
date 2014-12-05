@@ -6,28 +6,6 @@
 
     <include layout="@layout/common_header" />
 
-    <com.phy0312.shopassistant.view.PullToRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ptl_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:id="@+id/lv_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:dividerHeight="0.0dip"
-            android:layout_marginBottom="10dp"
-            android:divider="@null"
-            />
-
-        <com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar
-            android:id="@+id/ptr_progress_up"
-            style="@style/Widget.ProgressBar.PullToRefresh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.phy0312.shopassistant.view.PullToRefreshLayout>
+    <include layout="@layout/common_pull_refresh_layout"/>
 
 </LinearLayout>

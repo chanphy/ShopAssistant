@@ -3,7 +3,6 @@ package com.phy0312.shopassistant.ui.product;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,8 @@ import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.Constants;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
+import com.phy0312.shopassistant.ui.base.BaseFragmentActivity;
 import com.phy0312.shopassistant.view.HeaderGridView;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -32,25 +33,18 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class ProductActivity extends FragmentActivity {
+public class ProductActivity extends BaseFragmentActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.common_activity_fragment_container);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
+    public Fragment getPlaceholderFragment() {
+        return new PlaceholderFragment();
     }
-
 
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
-            AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener {
+    public static class PlaceholderFragment extends BaseFragment {
 
         public static final int HOT = 0;
         public static final int PROMOTION = 1;
@@ -133,16 +127,6 @@ public class ProductActivity extends FragmentActivity {
             AndroidUtil.startActivity(getActivity(), intent);
         }
 
-        @Override
-        public void onRefreshingUp() {
-            startLoad(true, false, true);
-        }
-
-        @Override
-        public void onRefreshingBottom() {
-            startLoad(false, true, true);
-        }
-
         private void initRadioGroup(View headerView) {
             RadioGroup rg_tab_bar = (RadioGroup) headerView.findViewById(R.id.rg_tab_bar);
             rg_tab_bar.setOnCheckedChangeListener(this);
@@ -163,8 +147,8 @@ public class ProductActivity extends FragmentActivity {
             }
         }
 
-
-        private void startLoad(final boolean isUp, final boolean isBottom, final boolean append) {
+        @Override
+        protected void startLoad(final boolean isUp, final boolean isBottom, final boolean append) {
             JSONObject jsonObject = new JSONObject();
             JsonCookieSupportRequest request = new JsonCookieSupportRequest(Request.Method.POST, URLManager.PRODUCT_LIST, jsonObject,
                     new Response.Listener<JSONObject>() {

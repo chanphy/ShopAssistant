@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +32,11 @@ import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.Constants;
-import com.phy0312.shopassistant.ui.activity.DetailActivity;
+import com.phy0312.shopassistant.ui.activity.ActivityDetailActivty;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
+import com.phy0312.shopassistant.ui.base.BaseFragmentActivity;
 import com.phy0312.shopassistant.ui.base.UIUtil;
-import com.phy0312.shopassistant.ui.coupon.DetailCouponActivity;
+import com.phy0312.shopassistant.ui.coupon.CouponDetailActivity;
 import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -52,21 +52,14 @@ import java.util.List;
  * author: Administrator<br/>
  * date: 2014/11/25<br/>
  */
-public class FoodActivity extends FragmentActivity {
+public class FoodActivity extends BaseFragmentActivity {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.common_activity_fragment_container);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new FoodFragment())
-                    .commit();
-        }
+    public Fragment getPlaceholderFragment() {
+        return new PlaceholderFragment();
     }
 
-
-    static public class FoodFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
-            AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener {
+    static public class PlaceholderFragment extends BaseFragment {
 
         public static final int STORE = 0;
         public static final int COUPON = 1;
@@ -83,7 +76,7 @@ public class FoodActivity extends FragmentActivity {
         private int type = STORE;
 
 
-        public FoodFragment() {
+        public PlaceholderFragment() {
 
         }
 
@@ -164,7 +157,7 @@ public class FoodActivity extends FragmentActivity {
                     Store store = adapter.getList().get(position);
                     Intent intent = new Intent();
                     intent.putExtra(Constants.TRANSFER_BUNDLE_STORE, store);
-                    intent.setClassName(getActivity(), FoodStoreActivity.class.getName());
+                    intent.setClassName(getActivity(), FoodStoreDetailActivity.class.getName());
                     AndroidUtil.startActivity(getActivity(), intent);
                     break;
                 case COUPON:
@@ -172,7 +165,7 @@ public class FoodActivity extends FragmentActivity {
                     Coupon coupon = couponAdapter.getList().get(position);
                     intent = new Intent();
                     intent.putExtra(Constants.TRANSFER_BUNDLE_COUPON, coupon);
-                    intent.setClassName(getActivity(), DetailCouponActivity.class.getName());
+                    intent.setClassName(getActivity(), CouponDetailActivity.class.getName());
                     AndroidUtil.startActivity(getActivity(), intent);
                     break;
                 case ACTIVITY:
@@ -180,7 +173,7 @@ public class FoodActivity extends FragmentActivity {
                     HuoDong huoDong = activityAdapter.getList().get(position);
                     intent = new Intent();
                     intent.putExtra(Constants.TRANSFER_BUNDLE_ACTIVITY, huoDong);
-                    intent.setClassName(getActivity(), DetailActivity.class.getName());
+                    intent.setClassName(getActivity(), ActivityDetailActivty.class.getName());
                     AndroidUtil.startActivity(getActivity(), intent);
                     break;
                 case DEAL:
@@ -191,16 +184,6 @@ public class FoodActivity extends FragmentActivity {
                     break;
             }
 
-        }
-
-        @Override
-        public void onRefreshingUp() {
-            startLoad(true, false, true);
-        }
-
-        @Override
-        public void onRefreshingBottom() {
-            startLoad(false, true, true);
         }
 
         @Override
@@ -244,7 +227,8 @@ public class FoodActivity extends FragmentActivity {
             }
         }
 
-        private void startLoad(final boolean isUp, final boolean isBottom, final boolean append) {
+        @Override
+        protected void startLoad(final boolean isUp, final boolean isBottom, final boolean append) {
             switch (type) {
                 case STORE:
                     JSONObject jsonObject = new JSONObject();
@@ -342,7 +326,7 @@ public class FoodActivity extends FragmentActivity {
         private void updateFoodStoreView(boolean isUp, boolean isBottom, boolean append) {
             final List<Store> list = DataManager.getFoodStores();
             if (foodStoreAdapter == null) {
-               foodStoreAdapter = new FoodStoreAdapter(FoodFragment.this.getActivity(), list);
+               foodStoreAdapter = new FoodStoreAdapter(PlaceholderFragment.this.getActivity(), list);
             }
 
             currentAdater = foodStoreAdapter;
@@ -368,7 +352,7 @@ public class FoodActivity extends FragmentActivity {
         private void updateConponView(boolean isUp, boolean isBottom, boolean append) {
             final List<Coupon> list = DataManager.getCoupons();
             if(couponAdater == null) {
-                couponAdater = new CouponAdapter(FoodFragment.this.getActivity(), list);
+                couponAdater = new CouponAdapter(PlaceholderFragment.this.getActivity(), list);
             }
 
             currentAdater = couponAdater;
@@ -393,7 +377,7 @@ public class FoodActivity extends FragmentActivity {
         private void updateActivityView(boolean isUp, boolean isBottom, boolean append) {
             final List<HuoDong> list = DataManager.getHuoDongs(Constants.HOT);
             if(activityAdater == null) {
-                activityAdater = new ActivityAdapter(FoodFragment.this.getActivity(), list);
+                activityAdater = new ActivityAdapter(PlaceholderFragment.this.getActivity(), list);
             }
             currentAdater = activityAdater;
             if (append && activityAdater.getList() != null) {
