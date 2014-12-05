@@ -12,7 +12,7 @@ import android.view.Window;
 
 import com.phy0312.shopassistant.R;
 
-public class DetailCoupon extends FragmentActivity {
+public class DetailCouponActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

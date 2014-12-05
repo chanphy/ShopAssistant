@@ -36,7 +36,8 @@ import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.ui.activity.DetailActivity;
 import com.phy0312.shopassistant.ui.base.UIUtil;
-import com.phy0312.shopassistant.ui.coupon.DetailCoupon;
+import com.phy0312.shopassistant.ui.coupon.DetailCouponActivity;
+import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
@@ -51,7 +52,7 @@ import java.util.List;
  * author: Administrator<br/>
  * date: 2014/11/25<br/>
  */
-public class Food extends FragmentActivity {
+public class FoodActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +119,7 @@ public class Food extends FragmentActivity {
             lv_content.setAdapter(null);
             lv_content.setOnItemClickListener(this);
 
-            ViewPager viewPager = (ViewPager) headerView.findViewById(R.id.pager);
+            AutoScrollViewPager viewPager = (AutoScrollViewPager) headerView.findViewById(R.id.pager);
             UIUtil.initAdsBanner(getActivity(), viewList, viewPager);
             CirclePageIndicator indicator = (CirclePageIndicator) headerView.findViewById(R.id.indicator);
             indicator.setViewPager(viewPager);
@@ -163,7 +164,7 @@ public class Food extends FragmentActivity {
                     Store store = adapter.getList().get(position);
                     Intent intent = new Intent();
                     intent.putExtra(Constants.TRANSFER_BUNDLE_STORE, store);
-                    intent.setClassName(getActivity(), FoodStore.class.getName());
+                    intent.setClassName(getActivity(), FoodStoreActivity.class.getName());
                     AndroidUtil.startActivity(getActivity(), intent);
                     break;
                 case COUPON:
@@ -171,7 +172,7 @@ public class Food extends FragmentActivity {
                     Coupon coupon = couponAdapter.getList().get(position);
                     intent = new Intent();
                     intent.putExtra(Constants.TRANSFER_BUNDLE_COUPON, coupon);
-                    intent.setClassName(getActivity(), DetailCoupon.class.getName());
+                    intent.setClassName(getActivity(), DetailCouponActivity.class.getName());
                     AndroidUtil.startActivity(getActivity(), intent);
                     break;
                 case ACTIVITY:
@@ -340,15 +341,17 @@ public class Food extends FragmentActivity {
 
         private void updateFoodStoreView(boolean isUp, boolean isBottom, boolean append) {
             final List<Store> list = DataManager.getFoodStores();
-            if (currentAdater == null) {
-                currentAdater = foodStoreAdapter = new FoodStoreAdapter(FoodFragment.this.getActivity(), list);
-            } else {
-                if (append && foodStoreAdapter.getList() != null) {
-                    foodStoreAdapter.getList().addAll(list);
-                } else {
-                    foodStoreAdapter.setList(list);
-                }
+            if (foodStoreAdapter == null) {
+               foodStoreAdapter = new FoodStoreAdapter(FoodFragment.this.getActivity(), list);
             }
+
+            currentAdater = foodStoreAdapter;
+            if (append && foodStoreAdapter.getList() != null) {
+                foodStoreAdapter.getList().addAll(list);
+            } else {
+                foodStoreAdapter.setList(list);
+            }
+
             lv_content.setAdapter(currentAdater);
             currentAdater.notifyDataSetChanged();
 
@@ -364,15 +367,17 @@ public class Food extends FragmentActivity {
 
         private void updateConponView(boolean isUp, boolean isBottom, boolean append) {
             final List<Coupon> list = DataManager.getCoupons();
-            if (currentAdater == null) {
-                currentAdater = couponAdater = new CouponAdapter(FoodFragment.this.getActivity(), list);
-            } else {
-                if (append && couponAdater.getList() != null) {
-                    couponAdater.getList().addAll(list);
-                } else {
-                    couponAdater.setList(list);
-                }
+            if(couponAdater == null) {
+                couponAdater = new CouponAdapter(FoodFragment.this.getActivity(), list);
             }
+
+            currentAdater = couponAdater;
+            if (append && couponAdater.getList() != null) {
+                couponAdater.getList().addAll(list);
+            } else {
+                couponAdater.setList(list);
+            }
+
             lv_content.setAdapter(currentAdater);
             currentAdater.notifyDataSetChanged();
 
@@ -387,15 +392,16 @@ public class Food extends FragmentActivity {
 
         private void updateActivityView(boolean isUp, boolean isBottom, boolean append) {
             final List<HuoDong> list = DataManager.getHuoDongs(Constants.HOT);
-            if (currentAdater == null) {
-                currentAdater = activityAdater = new ActivityAdapter(FoodFragment.this.getActivity(), list);
-            } else {
-                if (append && activityAdater.getList() != null) {
-                    activityAdater.getList().addAll(list);
-                } else {
-                    activityAdater.setList(list);
-                }
+            if(activityAdater == null) {
+                activityAdater = new ActivityAdapter(FoodFragment.this.getActivity(), list);
             }
+            currentAdater = activityAdater;
+            if (append && activityAdater.getList() != null) {
+                activityAdater.getList().addAll(list);
+            } else {
+                activityAdater.setList(list);
+            }
+
             lv_content.setAdapter(currentAdater);
             currentAdater.notifyDataSetChanged();
 

@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.Main"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,21 +20,21 @@
         <activity
             android:name=".ui.activity.DetailActivity"
             android:label="@string/title_activity_huo_dong_detail"
-            android:parentActivityName=".ui.Main" >
+            android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.coupon.DetailCoupon"
+            android:name=".ui.coupon.DetailCouponActivity"
             android:label="@string/title_activity_coupon_detail" >
         </activity>
         <activity
-            android:name=".ui.food.Food"
+            android:name=".ui.food.FoodActivity"
             android:label="@string/menu_title_food" >
         </activity>
         <activity
-            android:name=".ui.food.FoodStore"
+            android:name=".ui.food.FoodStoreActivity"
             android:label="@string/title_activity_my" >
         </activity>
         <activity
@@ -48,6 +48,10 @@
         <activity
             android:name=".ui.product.ProductActivity"
             android:label="@string/title_activity_product" >
+        </activity>
+        <activity
+            android:name=".ui.product.ProductDetailActivity"
+            android:label="@string/product_detail" >
         </activity>
     </application>
 

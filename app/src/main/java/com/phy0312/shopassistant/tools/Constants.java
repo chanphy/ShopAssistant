@@ -16,6 +16,7 @@ public class Constants {
     public static final String TRANSFER_BUNDLE_STORE = "transfer_bundle_store";
     public static final String TRANSFER_BUNDLE_COUPON = "transfer_bundle_coupon";
     public static final String TRANSFER_BUNDLE_ACTIVITY = "transfer_bundle_activity";
+    public static final String TRANSFER_BUNDLE_PRODUCT = "transfer_bundle_product";
 
 
     public static final int PRODUCT_DRESS = 0;

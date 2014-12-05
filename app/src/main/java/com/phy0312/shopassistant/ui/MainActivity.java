@@ -24,7 +24,7 @@ import com.phy0312.shopassistant.ui.coupon.CouponFragment;
 import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
 import com.phy0312.shopassistant.config.MainSp;
-import com.phy0312.shopassistant.ui.food.Food;
+import com.phy0312.shopassistant.ui.food.FoodActivity;
 import com.phy0312.shopassistant.ui.my.MyProfileFragment;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 /**
  * 主activity
  */
-public class Main extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
+public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
 
     private final int waitTime = 2000;
     private long touchTime = 0;
@@ -59,7 +59,7 @@ public class Main extends ActionBarActivity implements ListView.OnItemClickListe
         sp_plazas.setAdapter(new PlazaAdapter(list, LayoutInflater.from(this)));
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayUseLogoEnabled(false);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         lv_menu = (ListView) findViewById(R.id.lv_menu);
@@ -169,7 +169,7 @@ public class Main extends ActionBarActivity implements ListView.OnItemClickListe
                 mDrawerTitle = getString(R.string.navdrawer_item_coupon);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
-                Food.FoodFragment foodFragment = new Food.FoodFragment();
+                FoodActivity.FoodFragment foodFragment = new FoodActivity.FoodFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_tuangou);
                 break;

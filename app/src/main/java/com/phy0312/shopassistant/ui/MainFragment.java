@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.ui.base.UIUtil;
-import com.phy0312.shopassistant.ui.food.Food;
+import com.phy0312.shopassistant.ui.food.FoodActivity;
 import com.phy0312.shopassistant.adapter.MainItemAdpter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.model.MainColumnGroup;
@@ -25,6 +25,7 @@ import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.ui.product.ProductActivity;
+import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
@@ -37,7 +38,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
 
     private PullToRefreshLayout ptl_container;
     private ListView lv_content;
-    private ViewPager viewPager;
+    private AutoScrollViewPager viewPager;
     private CirclePageIndicator indicator;
     List<ImageView> viewList = new ArrayList<ImageView>();
     private Handler handler;
@@ -73,7 +74,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClassName(MainFragment.this.getActivity(), Food.class.getName());
+                intent.setClassName(MainFragment.this.getActivity(), FoodActivity.class.getName());
                 AndroidUtil.startActivity(MainFragment.this.getActivity(), intent);
 
             }
@@ -90,7 +91,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
             }
         });
 
-        viewPager = (ViewPager)headerView.findViewById(R.id.pager);
+        viewPager = (AutoScrollViewPager)headerView.findViewById(R.id.pager);
         UIUtil.initAdsBanner(getActivity(), viewList, viewPager);
         indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);

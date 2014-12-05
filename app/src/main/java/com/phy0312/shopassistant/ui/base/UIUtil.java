@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
+import com.phy0312.shopassistant.view.AutoScrollViewPager;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
  */
 public class UIUtil {
 
-    public static void initAdsBanner(Context context,  final List<ImageView> viewList, ViewPager viewPager) {
+    public static void initAdsBanner(Context context,  final List<ImageView> viewList, AutoScrollViewPager viewPager) {
         LayoutInflater mInflater = LayoutInflater.from(context);
         ImageView v1 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
         ImageView v2 = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
@@ -60,5 +61,8 @@ public class UIUtil {
         });
 
         viewPager.setCurrentItem(0);
+        viewPager.setCycle(true);
+        viewPager.startAutoScroll();
+        viewPager.setInterval(5000);
     }
 }

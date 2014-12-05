@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header" />
+
+    <com.phy0312.shopassistant.view.CustomScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_product_name"
+                    style="@style/DetailNameStyle" />
+
+                <TextView
+                    android:id="@+id/tv_photo_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/detail_name_height"
+                    android:layout_alignBottom="@+id/tv_photo_cur"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/default_horizontal_margin"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/c1"
+                    android:textSize="@dimen/h5" />
+
+                <TextView
+                    android:id="@+id/tv_photo_cur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/detail_name_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@id/tv_photo_page"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/c1"
+                    android:textSize="@dimen/h3" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_product_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_horizontal_margin"
+                android:layout_marginRight="@dimen/default_horizontal_margin"
+                android:layout_marginTop="@dimen/default_vertical_margin"
+                android:background="@drawable/status_bg"
+                android:text="@string/product_status_off_shelf"
+                android:textColor="@color/c1"
+                android:textSize="@dimen/h4"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="44.0dip"
+                android:background="@color/c1"
+                android:orientation="horizontal"
+                android:paddingRight="0dip"
+                android:paddingLeft="@dimen/default_horizontal_margin">
+
+                <TextView
+                    android:id="@+id/tv_discount_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44.0dip"
+                    android:layout_marginRight="18.0dip"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textSize="@dimen/h5" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44.0dip"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textSize="@dimen/h5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_recommendstation"
+                style="@style/DetailItemBackgroundStyle"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/DetailTitleStyle"
+                    android:drawableLeft="@drawable/icon_recommend"
+                    android:drawablePadding="10.0dip"
+                    android:text="@string/product_recommendation" />
+
+                <View style="@style/HorizontalDividerDefaultStyle" />
+
+                <TextView
+                    android:id="@+id/tv_recommend"
+                    style="@style/DetailNoClickableItemContainerStyle" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/DetailItemBackgroundStyle">
+
+                <LinearLayout
+                    android:id="@id/ll_store_name"
+                    style="@style/DetailClickableItemContainerStyle">
+
+                    <TextView
+                        style="@style/DetailItemLeftStyle"
+                        android:drawableLeft="@drawable/icon_detail_store"
+                        android:text="@string/store_label" />
+
+                    <TextView
+                        android:id="@id/tv_store_name"
+                        style="@style/DetailItemRightStyle"
+                        android:drawableRight="@drawable/detail_item_arrow_selector" />
+                </LinearLayout>
+
+                <View style="@style/HorizontalDividerDefaultStyle" />
+
+                <LinearLayout
+                    android:id="@id/ll_store_number"
+                    style="@style/DetailClickableItemContainerStyle">
+
+                    <TextView
+                        style="@style/DetailItemLeftStyle"
+                        android:drawableLeft="@drawable/icon_detail_adress"
+                        android:text="@string/address_label" />
+
+                    <TextView
+                        android:id="@id/tv_store_number"
+                        style="@style/DetailItemRightStyle"
+                        android:drawableRight="@drawable/detail_item_arrow_selector" />
+                </LinearLayout>
+
+                <View style="@style/HorizontalDividerDefaultStyle" />
+
+                <LinearLayout
+                    android:id="@id/ll_store_tel"
+                    style="@style/DetailClickableItemContainerStyle">
+
+                    <TextView
+                        style="@style/DetailItemLeftStyle"
+                        android:drawableLeft="@drawable/icon_detail_tel"
+                        android:text="@string/telephone_label" />
+
+                    <TextView
+                        android:id="@+id/tv_store_tel"
+                        style="@style/DetailItemRightStyle"
+                        android:drawableRight="@drawable/detail_item_arrow_selector"
+                        android:textColor="@color/c6" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/DetailItemBackgroundStyle"
+                android:layout_marginBottom="@dimen/default_vertical_margin">
+
+                <TextView
+                    android:id="@+id/tv_store_params"
+                    style="@style/DetailClickableContentItemStyle"
+                    android:drawableLeft="@drawable/icon_detail"
+                    android:drawablePadding="10.0dip"
+                    android:text="@string/product_parameter"
+                    android:textColor="@color/c3" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.phy0312.shopassistant.view.CustomScrollView>
+</LinearLayout>

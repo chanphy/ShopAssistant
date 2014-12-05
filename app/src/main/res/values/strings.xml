@@ -122,5 +122,9 @@
     <string name="tab_product_new">新品</string>
     <string name="title_activity_product">ProductActivity</string>
     <string name="product">淘精品</string>
+    <string name="product_parameter">商品参数</string>
+    <string name="product_recommendation">推荐说明</string>
+    <string name="product_status_off_shelf">该商品已下架</string>
+    <string name="product_detail">商品详情</string>
 
 </resources>

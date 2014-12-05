@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +16,12 @@ import android.widget.RadioGroup;
 
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.ActivityAdapter;
-import com.phy0312.shopassistant.tools.Constants;
-import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.HuoDong;
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ThreadUtil;
+import com.phy0312.shopassistant.ui.base.UIUtil;
+import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
@@ -87,7 +87,7 @@ public class ActivityFragment extends Fragment implements PullToRefreshLayout.Pu
         lv_content.setAdapter(null);
         lv_content.setOnItemClickListener(this);
 
-        ViewPager viewPager = (ViewPager)headerView.findViewById(R.id.pager);
+        AutoScrollViewPager viewPager = (AutoScrollViewPager)headerView.findViewById(R.id.pager);
         UIUtil.initAdsBanner(getActivity(), viewList, viewPager);
         CirclePageIndicator indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);

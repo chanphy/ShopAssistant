@@ -21,6 +21,7 @@ import com.phy0312.shopassistant.adapter.CouponAdapter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.db.Coupon;
 import com.phy0312.shopassistant.tools.ThreadUtil;
+import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
@@ -34,7 +35,7 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
 
     private PullToRefreshLayout ptl_container;
     private ListView lv_content;
-    private ViewPager viewPager;
+    private AutoScrollViewPager viewPager;
     private CirclePageIndicator indicator;
     List<ImageView> viewList = new ArrayList<ImageView>();
     private Handler handler;
@@ -71,7 +72,7 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
         lv_content.setAdapter(null);
         lv_content.setOnItemClickListener(this);
 
-        viewPager = (ViewPager)headerView.findViewById(R.id.pager);
+        viewPager = (AutoScrollViewPager)headerView.findViewById(R.id.pager);
         UIUtil.initAdsBanner(getActivity(), viewList, viewPager);
         indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
@@ -98,7 +99,7 @@ public class CouponFragment extends Fragment implements PullToRefreshLayout.Pull
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent();
-        intent.setClassName(getActivity(), DetailCoupon.class.getName());
+        intent.setClassName(getActivity(), DetailCouponActivity.class.getName());
         try{
             getActivity().startActivity(intent);
         }catch(Exception e) {

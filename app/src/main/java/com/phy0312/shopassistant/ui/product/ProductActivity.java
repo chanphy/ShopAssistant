@@ -1,5 +1,6 @@
 package com.phy0312.shopassistant.ui.product;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -21,6 +22,8 @@ import com.phy0312.shopassistant.db.Product;
 import com.phy0312.shopassistant.net.JsonCookieSupportRequest;
 import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;
+import com.phy0312.shopassistant.tools.AndroidUtil;
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.view.HeaderGridView;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -70,6 +73,7 @@ public class ProductActivity extends FragmentActivity {
             ptl_container = (PullToRefreshLayout) view.findViewById(R.id.ptl_container);
             gv_content = (HeaderGridView) view.findViewById(R.id.lv_content);
             gv_content.setNumColumns(2);
+            gv_content.setOnItemClickListener(this);
             ptl_container.setGridView(gv_content);
             ptl_container.setUpProgressBar((SmoothProgressBar) view.findViewById(R.id.ptr_progress_up));
             ptl_container.setOnPullRefreshListener(this);
@@ -122,7 +126,11 @@ public class ProductActivity extends FragmentActivity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            Product product = productAdapter.getList().get(position);
+            Intent intent = new Intent();
+            intent.putExtra(Constants.TRANSFER_BUNDLE_PRODUCT, product);
+            intent.setClassName(getActivity(), ProductDetailActivity.class.getName());
+            AndroidUtil.startActivity(getActivity(), intent);
         }
 
         @Override
