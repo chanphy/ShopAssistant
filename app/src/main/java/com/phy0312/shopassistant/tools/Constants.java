@@ -31,4 +31,6 @@ public class Constants {
     public static final int HOT = 0;
     public static final int LATEST = 1;
     public static final int NEXTWEEK = 2;
+
+    public static final String LOC_KEY = "iEGwVGBdiKZvZqoTkBOgEXr5";
 }

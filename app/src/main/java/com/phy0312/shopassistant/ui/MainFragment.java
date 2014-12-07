@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
 
     private PullToRefreshLayout ptl_container;
     private ListView lv_content;
-    private AutoScrollViewPager viewPager;
+    private ViewPager viewPager;
     private CirclePageIndicator indicator;
     List<ImageView> viewList = new ArrayList<ImageView>();
     private Handler handler;
@@ -90,7 +91,7 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
             }
         });
 
-        viewPager = (AutoScrollViewPager)headerView.findViewById(R.id.pager);
+        viewPager = (ViewPager)headerView.findViewById(R.id.pager);
         UIUtil.initAdsBanner(getActivity(), viewList, viewPager);
         indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);

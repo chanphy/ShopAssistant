@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.phy0312.shopassistant.R;
+import com.phy0312.shopassistant.ui.base.UIUtil;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.widget.LinearLayout.HORIZONTAL;
@@ -187,7 +188,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         if (mViewPager == null) {
             return;
         }
-        final int count = mViewPager.getAdapter().getCount();
+        final int count = getViewPagerCount();
         if (count == 0) {
             return;
         }
@@ -268,7 +269,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         if (super.onTouchEvent(ev)) {
             return true;
         }
-        if ((mViewPager == null) || (mViewPager.getAdapter().getCount() == 0)) {
+        if ((mViewPager == null) || (getViewPagerCount() == 0)) {
             return false;
         }
 
@@ -303,7 +304,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (!mIsDragging) {
-                    final int count = mViewPager.getAdapter().getCount();
+                    final int count = getViewPagerCount();
                     final int width = getWidth();
                     final float halfWidth = width / 2f;
                     final float sixthWidth = width / 6f;
@@ -395,7 +396,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        mCurrentPage = position;
+        mCurrentPage = UIUtil.getRealPostion(position, getViewPagerCount());
         mPageOffset = positionOffset;
         invalidate();
 
@@ -407,8 +408,8 @@ public class CirclePageIndicator extends View implements PageIndicator {
     @Override
     public void onPageSelected(int position) {
         if (mSnap || mScrollState == ViewPager.SCROLL_STATE_IDLE) {
-            mCurrentPage = position;
-            mSnapPage = position;
+            mCurrentPage = UIUtil.getRealPostion(position, getViewPagerCount());
+            mSnapPage = UIUtil.getRealPostion(position, getViewPagerCount());
             invalidate();
         }
 
@@ -453,7 +454,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
             result = specSize;
         } else {
             //Calculate the width according the views count
-            final int count = mViewPager.getAdapter().getCount();
+            final int count = getViewPagerCount();
             result = (int)(getPaddingLeft() + getPaddingRight()
                     + (count * 2 * mRadius) + (count - 1) * mRadius + 1);
             //Respect AT_MOST value if that was what is called for by measureSpec
@@ -462,6 +463,10 @@ public class CirclePageIndicator extends View implements PageIndicator {
             }
         }
         return result;
+    }
+    
+    private int getViewPagerCount() {
+        return (Integer)mViewPager.getTag();
     }
 
     /**
