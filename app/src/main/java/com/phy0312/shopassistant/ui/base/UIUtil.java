@@ -1,6 +1,7 @@
 package com.phy0312.shopassistant.ui.base;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 public class UIUtil {
 
-    public static void initAdsBanner(Context context,  final List<ImageView> viewList, ViewPager viewPager) {
+    public static void initAdsBanner(Context context,  final List<ImageView> viewList, final ViewPager viewPager) {
         LayoutInflater mInflater = LayoutInflater.from(context);
 
         final List<String> datas = new ArrayList<String>();
@@ -62,6 +63,15 @@ public class UIUtil {
         });
 
         viewPager.setCurrentItem(Integer.MAX_VALUE/2);
+        final Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+                handler.postDelayed(this, 5000);
+            }
+        };
+        handler.postDelayed(r, 5000);
     }
 
     public static int getRealPostion(int position, int count) {
@@ -73,4 +83,5 @@ public class UIUtil {
         }
         return realPostion;
     }
+
 }
