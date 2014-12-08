@@ -23,6 +23,7 @@ import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.Constants;
+import com.phy0312.shopassistant.tools.StringUtils;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.base.BaseFragmentActivity;
 import com.phy0312.shopassistant.view.HeaderGridView;
@@ -34,6 +35,8 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class ProductActivity extends BaseFragmentActivity {
+
+    public static final String PRODUCT_TITLE = "product_title";
 
 
     @Override
@@ -61,8 +64,9 @@ public class ProductActivity extends BaseFragmentActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            String text = getActivity().getIntent().getStringExtra(PRODUCT_TITLE);
             View view = inflater.inflate(R.layout.fragment_product, container, false);
-            ((TextView) view.findViewById(R.id.tv_title)).setText(getActivity().getString(R.string.product));
+            ((TextView) view.findViewById(R.id.tv_title)).setText(StringUtils.isEmpty(text)?"":text);
 
             ptl_container = (PullToRefreshLayout) view.findViewById(R.id.ptl_container);
             gv_content = (HeaderGridView) view.findViewById(R.id.lv_content);

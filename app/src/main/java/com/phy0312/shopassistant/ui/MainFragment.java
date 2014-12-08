@@ -5,46 +5,42 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.ui.base.UIUtil;
-import com.phy0312.shopassistant.ui.food.FoodActivity;
 import com.phy0312.shopassistant.adapter.MainItemAdpter;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
+import com.phy0312.shopassistant.ui.base.UIUtil;
+import com.phy0312.shopassistant.ui.food.FoodActivity;
 import com.phy0312.shopassistant.ui.product.ProductActivity;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener{
+public class MainFragment extends BaseFragment{
 
 
     private PullToRefreshLayout ptl_container;
     private ListView lv_content;
     private ViewPager viewPager;
     private CirclePageIndicator indicator;
-    List<ImageView> viewList = new ArrayList<ImageView>();
     private Handler handler;
     private MainItemAdpter adpter;
     DisplayImageOptions options;
     TextView tv_food;
-    TextView tv_product;
 
 
     @Nullable
@@ -79,23 +75,34 @@ public class MainFragment extends Fragment implements PullToRefreshLayout.PullRe
             }
         });
 
-        tv_product = (TextView)headerView.findViewById(R.id.tv_product);
-        tv_product.setOnClickListener(new View.OnClickListener(){
+        initProduct(R.id.tv_product_dress, headerView);
+        initProduct(R.id.tv_product_shoes, headerView);
+        initProduct(R.id.tv_product_digital, headerView);
+        initProduct(R.id.tv_product_baby, headerView);
+        initProduct(R.id.tv_product_decorate, headerView);
+        initProduct(R.id.tv_product_outside, headerView);
+        initProduct(R.id.tv_product_daily, headerView);
+
+        viewPager = (ViewPager)headerView.findViewById(R.id.pager);
+        UIUtil.initAdsBanner(getActivity(), viewPager);
+        indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
+        startLoad(false, false);
+        return view;
+    }
+
+    private void initProduct(int resId, View headerView) {
+        final TextView textView = (TextView)headerView.findViewById(resId);
+        textView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra(ProductActivity.PRODUCT_TITLE, textView.getText());
                 intent.setClassName(MainFragment.this.getActivity(), ProductActivity.class.getName());
                 AndroidUtil.startActivity(MainFragment.this.getActivity(), intent);
 
             }
         });
-
-        viewPager = (ViewPager)headerView.findViewById(R.id.pager);
-        UIUtil.initAdsBanner(getActivity(), viewList, viewPager);
-        indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
-        indicator.setViewPager(viewPager);
-        startLoad(false, false);
-        return view;
     }
 
 

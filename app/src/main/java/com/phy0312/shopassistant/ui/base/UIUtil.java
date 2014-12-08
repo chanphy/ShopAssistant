@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,8 @@ import java.util.List;
  */
 public class UIUtil {
 
-    public static void initAdsBanner(Context context,  final List<ImageView> viewList, final ViewPager viewPager) {
-        LayoutInflater mInflater = LayoutInflater.from(context);
+    public static void initAdsBanner(Context context,  final ViewPager viewPager) {
+        final LayoutInflater mInflater = LayoutInflater.from(context);
 
         final List<String> datas = new ArrayList<String>();
         datas.add("http://jingdongquan.net/sites/default/files/imagecache/512/auto_img/2012/10/31/20121031124351.jpg");
@@ -48,7 +47,7 @@ public class UIUtil {
             public Object instantiateItem(ViewGroup container, int position) {
 
                 int realPostion = getRealPostion(position, datas.size());
-                ImageView imageView = (ImageView)LayoutInflater.from(container.getContext()).inflate(R.layout.banner_ads, null);
+                ImageView imageView = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
                 container.addView(imageView);
                 ImageLoader.getInstance().displayImage(datas.get(realPostion), imageView, ImageLoaderUtil.newDisplayImageOptionsInstance());
                 return imageView;

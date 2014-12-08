@@ -8,6 +8,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
  */
 public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener, MainApplication.LocationChange {
 
+    private static final String TAG = "MainActivity";
     private final int waitTime = 2000;
     private long touchTime = 0;
 
@@ -59,6 +61,7 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
 
         MainApplication.appContext.registerLocationChanger(this);
         MainApplication.appContext.mLocationClient.start();
+
 
         ArrayList<String> list = new ArrayList<String>();
         list.add("东方百货");

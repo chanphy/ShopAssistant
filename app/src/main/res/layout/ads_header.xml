@@ -6,7 +6,7 @@
     android:layout_height="0dp"
     app:aspectRatio="3.555">
 
-    <com.phy0312.shopassistant.view.AutoScrollViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

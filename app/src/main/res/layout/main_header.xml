@@ -46,10 +46,10 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/tv_product"
+            android:id="@+id/tv_product_dress"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_product"
-            android:text="@string/menu_title_product" />
+            android:text="@string/menu_title_dress" />
 
         <View
             android:layout_width="0.0dip"
@@ -57,10 +57,10 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_cinema"
+            android:id="@+id/tv_product_shoes"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_flim"
-            android:text="@string/menu_title_film" />
+            android:text="@string/menu_title_shoes" />
 
         <View
             android:layout_width="0.0dip"
@@ -68,10 +68,10 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_ktv"
+            android:id="@+id/tv_product_digital"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_ktv"
-            android:text="@string/menu_title_ktv" />
+            android:text="@string/menu_title_digital" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,10 +83,10 @@
         android:orientation="horizontal">
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_wifi"
+            android:id="@+id/tv_product_baby"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_wifi"
-            android:text="@string/menu_title_wifi" />
+            android:text="@string/menu_title_baby" />
 
         <View
             android:layout_width="0.0dip"
@@ -94,10 +94,10 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_store"
+            android:id="@+id/tv_product_decorate"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_store"
-            android:text="@string/menu_title_store" />
+            android:text="@string/menu_title_decorate" />
 
         <View
             android:layout_width="0.0dip"
@@ -105,10 +105,10 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_augmented_reality"
+            android:id="@+id/tv_product_outside"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_augmented_reality"
-            android:text="@string/menu_title_augmented_reality" />
+            android:text="@string/menu_title_outside" />
 
         <View
             android:layout_width="0.0dip"
@@ -116,10 +116,10 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/btn_parking"
+            android:id="@+id/tv_product_daily"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_parking"
-            android:text="@string/menu_title_parking" />
+            android:text="@string/menu_title_daily" />
     </LinearLayout>
 
 </LinearLayout>

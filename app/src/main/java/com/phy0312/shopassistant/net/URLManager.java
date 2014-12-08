@@ -12,7 +12,7 @@ import java.net.URLEncoder;
  */
 public class URLManager {
 
-    public static String DEAL_URL = "http://lite.m.dianping.com/Fy6ffEz88j?uid=com_phy0312_shopassistant&longitude=119.280&latitude=26.080&" +
+    public static String DEAL_URL = "http://lite.m.dianping.com/Fy6ffEz88j?uid=com_phy0312_shopassistant&longitude=119.320102&latitude=26.087019&" +
             "hasheader=1&category="+ utf8Encode("美食");
 
     public static String USER_LOGIN = "http://IP/action.ashx/commonaction/";
@@ -37,7 +37,7 @@ public class URLManager {
         }else{
             double latitude = MainApplication.appContext.curLatLng[0];
             double longtitude = MainApplication.appContext.curLatLng[1];
-            return "http://lite.m.dianping.com/Fy6ffEz88j?uid=com_phy0312_shopassistant&longitude="+latitude+"&latitude="+longtitude+"&" +
+            return "http://lite.m.dianping.com/Fy6ffEz88j?uid=com_phy0312_shopassistant&longitude="+longtitude+"&latitude="+latitude+"&" +
                     "hasheader=1&category="+ utf8Encode("美食");
         }
     }

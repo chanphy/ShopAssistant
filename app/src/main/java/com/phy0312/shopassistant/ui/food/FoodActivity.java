@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,14 +38,11 @@ import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.base.BaseFragmentActivity;
 import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.ui.coupon.CouponDetailActivity;
-import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,7 +66,6 @@ public class FoodActivity extends BaseFragmentActivity {
 
         private PullToRefreshLayout ptl_container;
         private ListView lv_content;
-        List<ImageView> viewList = new ArrayList<ImageView>();
         private FoodStoreAdapter foodStoreAdapter;
         private CouponAdapter couponAdater;
         private ActivityAdapter activityAdater;
@@ -112,8 +109,8 @@ public class FoodActivity extends BaseFragmentActivity {
             lv_content.setAdapter(null);
             lv_content.setOnItemClickListener(this);
 
-            AutoScrollViewPager viewPager = (AutoScrollViewPager) headerView.findViewById(R.id.pager);
-            UIUtil.initAdsBanner(getActivity(), viewList, viewPager);
+            ViewPager viewPager = (ViewPager) headerView.findViewById(R.id.pager);
+            UIUtil.initAdsBanner(getActivity(), viewPager);
             CirclePageIndicator indicator = (CirclePageIndicator) headerView.findViewById(R.id.indicator);
             indicator.setViewPager(viewPager);
             startLoad(false, false, false);
