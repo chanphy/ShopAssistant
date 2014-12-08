@@ -25,7 +25,6 @@ import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.ui.product.ProductActivity;
-import com.phy0312.shopassistant.view.AutoScrollViewPager;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;

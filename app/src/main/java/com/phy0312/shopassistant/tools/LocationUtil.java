@@ -17,10 +17,10 @@ public class LocationUtil {
         if(mLocClient == null) return;
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);//设置定位模式
-        option.setCoorType("bd09ll");
+        option.setCoorType("gcj02");
         option.setOpenGps(true);
         option.setIsNeedAddress(true);//返回的定位结果包含地址信息
-        option.setScanSpan(60000);
+        option.setScanSpan(800); //设置为app主动请求定位
         option.setProdName("com.phy0312.shopassistant");
         mLocClient.setLocOption(option);
     }

@@ -23,13 +23,14 @@ import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.StringUtils;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
 
 import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyProfileFragment extends Fragment {
+public class MyProfileFragment extends BaseFragment {
 
 
     private RelativeLayout login_area_layout;

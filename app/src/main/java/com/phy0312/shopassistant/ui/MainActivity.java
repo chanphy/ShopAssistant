@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,12 +19,15 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.ui.activity.ActivityFragment;
-import com.phy0312.shopassistant.ui.coupon.CouponFragment;
 import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
 import com.phy0312.shopassistant.config.MainSp;
+import com.phy0312.shopassistant.ui.activity.ActivityFragment;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
+import com.phy0312.shopassistant.ui.coupon.CouponFragment;
+import com.phy0312.shopassistant.ui.deal.DealFragment;
 import com.phy0312.shopassistant.ui.food.FoodActivity;
 import com.phy0312.shopassistant.ui.my.MyProfileFragment;
 
@@ -32,7 +36,7 @@ import java.util.ArrayList;
 /**
  * 主activity
  */
-public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
+public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener, MainApplication.LocationChange {
 
     private final int waitTime = 2000;
     private long touchTime = 0;
@@ -52,6 +56,10 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         sp_plazas = (Spinner) findViewById(R.id.sp_plazas);
+
+        MainApplication.appContext.registerLocationChanger(this);
+        MainApplication.appContext.mLocationClient.start();
+
         ArrayList<String> list = new ArrayList<String>();
         list.add("东方百货");
         list.add("万象城");
@@ -169,8 +177,8 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
                 mDrawerTitle = getString(R.string.navdrawer_item_coupon);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
-                FoodActivity.PlaceholderFragment foodFragment = new FoodActivity.PlaceholderFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, foodFragment).commit();
+                DealFragment dealFragment = new DealFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, dealFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_tuangou);
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_MY_PROFILE:
@@ -202,12 +210,15 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
 
     @Override
     public void onBackPressed() {
-
         if(drawerLayout.isDrawerOpen(Gravity.LEFT)){
             drawerLayout.closeDrawers();
             return;
         }
 
+        BaseFragment fragment = (BaseFragment)getSupportFragmentManager().findFragmentById(R.id.flv_main_content);
+        if(fragment != null && fragment.onBackPressed()) {
+            return;
+        }
         long currentTime = System.currentTimeMillis();
         if ((currentTime - touchTime) >= waitTime) {
             Toast.makeText(this, getString(R.string.exit_confirm), Toast.LENGTH_SHORT).show();
@@ -218,5 +229,14 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
     }
 
 
+    @Override
+    public void locationChange() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MainApplication.appContext.unRegisterLocationChanger();
+    }
 }
