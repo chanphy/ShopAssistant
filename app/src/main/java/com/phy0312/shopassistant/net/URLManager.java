@@ -22,7 +22,7 @@ public class URLManager {
 
     public static String utf8Encode(String str) {
         try {
-            return URLEncoder.encode("美食", "utf-8");
+            return URLEncoder.encode(str, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
