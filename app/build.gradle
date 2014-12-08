@@ -11,12 +11,33 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
+
+    signingConfigs {
+        debug {
+            storeFile file("ddj.keystore")
+            storePassword "hhysbyj123456"
+            keyAlias "ddj.keystore"
+            keyPassword "hhysbyj123456"
+        }
+
+        //你自己的keystore信息
         release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file("ddj.keystore")
+            storePassword "hhysbyj123456"
+            keyAlias "ddj.keystore"
+            keyPassword "hhysbyj123456"
         }
     }
+
+    buildTypes {
+        release {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+
 }
 
 dependencies {
@@ -26,5 +47,5 @@ dependencies {
    /* compile 'com.squareup.picasso:picasso:2.4.0'*/
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
     compile 'de.greenrobot:greendao:1.3.7'
-    compile 'com.mcxiaoke.volley:library:1.0.+'
+    /*compile 'com.mcxiaoke.volley:library:1.0.+'*/
 }
