@@ -29,7 +29,7 @@ public class MainApplication extends Application {
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     public static MainApplication appContext;
-    public double[] curLatLng = new double[2]; //当前位置的经纬度信息
+    public double[] curLatLng; //当前位置的经纬度信息
     private LocationChange locationChange;
     private boolean isLocation = false;
 
@@ -97,6 +97,9 @@ public class MainApplication extends Application {
                 sb.append(location.getAddrStr());
             }
             Log.e(TAG, sb.toString());
+            if(curLatLng == null) {
+                curLatLng = new double[2];
+            }
             curLatLng[0] = location.getLatitude();
             curLatLng[1] = location.getLongitude();
             notityLocationChange();

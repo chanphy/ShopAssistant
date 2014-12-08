@@ -1,5 +1,7 @@
 package com.phy0312.shopassistant.net;
 
+import com.phy0312.shopassistant.MainApplication;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -27,5 +29,16 @@ public class URLManager {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static String getDealUrl() {
+        if(MainApplication.appContext.curLatLng == null) {
+            return DEAL_URL;
+        }else{
+            double latitude = MainApplication.appContext.curLatLng[0];
+            double longtitude = MainApplication.appContext.curLatLng[1];
+            return "http://lite.m.dianping.com/Fy6ffEz88j?uid=com_phy0312_shopassistant&longitude="+latitude+"&latitude="+longtitude+"&" +
+                    "hasheader=1&category="+ utf8Encode("美食");
+        }
     }
 }

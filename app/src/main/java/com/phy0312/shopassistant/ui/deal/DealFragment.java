@@ -58,10 +58,10 @@ public class DealFragment extends BaseFragment {
         });
         if (AndroidUtil.isNetworkAvailable(this.getActivity())) {
             webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-            webView.loadUrl(URLManager.DEAL_URL);
+            webView.loadUrl(URLManager.getDealUrl());
         } else {
             webSettings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
-            webView.loadUrl(URLManager.DEAL_URL);
+            webView.loadUrl(URLManager.getDealUrl());
         }
         return rootView;
     }
