@@ -140,6 +140,12 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
     }
 
+    public void modifyTitle() {
+        getSupportActionBar().setTitle(mDrawerTitle);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+        sp_plazas.setVisibility(View.GONE);
+    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -170,14 +176,10 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
                 mDrawerTitle = "";
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG:
-                ActivityFragment activityFragment = new ActivityFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, activityFragment).commit();
-                mDrawerTitle = getString(R.string.navdrawer_item_huodong);
+                gotoActivity();
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON:
-                CouponFragment couponFragment = new CouponFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
-                mDrawerTitle = getString(R.string.navdrawer_item_coupon);
+                gotoCoupon();
                 break;
             case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
                 DealFragment dealFragment = new DealFragment();
@@ -194,6 +196,29 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         }
         drawerLayout.closeDrawers();
 
+    }
+
+    public void gotoActivity() {
+        ActivityFragment activityFragment = new ActivityFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, activityFragment).commit();
+        mDrawerTitle = getString(R.string.navdrawer_item_huodong);
+        itemId = DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG;
+    }
+
+    public void gotoCoupon() {
+        CouponFragment couponFragment = new CouponFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
+        mDrawerTitle = getString(R.string.navdrawer_item_coupon);
+        itemId = DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON;
+    }
+
+    public void gotoMain() {
+        MainFragment mainFragment = new MainFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
+        mDrawerTitle = "";
+        itemId = DrawerMenuAdapter.NAVDRAWER_ITEM_MAIN;
+        modifyTitle();
+        sp_plazas.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -220,6 +245,11 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
 
         BaseFragment fragment = (BaseFragment)getSupportFragmentManager().findFragmentById(R.id.flv_main_content);
         if(fragment != null && fragment.onBackPressed()) {
+            return;
+        }
+
+        if(!(fragment instanceof MainFragment)) {
+            gotoMain();
             return;
         }
         long currentTime = System.currentTimeMillis();

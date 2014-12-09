@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -71,6 +72,7 @@ public class FoodActivity extends BaseFragmentActivity {
         private ActivityAdapter activityAdater;
         private BaseAdapter currentAdater;
         private int type = STORE;
+        private LinearLayout ll_empty_view;
 
 
         public PlaceholderFragment() {
@@ -101,6 +103,9 @@ public class FoodActivity extends BaseFragmentActivity {
 
             LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View headerView = lif.inflate(R.layout.list_header_food, lv_content, false);
+
+            ll_empty_view = (LinearLayout)headerView.findViewById(R.id.ll_empty_view);
+            ll_empty_view.setVisibility(View.VISIBLE);
 
             initRadioGroup(headerView);
 
@@ -317,7 +322,9 @@ public class FoodActivity extends BaseFragmentActivity {
                     currentAdater = foodStoreAdapter;
 
                     break;
+
             }
+
         }
 
         private void updateFoodStoreView(boolean isUp, boolean isBottom, boolean append) {
@@ -343,6 +350,7 @@ public class FoodActivity extends BaseFragmentActivity {
             if (isBottom) {
                 ptl_container.setRefreshingBottomEnd();
             }
+            ll_empty_view.setVisibility(View.GONE);
         }
 
 
@@ -369,6 +377,7 @@ public class FoodActivity extends BaseFragmentActivity {
             if (isBottom) {
                 ptl_container.setRefreshingBottomEnd();
             }
+            ll_empty_view.setVisibility(View.GONE);
         }
 
         private void updateActivityView(boolean isUp, boolean isBottom, boolean append) {
@@ -393,6 +402,7 @@ public class FoodActivity extends BaseFragmentActivity {
             if (isBottom) {
                 ptl_container.setRefreshingBottomEnd();
             }
+            ll_empty_view.setVisibility(View.GONE);
         }
     }
 

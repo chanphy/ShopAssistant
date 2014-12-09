@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -38,6 +39,7 @@ public class CouponFragment extends BaseFragment{
     private Spinner sp_category_name;
     private Spinner sp_category_sort;
     private CouponAdapter adpter;
+    private LinearLayout ll_empty_view;
 
 
     public CouponFragment() {
@@ -64,6 +66,10 @@ public class CouponFragment extends BaseFragment{
 
         LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View headerView = lif.inflate(R.layout.list_header_coupon, lv_content, false);
+
+        ll_empty_view = (LinearLayout)headerView.findViewById(R.id.ll_empty_view);
+        ll_empty_view.setVisibility(View.VISIBLE);
+
         lv_content.addHeaderView(headerView);
         lv_content.setAdapter(null);
         lv_content.setOnItemClickListener(this);
@@ -132,6 +138,7 @@ public class CouponFragment extends BaseFragment{
                         if (isBottom) {
                             ptl_container.setRefreshingBottomEnd();
                         }
+                        ll_empty_view.setVisibility(View.GONE);
                     }
                 });
             }

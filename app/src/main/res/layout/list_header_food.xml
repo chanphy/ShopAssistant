@@ -30,5 +30,5 @@
             style="@style/UnderlineTabItemStyle"
             android:text="@string/food_tab_deal" />
     </RadioGroup>
-
+    <include layout="@layout/list_empty_view"/>
 </LinearLayout>

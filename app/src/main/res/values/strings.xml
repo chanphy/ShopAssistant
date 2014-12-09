@@ -127,5 +127,13 @@
     <string name="product_detail">商品详情</string>
     <string name="title_activity_deal">DealActivity</string>
     <string name="loading">正在加载中...</string>
+    <string name="network_setting">网络设置</string>
+    <string name="error_info">出了点小问题</string>
+    <string name="loading_data">正在很努力地很努力地加载中</string>
+    <string name="network_slow">网络不给力,等等再试吧..</string>
+    <string name="refresh">刷新</string>
+    <string name="network_break">网络连接失败,请检查是否连接</string>
+    <string name="open_network_failed">打开网络设置失败了，请手动打开</string>
+    <string name="coupon_detail">优惠券详情</string>
 
 </resources>

@@ -2,6 +2,8 @@ package com.phy0312.shopassistant.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -53,6 +55,7 @@ public class MainFragment extends BaseFragment{
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ptl_container = (PullToRefreshLayout)view.findViewById(R.id.ptl_container);
         lv_content = (ListView)view.findViewById(R.id.lv_content);
+        lv_content.setSelector(new ColorDrawable(Color.TRANSPARENT));
         ptl_container.setListView(lv_content);
         SmoothProgressBar ptr_progress_up = (SmoothProgressBar)view.findViewById(R.id.ptr_progress_up);
         ptl_container.setUpProgressBar(ptr_progress_up);
@@ -130,7 +133,7 @@ public class MainFragment extends BaseFragment{
                     @Override
                     public void run() {
                         if(adpter == null) {
-                            adpter = new MainItemAdpter(list, MainFragment.this.getActivity());
+                            adpter = new MainItemAdpter(list, MainFragment.this.getActivity(), MainFragment.this);
                         }else{
                             adpter.setList(list);
                         }

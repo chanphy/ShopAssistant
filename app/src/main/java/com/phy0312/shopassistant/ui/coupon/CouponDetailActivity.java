@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.phy0312.shopassistant.R;
 
@@ -65,6 +66,7 @@ public class CouponDetailActivity extends FragmentActivity {
                     getActivity().finish();
                 }
             });
+            ((TextView) rootView.findViewById(R.id.tv_title)).setText(getString(R.string.coupon_detail));
             return rootView;
         }
     }

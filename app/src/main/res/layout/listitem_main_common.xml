@@ -21,7 +21,7 @@
             android:id="@+id/tv_header_title"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"/>
-        <TextView
+        <com.phy0312.shopassistant.view.ScaleTextView
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:layout_width="wrap_content"
@@ -30,6 +30,7 @@
             android:text="@string/more"
             android:textColor="@color/white"
             android:visibility="gone"
+            android:clickable = "true"
             />
     </RelativeLayout>
 
@@ -41,11 +42,12 @@
         android:background="@drawable/listitem_main_content_bg"
         android:orientation="horizontal">
 
-        <RelativeLayout
+        <com.phy0312.shopassistant.view.ScaleRelativeLayout
             android:id="@+id/rl_home_left"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
+            android:clickable = "true"
             android:orientation="vertical">
 
             <TextView
@@ -93,7 +95,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter" />
-        </RelativeLayout>
+        </com.phy0312.shopassistant.view.ScaleRelativeLayout>
 
         <View
             android:layout_width="1.0dip"
@@ -106,11 +108,12 @@
             android:layout_weight="1.0"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <com.phy0312.shopassistant.view.ScaleRelativeLayout
                 android:id="@+id/ll_home_right_top"
                 android:layout_width="fill_parent"
                 android:layout_height="0.0dip"
-                android:layout_weight="1.0">
+                android:layout_weight="1.0"
+                android:clickable = "true">
 
                 <ImageView
                     android:id="@+id/iv_home_right_top_photo"
@@ -158,18 +161,19 @@
                     android:text="22222"
                     android:textColor="@color/c5"
                     android:textSize="@dimen/h5" />
-            </RelativeLayout>
+            </com.phy0312.shopassistant.view.ScaleRelativeLayout>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1.0dip"
                 android:background="#ffeaeaea" />
 
-            <RelativeLayout
+            <com.phy0312.shopassistant.view.ScaleRelativeLayout
                 android:id="@+id/ll_home_right_bottom"
                 android:layout_width="fill_parent"
                 android:layout_height="0.0dip"
-                android:layout_weight="1.0">
+                android:layout_weight="1.0"
+                android:clickable = "true">
 
                 <ImageView
                     android:id="@+id/iv_home_right_bottom_photo"
@@ -217,7 +221,7 @@
                     android:text="22222"
                     android:textColor="@color/c5"
                     android:textSize="@dimen/h5" />
-            </RelativeLayout>
+            </com.phy0312.shopassistant.view.ScaleRelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

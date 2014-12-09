@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 
@@ -38,6 +39,7 @@ public class ActivityFragment extends BaseFragment{
     private Handler handler;
     private ActivityAdapter adpter;
     private int type = Constants.HOT;
+    private LinearLayout ll_empty_view;
 
 
 
@@ -54,12 +56,17 @@ public class ActivityFragment extends BaseFragment{
         View view = inflater.inflate(R.layout.fragment_activity, container, false);
         ptl_container = (PullToRefreshLayout)view.findViewById(R.id.ptl_container);
         lv_content = (ListView)view.findViewById(R.id.lv_content);
+
+
         ptl_container.setListView(lv_content);
         ptl_container.setUpProgressBar((SmoothProgressBar)view.findViewById(R.id.ptr_progress_up));
         ptl_container.setOnPullRefreshListener(this);
 
         LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View headerView = lif.inflate(R.layout.list_header_activity, lv_content, false);
+
+        ll_empty_view = (LinearLayout)headerView.findViewById(R.id.ll_empty_view);
+        ll_empty_view.setVisibility(View.VISIBLE);
 
         RadioGroup rg_tab_bar = (RadioGroup)headerView.findViewById(R.id.rg_tab_bar);
         rg_tab_bar.setOnCheckedChangeListener(this);
@@ -123,6 +130,7 @@ public class ActivityFragment extends BaseFragment{
                         if (isBottom) {
                             ptl_container.setRefreshingBottomEnd();
                         }
+                        ll_empty_view.setVisibility(View.GONE);
                     }
                 });
             }

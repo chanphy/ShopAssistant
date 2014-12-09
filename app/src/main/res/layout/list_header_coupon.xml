@@ -33,5 +33,6 @@
             android:textColor="@color/c2"
             android:textSize="@dimen/h4" />
     </LinearLayout>
+    <include layout="@layout/list_empty_view"/>
 
 </LinearLayout>

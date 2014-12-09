@@ -1,10 +1,12 @@
 package com.phy0312.shopassistant.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -12,7 +14,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
+import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
+import com.phy0312.shopassistant.ui.MainActivity;
+import com.phy0312.shopassistant.ui.MainFragment;
+import com.phy0312.shopassistant.ui.activity.ActivityDetailActivty;
+import com.phy0312.shopassistant.ui.coupon.CouponDetailActivity;
+import com.phy0312.shopassistant.ui.product.ProductDetailActivity;
 
 import java.util.List;
 
@@ -31,10 +39,12 @@ public class MainItemAdpter extends BaseAdapter {
     List<MainColumnGroup> list;
     Context context;
     DisplayImageOptions options;
+    private MainFragment mainFragment;
 
-    public MainItemAdpter(List<MainColumnGroup> list, Context context) {
+    public MainItemAdpter(List<MainColumnGroup> list, Context context, MainFragment mainFragment) {
         this.list = list;
         this.context = context;
+        this.mainFragment = mainFragment;
         options = ImageLoaderUtil.newDisplayImageOptionsInstance();
     }
 
@@ -71,6 +81,10 @@ public class MainItemAdpter extends BaseAdapter {
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.listitem_main_common, null);
             holder = new ViewHolder();
+            holder.rl_home_left = (RelativeLayout)convertView.findViewById(R.id.rl_home_left);
+            holder.ll_home_right_top = (RelativeLayout)convertView.findViewById(R.id.ll_home_right_top);
+            holder.ll_home_right_bottom = (RelativeLayout)convertView.findViewById(R.id.ll_home_right_bottom);
+
             holder.rv_header_container = convertView.findViewById(R.id.rv_header_container);
             holder.tv_header_title = (TextView) convertView.findViewById(R.id.tv_header_title);
             holder.tv_header_more = (TextView) convertView.findViewById(R.id.tv_header_more);
@@ -106,11 +120,25 @@ public class MainItemAdpter extends BaseAdapter {
                 holder.rv_header_container.setBackground(context.getResources().getDrawable(R.drawable.main_listitem_header_co));
                 holder.tv_header_more.setVisibility(View.VISIBLE);
                 holder.tv_header_title.setText(R.string.main_item_coupon);
+                holder.tv_header_more.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)mainFragment.getActivity()).gotoCoupon();
+                        ((MainActivity)mainFragment.getActivity()).modifyTitle();
+                    }
+                });
                 break;
             case CATEGOTY_ACTIVITY:
                 holder.rv_header_container.setBackground(context.getResources().getDrawable(R.drawable.main_listitem_header_bg_hd));
                 holder.tv_header_more.setVisibility(View.VISIBLE);
                 holder.tv_header_title.setText(R.string.main_item_huodong);
+                holder.tv_header_more.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)mainFragment.getActivity()).gotoActivity();
+                        ((MainActivity)mainFragment.getActivity()).modifyTitle();
+                    }
+                });
                 break;
             case CATEGOTY_DEAL:
                 holder.rv_header_container.setBackground(context.getResources().getDrawable(R.drawable.main_listitem_header_bg_re));
@@ -127,25 +155,67 @@ public class MainItemAdpter extends BaseAdapter {
                 holder.tv_home_left_summary.setText(info.getTitle());
                 holder.tv_home_left_price.setText(info.getPrice());
                 ImageLoader.getInstance().displayImage(info.getIcon(), holder.iv_home_left_photo, options);
+                setOnClickListener(holder, info, holder.rl_home_left);
                 continue;
             } else if (i == 1) {
                 holder.tv_home_right_top_summary.setText(info.getTitle());
                 holder.tv_home_right_top_price.setText(info.getPrice());
                 ImageLoader.getInstance().displayImage(info.getIcon(), holder.iv_home_right_top_photo, options);
+                setOnClickListener(holder, info, holder.ll_home_right_top);
                 continue;
             } else if (i == 2) {
                 holder.tv_home_right_bottom_summary.setText(info.getTitle());
                 holder.tv_home_right_bottom_price.setText(info.getPrice());
                 ImageLoader.getInstance().displayImage(info.getIcon(), holder.iv_home_right_bottom_photo, options);
+                setOnClickListener(holder, info, holder.ll_home_right_bottom);
                 continue;
             }
         }
         return convertView;
     }
 
+    public void setOnClickListener(ViewHolder holder, MainColumnInfo info, RelativeLayout rl) {
+        switch(info.getType()) {
+            case MainColumnInfo.TYPE_COUPON:
+                rl.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClassName(context, CouponDetailActivity.class.getName());
+                        AndroidUtil.startActivity(context, intent);
+                    }
+                });
+                break;
+            case MainColumnInfo.TYPE_HUODONG:
+                rl.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClassName(context, ActivityDetailActivty.class.getName());
+                        AndroidUtil.startActivity(context, intent);
+                    }
+                });
+                break;
+            case MainColumnInfo.TYPE_PRODUCT:
+                rl.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClassName(context, ProductDetailActivity.class.getName());
+                        AndroidUtil.startActivity(context, intent);
+                    }
+                });
+                break;
+        }
+    }
+
     static class ViewHolder {
 
         View rv_header_container;
+        RelativeLayout rl_home_left;
+        RelativeLayout ll_home_right_top;
+        RelativeLayout ll_home_right_bottom;
+
         TextView tv_header_title;
         TextView tv_header_more;
 

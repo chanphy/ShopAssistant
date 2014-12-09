@@ -31,7 +31,7 @@ public class DataManager {
         MainColumnInfo[] recommendColumns = new MainColumnInfo[3];
         recommendColumns[0] = new MainColumnInfo(MainColumnInfo.TYPE_COUPON, 1, "优惠券1", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
         recommendColumns[1] = new MainColumnInfo(MainColumnInfo.TYPE_HUODONG, 2, "活动", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
-        recommendColumns[2] = new MainColumnInfo(MainColumnInfo.TYPE_HUODONG, 3, "活动2", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
+        recommendColumns[2] = new MainColumnInfo(MainColumnInfo.TYPE_PRODUCT, 3, "商品", "", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
 
         MainColumnGroup recommendGroup = new MainColumnGroup(recommendColumns, Constants.CATEGORY_WEEKRECOMMEND);
         list.add(recommendGroup);

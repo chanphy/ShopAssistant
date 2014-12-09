@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.StringUtils;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.base.BaseFragmentActivity;
+import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.view.HeaderGridView;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -57,6 +59,7 @@ public class ProductActivity extends BaseFragmentActivity {
         private HeaderGridView gv_content;
         private ProductAdapter productAdapter;
         private int type = HOT;
+        private LinearLayout ll_empty_view;
 
         public PlaceholderFragment() {
         }
@@ -72,6 +75,12 @@ public class ProductActivity extends BaseFragmentActivity {
             gv_content = (HeaderGridView) view.findViewById(R.id.lv_content);
             gv_content.setNumColumns(2);
             gv_content.setOnItemClickListener(this);
+            View emptyView = UIUtil.getNetWorkInfoView(getActivity(), null, UIUtil.LOADING_DATA_INFO_VIEW);
+            emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            emptyView.setVisibility(View.GONE);
+            ((ViewGroup) gv_content.getParent()).addView(emptyView);
+            gv_content.setEmptyView(emptyView);
+
             ptl_container.setGridView(gv_content);
             ptl_container.setUpProgressBar((SmoothProgressBar) view.findViewById(R.id.ptr_progress_up));
             ptl_container.setOnPullRefreshListener(this);
@@ -80,6 +89,10 @@ public class ProductActivity extends BaseFragmentActivity {
 
             View headerView = inflater.inflate(R.layout.list_header_product, container, false);
             gv_content.addHeaderView(headerView);
+
+            ll_empty_view = (LinearLayout)headerView.findViewById(R.id.ll_empty_view);
+            ll_empty_view.setVisibility(View.VISIBLE);
+
             initRadioGroup(headerView);
             //后退按钮
             view.findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
@@ -202,6 +215,7 @@ public class ProductActivity extends BaseFragmentActivity {
             if (isBottom) {
                 ptl_container.setRefreshingBottomEnd();
             }
+            ll_empty_view.setVisibility(View.GONE);
         }
 
     }

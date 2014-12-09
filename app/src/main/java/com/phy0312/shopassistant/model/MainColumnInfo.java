@@ -8,9 +8,9 @@ package com.phy0312.shopassistant.model;
 public class MainColumnInfo {
 
 
-    public static int TYPE_COUPON = 0;
-    public static int TYPE_HUODONG = 1;
-    public static int TYPE_PRODUCT = 2;
+    public final static int TYPE_COUPON = 0;
+    public final static int TYPE_HUODONG = 1;
+    public final static int TYPE_PRODUCT = 2;
 
     private int type;
     private int ID;

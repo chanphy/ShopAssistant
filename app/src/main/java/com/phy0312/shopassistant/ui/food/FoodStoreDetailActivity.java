@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -65,6 +66,7 @@ public class FoodStoreDetailActivity extends FragmentActivity {
         private TextView tv_store_number;
 
         DisplayImageOptions options;
+        private LinearLayout ll_empty_view;
 
 
         private Store store;
@@ -105,6 +107,9 @@ public class FoodStoreDetailActivity extends FragmentActivity {
             hlv_store_advertise_dishes = (HorizontalListView) view.findViewById(R.id.hlv_store_advertise_dishes);
 
             View headerView = inflater.inflate(R.layout.list_header_food_store, lv_content, false);
+            ll_empty_view = (LinearLayout)headerView.findViewById(R.id.ll_empty_view);
+            ll_empty_view.setVisibility(View.VISIBLE);
+
             lv_content.addHeaderView(headerView);
             lv_content.setAdapter(null);
 
@@ -188,6 +193,7 @@ public class FoodStoreDetailActivity extends FragmentActivity {
                             if (isBottom) {
                                 ptl_container.setRefreshingBottomEnd();
                             }
+                            ll_empty_view.setVisibility(View.GONE);
                         }
                     });
                 }

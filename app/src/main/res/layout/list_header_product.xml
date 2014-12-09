@@ -25,5 +25,6 @@
             style="@style/UnderlineTabItemStyle"
             android:text="@string/tab_product_new" />
     </RadioGroup>
+    <include layout="@layout/list_empty_view"/>
 
 </LinearLayout>

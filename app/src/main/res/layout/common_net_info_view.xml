@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip">
+
+    <ImageView
+        android:id="@+id/iv_network_info"
+        android:layout_width="133.3dip"
+        android:layout_height="133.3dip" />
+
+    <com.phy0312.shopassistant.view.WarningInfoTextView
+        android:id="@+id/tv_warninginfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:gravity="center"
+        android:paddingTop="5dip"
+        android:textColor="#8d8d8d"
+        android:textSize="14.7dip" />
+
+    <Button
+        android:id="@+id/btn_network_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/net_info_btn_bg"
+        android:text="@string/network_setting"
+        android:visibility="gone" />
+</LinearLayout>

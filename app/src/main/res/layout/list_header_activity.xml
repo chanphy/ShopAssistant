@@ -26,4 +26,6 @@
             android:text="@string/tab_activity_come_soon" />
     </RadioGroup>
 
+   <include layout="@layout/list_empty_view"/>
+
 </LinearLayout>
