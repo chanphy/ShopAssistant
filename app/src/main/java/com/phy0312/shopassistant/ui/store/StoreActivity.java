@@ -37,9 +37,6 @@ public class StoreActivity extends ListActivity implements AdapterView.OnItemCli
     private static float sideIndexX;
     private static float sideIndexY;
     private int indexListSize;
-    private String[] alphabetStrs = new String[]{"#", "A", "B", "C", "D", "E", "F", "G", "H",
-            "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-
     private TextView tv_center_char;
     private Handler handler;
     private Runnable runnable;
@@ -248,7 +245,7 @@ public class StoreActivity extends ListActivity implements AdapterView.OnItemCli
             //ListView listView = (ListView) findViewById(android.R.id.list);
             getListView().setSelection(subitemPosition);
             tv_center_char.setVisibility(View.VISIBLE);
-            tv_center_char.setText(alphabetStrs[itemPosition]);
+            tv_center_char.setText((String) indexItem[0]);
 
             handler.removeCallbacks(runnable);
             handler.postDelayed(runnable, 2000);
