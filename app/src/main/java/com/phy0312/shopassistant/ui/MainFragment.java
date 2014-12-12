@@ -26,6 +26,7 @@ import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.base.UIUtil;
 import com.phy0312.shopassistant.ui.food.FoodActivity;
 import com.phy0312.shopassistant.ui.product.ProductActivity;
+import com.phy0312.shopassistant.ui.store.StoreActivity;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
@@ -84,7 +85,17 @@ public class MainFragment extends BaseFragment{
         initProduct(R.id.tv_product_baby, headerView);
         initProduct(R.id.tv_product_decorate, headerView);
         initProduct(R.id.tv_product_outside, headerView);
-        initProduct(R.id.tv_product_daily, headerView);
+        //initProduct(R.id.tv_product_daily, headerView);
+
+        TextView textView = (TextView)headerView.findViewById(R.id.tv_product_daily);
+        textView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName(MainFragment.this.getActivity(), StoreActivity.class.getName());
+                AndroidUtil.startActivity(MainFragment.this.getActivity(), intent);
+            }
+        });
 
         viewPager = (ViewPager)headerView.findViewById(R.id.pager);
         UIUtil.initAdsBanner(getActivity(), viewPager);

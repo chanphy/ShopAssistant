@@ -85,8 +85,6 @@ public class JsonCookieSupportRequest extends JsonObjectRequest {
             return Response.error(new ParseError(e));
         } catch (JSONException je) {
             return Response.error(new ParseError(je));
-        } catch (IOException ioe) {
-            return Response.error(new ParseError(ioe));
         }
     }
 

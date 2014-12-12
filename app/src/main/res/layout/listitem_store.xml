@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ListItemDefaultStyle">
+
+    <ImageView
+        android:id="@+id/iv_store_photo"
+        style="@style/ListItemPhotoStyle"
+        android:contentDescription="@string/image_description" />
+
+    <TextView
+        android:id="@+id/tv_store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/listitem_store_icon_space"
+        android:layout_toRightOf="@id/iv_store_photo"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="@color/c2"
+        android:textSize="@dimen/h3"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/ll_icon_container"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tv_store_name"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="30.0dip">
+
+        <ImageView
+            android:id="@+id/iv_point_mark"
+            android:layout_width="@dimen/listitem_store_icon_point_mark_size"
+            android:layout_height="@dimen/listitem_store_icon_size"
+            android:layout_marginLeft="@dimen/listitem_store_icon_space"
+            android:background="@null"
+            android:contentDescription="@string/image_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_point_mark"
+             />
+
+        <ImageView
+            android:id="@+id/iv_deal"
+            android:layout_width="@dimen/listitem_store_icon_size"
+            android:layout_height="@dimen/listitem_store_icon_size"
+            android:layout_marginLeft="@dimen/listitem_store_icon_space"
+            android:background="@null"
+            android:contentDescription="@string/image_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_deal"
+             />
+
+        <ImageView
+            android:id="@+id/iv_activity"
+            android:layout_width="@dimen/listitem_store_icon_size"
+            android:layout_height="@dimen/listitem_store_icon_size"
+            android:layout_marginLeft="@dimen/listitem_store_icon_space"
+            android:background="@null"
+            android:contentDescription="@string/image_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_activity"
+             />
+
+        <ImageView
+            android:id="@+id/iv_coupon"
+            android:layout_width="@dimen/listitem_store_icon_size"
+            android:layout_height="@dimen/listitem_store_icon_size"
+            android:layout_marginLeft="@dimen/listitem_store_icon_space"
+            android:background="@null"
+            android:contentDescription="@string/image_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_coupon"
+             />
+
+        <ImageView
+            android:id="@+id/iv_product"
+            android:layout_width="@dimen/listitem_store_icon_size"
+            android:layout_height="@dimen/listitem_store_icon_size"
+            android:layout_marginLeft="@dimen/listitem_store_icon_space"
+            android:background="@null"
+            android:contentDescription="@string/image_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_product"
+             />
+    </LinearLayout>
+</RelativeLayout>
