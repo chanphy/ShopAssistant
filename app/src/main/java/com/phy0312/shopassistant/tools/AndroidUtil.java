@@ -11,6 +11,7 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.WindowManager;
 
 /**
@@ -327,5 +328,31 @@ public class AndroidUtil {
 
         currentDensity = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * currentDensity + 0.5f);
+    }
+
+    /**
+     * 获取屏幕宽高
+     * @return int[]
+     */
+    public static int[] getScreenWH(Context ctx) {
+        int[] screenWH = { 480, 800 };
+        try{
+            if(ctx == null){
+                Log.e("ScreenUtil.getScreenWH", "ApplicationContext is null!");
+                return screenWH;
+            }
+
+            final WindowManager windowManager = (WindowManager) ctx.getSystemService(Context.WINDOW_SERVICE);
+            final Display display = windowManager.getDefaultDisplay();
+            boolean isPortrait = display.getWidth() < display.getHeight();
+            final int width = isPortrait ? display.getWidth() : display.getHeight();
+            final int height = isPortrait ? display.getHeight() : display.getWidth();
+            screenWH[0] = width;
+            screenWH[1] = height;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return screenWH;
     }
 }

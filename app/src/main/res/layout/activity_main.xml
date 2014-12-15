@@ -36,13 +36,7 @@
             android:layout_height="match_parent"
             android:background="@color/app_background_color"></FrameLayout>
 
-        <ListView
-            android:id="@+id/lv_menu"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/lightransparent"
-            android:choiceMode="singleChoice" />
+        <include layout="@layout/navdrawer" />
 
     </android.support.v4.widget.DrawerLayout>
 

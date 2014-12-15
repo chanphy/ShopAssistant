@@ -310,5 +310,8 @@
         <item name="android:maxLength">11</item>
     </style>
 
-
+    <style name="NavDrawer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/nav_drawer_margin_offset</item>
+    </style>
 </resources>

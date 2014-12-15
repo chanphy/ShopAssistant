@@ -4,32 +4,30 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.adapter.DrawerMenuAdapter;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
 import com.phy0312.shopassistant.config.MainSp;
 import com.phy0312.shopassistant.ui.activity.ActivityFragment;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.coupon.CouponFragment;
 import com.phy0312.shopassistant.ui.deal.DealFragment;
-import com.phy0312.shopassistant.ui.food.FoodActivity;
 import com.phy0312.shopassistant.ui.my.MyProfileFragment;
 
 import java.util.ArrayList;
@@ -37,24 +35,54 @@ import java.util.ArrayList;
 /**
  * 主activity
  */
-public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener, ActionBar.TabListener, MainApplication.LocationChange {
+public class MainActivity extends ActionBarActivity implements ActionBar.TabListener, MainApplication.LocationChange {
 
     private static final String TAG = "MainActivity";
     private final int waitTime = 2000;
     private long touchTime = 0;
 
     private DrawerLayout drawerLayout;
-    private ListView lv_menu;
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private int itemId = 0;
     private Toolbar toolbar;
     private Spinner sp_plazas;
+    private ViewGroup mDrawerItemsListContainer;
+
+
+    private ArrayList<Integer> mNavDrawerItems = new ArrayList<Integer>();
+
+    private View[] mNavDrawerItemViews = null;
+
+    public static final int NAVDRAWER_ITEM_MAIN = 0;
+    public static final int NAVDRAWER_ITEM_HUODONG = 1;
+    public static final int NAVDRAWER_ITEM_COUPON = 2;
+    public static final int NAVDRAWER_ITEM_TUANGOU = 3;
+    public static final int NAVDRAWER_ITEM_MY_PROFILE = 4;
+
+
+    private static final int[] NAVDRAWER_TITLE_RES_ID = new int[]{
+            R.string.navdrawer_item_main,
+            R.string.navdrawer_item_huodong,
+            R.string.navdrawer_item_coupon,
+            R.string.navdrawer_item_tuangou,
+            R.string.navdrawer_item_my_profile
+    };
+
+    private static final int[] NAVDRAWER_ICON_RES_ID = new int[]{
+            R.drawable.ic_drawer_main,
+            R.drawable.ic_drawer_huodong,
+            R.drawable.ic_drawer_coupon,
+            R.drawable.ic_drawer_food,
+            R.drawable.ic_drawer_my_profile
+    };
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        handler = new Handler();
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         sp_plazas = (Spinner) findViewById(R.id.sp_plazas);
@@ -73,14 +101,13 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        lv_menu = (ListView) findViewById(R.id.lv_menu);
-        lv_menu.setOnItemClickListener(this);
+
         initDrawerMenu();
         MainFragment mainFragment = new MainFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
 
         MainSp sp = new MainSp(this);
-        if(sp.isFirstUse()) {
+        if (sp.isFirstUse()) {
             drawerLayout.openDrawer(Gravity.LEFT);
             sp.setFirstUse(false);
         }
@@ -109,15 +136,13 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         mTitle = getTitle();
         mDrawerTitle = "";
 
-        lv_menu.setAdapter(new DrawerMenuAdapter(this.getLayoutInflater()));
-
         mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
                 R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                if(mDrawerTitle.equals("")){
+                if (mDrawerTitle.equals("")) {
                     sp_plazas.setVisibility(View.VISIBLE);
                 }
                 getSupportActionBar().setTitle(mDrawerTitle);
@@ -138,6 +163,7 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         drawerLayout.setDrawerListener(mDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+        populateNavDrawer();
     }
 
     public void modifyTitle() {
@@ -152,6 +178,7 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
+
     }
 
 
@@ -161,32 +188,50 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+    public void onNavDrawerItemClicked(int position) {
         if (position == itemId) {
             drawerLayout.closeDrawers();
             return;
         }
         itemId = position;
-        switch (position) {
-            case DrawerMenuAdapter.NAVDRAWER_ITEM_MAIN:
+        // launch the target Activity after a short delay, to allow the close animation to play
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goToNavDrawerItem();
+            }
+        }, 250);
+
+        // change the active item on the list so the user can see the item changed
+        setSelectedNavDrawerItem(itemId);
+        // fade out the main content
+        /*View mainContent = findViewById(R.id.main_content);
+        if (mainContent != null) {
+            mainContent.animate().alpha(0).setDuration(150);
+        }*/
+        goToNavDrawerItem();
+        drawerLayout.closeDrawers();
+    }
+
+    public void goToNavDrawerItem() {
+        switch (itemId) {
+            case NAVDRAWER_ITEM_MAIN:
                 MainFragment mainFragment = new MainFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
                 mDrawerTitle = "";
                 break;
-            case DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG:
+            case NAVDRAWER_ITEM_HUODONG:
                 gotoActivity();
                 break;
-            case DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON:
+            case NAVDRAWER_ITEM_COUPON:
                 gotoCoupon();
                 break;
-            case DrawerMenuAdapter.NAVDRAWER_ITEM_TUANGOU:
+            case NAVDRAWER_ITEM_TUANGOU:
                 DealFragment dealFragment = new DealFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, dealFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_tuangou);
                 break;
-            case DrawerMenuAdapter.NAVDRAWER_ITEM_MY_PROFILE:
+            case NAVDRAWER_ITEM_MY_PROFILE:
                 MyProfileFragment myProfileFragment = new MyProfileFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, myProfileFragment).commit();
                 mDrawerTitle = getString(R.string.navdrawer_item_my_profile);
@@ -194,29 +239,27 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
             default:
                 break;
         }
-        drawerLayout.closeDrawers();
-
     }
 
     public void gotoActivity() {
         ActivityFragment activityFragment = new ActivityFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, activityFragment).commit();
         mDrawerTitle = getString(R.string.navdrawer_item_huodong);
-        itemId = DrawerMenuAdapter.NAVDRAWER_ITEM_HUODONG;
+        itemId = NAVDRAWER_ITEM_HUODONG;
     }
 
     public void gotoCoupon() {
         CouponFragment couponFragment = new CouponFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
         mDrawerTitle = getString(R.string.navdrawer_item_coupon);
-        itemId = DrawerMenuAdapter.NAVDRAWER_ITEM_COUPON;
+        itemId = NAVDRAWER_ITEM_COUPON;
     }
 
     public void gotoMain() {
         MainFragment mainFragment = new MainFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
         mDrawerTitle = "";
-        itemId = DrawerMenuAdapter.NAVDRAWER_ITEM_MAIN;
+        itemId = NAVDRAWER_ITEM_MAIN;
         modifyTitle();
         sp_plazas.setVisibility(View.VISIBLE);
     }
@@ -238,17 +281,17 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(Gravity.LEFT)){
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
             drawerLayout.closeDrawers();
             return;
         }
 
-        BaseFragment fragment = (BaseFragment)getSupportFragmentManager().findFragmentById(R.id.flv_main_content);
-        if(fragment != null && fragment.onBackPressed()) {
+        BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentById(R.id.flv_main_content);
+        if (fragment != null && fragment.onBackPressed()) {
             return;
         }
 
-        if(!(fragment instanceof MainFragment)) {
+        if (!(fragment instanceof MainFragment)) {
             gotoMain();
             return;
         }
@@ -272,4 +315,97 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         super.onDestroy();
         MainApplication.appContext.unRegisterLocationChanger();
     }
+
+
+    private void populateNavDrawer() {
+        mNavDrawerItems.clear();
+        mNavDrawerItems.add(NAVDRAWER_ITEM_MAIN);
+        mNavDrawerItems.add(NAVDRAWER_ITEM_HUODONG);
+        mNavDrawerItems.add(NAVDRAWER_ITEM_COUPON);
+        mNavDrawerItems.add(NAVDRAWER_ITEM_TUANGOU);
+        mNavDrawerItems.add(NAVDRAWER_ITEM_MY_PROFILE);
+
+        createNavDrawerItems();
+    }
+
+    private void createNavDrawerItems() {
+        mDrawerItemsListContainer = (ViewGroup) findViewById(R.id.navdrawer_items_list);
+        if (mDrawerItemsListContainer == null) {
+            return;
+        }
+
+        mNavDrawerItemViews = new View[mNavDrawerItems.size()];
+        mDrawerItemsListContainer.removeAllViews();
+        int i = 0;
+        for (int itemId : mNavDrawerItems) {
+            mNavDrawerItemViews[i] = makeNavDrawerItem(itemId, mDrawerItemsListContainer);
+            mDrawerItemsListContainer.addView(mNavDrawerItemViews[i]);
+            ++i;
+        }
+    }
+
+    private View makeNavDrawerItem(final int itemId, ViewGroup container) {
+        boolean selected = false;
+        int layoutToInflate = 0;
+
+        layoutToInflate = R.layout.navdrawer_item;
+        View view = getLayoutInflater().inflate(layoutToInflate, container, false);
+
+
+        ImageView iconView = (ImageView) view.findViewById(R.id.icon);
+        TextView titleView = (TextView) view.findViewById(R.id.title);
+        int iconId = itemId >= 0 && itemId < NAVDRAWER_ICON_RES_ID.length ?
+                NAVDRAWER_ICON_RES_ID[itemId] : 0;
+        int titleId = itemId >= 0 && itemId < NAVDRAWER_TITLE_RES_ID.length ?
+                NAVDRAWER_TITLE_RES_ID[itemId] : 0;
+
+        // set icon and text
+        iconView.setVisibility(iconId > 0 ? View.VISIBLE : View.GONE);
+        if (iconId > 0) {
+            iconView.setImageResource(iconId);
+        }
+        titleView.setText(getString(titleId));
+
+        formatNavDrawerItem(view, itemId, selected);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onNavDrawerItemClicked(itemId);
+            }
+        });
+
+        return view;
+    }
+
+    private void formatNavDrawerItem(View view, int itemId, boolean selected) {
+
+        ImageView iconView = (ImageView) view.findViewById(R.id.icon);
+        TextView titleView = (TextView) view.findViewById(R.id.title);
+
+        // configure its appearance according to whether or not it's selected
+        titleView.setTextColor(selected ?
+                getResources().getColor(R.color.navdrawer_text_color_selected) :
+                getResources().getColor(R.color.navdrawer_text_color));
+        iconView.setColorFilter(selected ?
+                getResources().getColor(R.color.navdrawer_icon_tint_selected) :
+                getResources().getColor(R.color.navdrawer_icon_tint));
+    }
+
+    /**
+     * Sets up the given navdrawer item's appearance to the selected state. Note: this could
+     * also be accomplished (perhaps more cleanly) with state-based layouts.
+     */
+    private void setSelectedNavDrawerItem(int itemId) {
+        if (mNavDrawerItemViews != null) {
+            for (int i = 0; i < mNavDrawerItemViews.length; i++) {
+                if (i < mNavDrawerItems.size()) {
+                    int thisItemId = mNavDrawerItems.get(i);
+                    formatNavDrawerItem(mNavDrawerItemViews[i], thisItemId, itemId == thisItemId);
+                }
+            }
+        }
+    }
+
+
 }

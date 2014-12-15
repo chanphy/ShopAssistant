@@ -165,4 +165,14 @@ public class UIUtil {
         return view;
     }
 
+    /**
+     * 获取NavDrawer主题
+     * @param context
+     * @return
+     */
+    public static int getNavDrawerWidth(Context context) {
+        int width = AndroidUtil.getScreenWH(context)[0];
+        return width - AndroidUtil.dip2px(context, 56);
+    }
+
 }

@@ -51,4 +51,6 @@
 
     <dimen name="edittext_height">51.0dip</dimen>
     <dimen name="edittext_padding">11.0dip</dimen>
+
+    <dimen name="nav_drawer_margin_offset">-8dp</dimen>
 </resources>
