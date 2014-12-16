@@ -94,6 +94,10 @@
             android:name=".ui.store.StoreActivity"
             android:label="@string/title_activity_store" >
         </activity>
+        <activity
+            android:name=".ui.store.StoreDetailActivity"
+            android:label="@string/title_activity_store_detail" >
+        </activity>
     </application>
 
 </manifest>

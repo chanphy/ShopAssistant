@@ -25,6 +25,7 @@ import com.phy0312.shopassistant.db.Store;
 import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
+import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.view.HorizontalListView;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
@@ -49,8 +50,7 @@ public class FoodStoreDetailActivity extends FragmentActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment implements PullToRefreshLayout.PullRefreshListener,
-            AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener {
+    public static class PlaceholderFragment extends BaseFragment {
 
         private int type = Constants.CATEGORY_COUPON;
         private PullToRefreshLayout ptl_container;

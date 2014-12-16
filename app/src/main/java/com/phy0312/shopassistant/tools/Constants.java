@@ -12,6 +12,7 @@ public class Constants {
     public static final int CATEGORY_COUPON = 1;
     public static final int CATEGOTY_ACTIVITY = 2;
     public static final int CATEGOTY_DEAL = 3;
+    public static final int CATEGOTY_PRODUCT = 4;
 
     public static final String TRANSFER_BUNDLE_STORE = "transfer_bundle_store";
     public static final String TRANSFER_BUNDLE_COUPON = "transfer_bundle_coupon";

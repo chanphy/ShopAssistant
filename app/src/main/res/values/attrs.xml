@@ -58,4 +58,30 @@
         <attr name="borderDrawable" format="reference" />
         <attr name="desaturateOnPress" format="boolean" />
     </declare-styleable>
+
+
+    <declare-styleable name="ExpandCollapseTextView">
+        <attr name="collapseDrawable" format="reference"/>
+        <attr name="collapseText" format="reference|string"/>
+        <attr name="collapseTextColor" format="reference|color"/>
+        <attr name="drawableHeight" format="reference|dimension"/>
+        <attr name="drawablePadding" format="reference|dimension"/>
+        <attr name="drawableWidth" format="reference|dimension"/>
+        <attr name="expandDrawable" format="reference"/>
+        <attr name="expandText" format="reference|string"/>
+        <attr name="expandTextBold" format="boolean"/>
+        <attr name="expandTextColor" format="reference|color"/>
+        <attr name="expand_gravity">
+            <flag name="left" value="0x00000003" />
+            <flag name="right" value="0x00000005" />
+        </attr>
+        <attr name="maxLine" format="integer"/>
+        <attr name="ShowDrawable" format="boolean"/>
+        <attr name="span" format="reference|dimension"/>
+        <attr name="text" format="reference|string"/>
+        <attr name="textColor" format="reference|color"/>
+        <attr name="textSize" format="reference|dimension"/>
+    </declare-styleable>
+
+
 </resources>

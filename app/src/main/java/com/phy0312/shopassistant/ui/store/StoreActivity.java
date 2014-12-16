@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.StoreAdapter;
 import com.phy0312.shopassistant.tools.AndroidUtil;
-import com.phy0312.shopassistant.ui.product.ProductDetailActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,7 +58,7 @@ public class StoreActivity extends ListActivity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent();
-        intent.setClassName(this, ProductDetailActivity.class.getName());
+        intent.setClassName(this, StoreDetailActivity.class.getName());
         AndroidUtil.startActivity(this, intent);
     }
 
