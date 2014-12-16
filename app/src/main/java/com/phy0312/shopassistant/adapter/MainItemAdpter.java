@@ -125,6 +125,7 @@ public class MainItemAdpter extends BaseAdapter {
                     public void onClick(View v) {
                         ((MainActivity)mainFragment.getActivity()).gotoCoupon();
                         ((MainActivity)mainFragment.getActivity()).modifyTitle();
+                        ((MainActivity)mainFragment.getActivity()).setSelectedNavDrawerItem(MainActivity.NAVDRAWER_ITEM_COUPON);
                     }
                 });
                 break;
@@ -137,6 +138,7 @@ public class MainItemAdpter extends BaseAdapter {
                     public void onClick(View v) {
                         ((MainActivity)mainFragment.getActivity()).gotoActivity();
                         ((MainActivity)mainFragment.getActivity()).modifyTitle();
+                        ((MainActivity)mainFragment.getActivity()).setSelectedNavDrawerItem(MainActivity.NAVDRAWER_ITEM_HUODONG);
                     }
                 });
                 break;

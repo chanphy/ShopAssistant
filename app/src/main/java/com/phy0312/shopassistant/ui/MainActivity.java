@@ -3,6 +3,7 @@ package com.phy0312.shopassistant.ui;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -179,6 +180,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
 
+
     }
 
 
@@ -204,11 +206,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         // change the active item on the list so the user can see the item changed
         setSelectedNavDrawerItem(itemId);
-        // fade out the main content
-        /*View mainContent = findViewById(R.id.main_content);
-        if (mainContent != null) {
-            mainContent.animate().alpha(0).setDuration(150);
-        }*/
+
         goToNavDrawerItem();
         drawerLayout.closeDrawers();
     }
@@ -293,6 +291,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         if (!(fragment instanceof MainFragment)) {
             gotoMain();
+            setSelectedNavDrawerItem(NAVDRAWER_ITEM_MAIN);
             return;
         }
         long currentTime = System.currentTimeMillis();
@@ -345,7 +344,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     private View makeNavDrawerItem(final int itemId, ViewGroup container) {
-        boolean selected = false;
+        boolean selected = itemId == NAVDRAWER_ITEM_MAIN;
         int layoutToInflate = 0;
 
         layoutToInflate = R.layout.navdrawer_item;
@@ -387,6 +386,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         titleView.setTextColor(selected ?
                 getResources().getColor(R.color.navdrawer_text_color_selected) :
                 getResources().getColor(R.color.navdrawer_text_color));
+        titleView.setTypeface(selected?Typeface.DEFAULT_BOLD :Typeface.SANS_SERIF);
+
         iconView.setColorFilter(selected ?
                 getResources().getColor(R.color.navdrawer_icon_tint_selected) :
                 getResources().getColor(R.color.navdrawer_icon_tint));
@@ -396,7 +397,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
      * Sets up the given navdrawer item's appearance to the selected state. Note: this could
      * also be accomplished (perhaps more cleanly) with state-based layouts.
      */
-    private void setSelectedNavDrawerItem(int itemId) {
+    public void setSelectedNavDrawerItem(int itemId) {
         if (mNavDrawerItemViews != null) {
             for (int i = 0; i < mNavDrawerItemViews.length; i++) {
                 if (i < mNavDrawerItems.size()) {
