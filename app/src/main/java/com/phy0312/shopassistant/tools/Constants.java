@@ -33,6 +33,18 @@ public class Constants {
     public static final int LATEST = 1;
     public static final int NEXTWEEK = 2;
 
+    /**
+     * 定位SDK的key
+     */
     public static final String LOC_KEY = "iEGwVGBdiKZvZqoTkBOgEXr5";
+
+    /**
+     * 微信SDK APPID
+     */
+    public static final String WX_APP_ID = "wxd930ea5d5a258f4f";
+
+    public static final int TIMELINE_SUPPORTED_VERSION = 0x21020001;
+
+    public static final String SHARE_LINK_SERVERURL = "http://www.baidu.com";
 
 }

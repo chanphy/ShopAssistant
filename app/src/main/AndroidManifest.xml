@@ -59,9 +59,6 @@
             android:name=".ui.activity.ActivityDetailActivty"
             android:label="@string/title_activity_huo_dong_detail"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
         </activity>
         <activity
             android:name=".ui.coupon.CouponDetailActivity"
@@ -97,6 +94,11 @@
         <activity
             android:name=".ui.store.StoreDetailActivity"
             android:label="@string/title_activity_store_detail" >
+        </activity>
+        <activity
+            android:name=".ui.share.ShareActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CustomDialog.Share">
         </activity>
     </application>
 

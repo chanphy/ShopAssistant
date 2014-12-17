@@ -10,6 +10,16 @@ import android.content.SharedPreferences;
  */
 public class MainSp {
 
+    private static MainSp instance;
+
+
+    public static MainSp getInstance(Context context){
+        if(instance == null) {
+            instance = new MainSp(context);
+        }
+        return instance;
+    }
+
     private static final String SP_NAME = "main_sp";
 
     private static final String CONFIG_KEY_FIRST_USE = "config_key_first_use";
@@ -25,6 +35,11 @@ public class MainSp {
      */
     private static final String INFO_KEY_PHONE = "info_key_phone";
 
+    /**
+     * 商场ID
+     */
+    private static final String INFO_KEY_PLAZA_ID = "info_key_plaza_id";
+
 
 
     private SharedPreferences sp;
@@ -33,13 +48,15 @@ public class MainSp {
     private String cookie;
     private String phone;
     private String userName;
+    private String plazaId;
 
-    public MainSp(Context mContext) {
+    private MainSp(Context mContext) {
         sp = mContext.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         isFirstUse = sp.getBoolean(CONFIG_KEY_FIRST_USE, true);
         cookie = sp.getString(CONFIG_KEY_COOKIE, "");
         phone = sp.getString(INFO_KEY_PHONE, "");
         userName = sp.getString(INFO_KEY_USERNAME, "");
+        plazaId = sp.getString(INFO_KEY_PLAZA_ID, "");
     }
 
     public boolean isFirstUse() {
@@ -57,7 +74,7 @@ public class MainSp {
 
     public void setCookie(String cookie) {
         this.cookie = cookie;
-        sp.edit().putString(CONFIG_KEY_COOKIE, cookie);
+        sp.edit().putString(CONFIG_KEY_COOKIE, cookie).commit();
     }
 
     public String getPhone() {
@@ -66,7 +83,7 @@ public class MainSp {
 
     public void setPhone(String phone) {
         this.phone = phone;
-        sp.edit().putString(INFO_KEY_PHONE, phone);
+        sp.edit().putString(INFO_KEY_PHONE, phone).commit();
     }
 
     public String getUserName() {
@@ -75,6 +92,15 @@ public class MainSp {
 
     public void setUserName(String userName) {
         this.userName = userName;
-        sp.edit().putString(INFO_KEY_USERNAME, userName);
+        sp.edit().putString(INFO_KEY_USERNAME, userName).commit();
+    }
+
+    public String getPlazaId() {
+        return plazaId;
+    }
+
+    public void setPlazaId(String plazaId) {
+        this.plazaId = plazaId;
+        sp.edit().putString(INFO_KEY_PLAZA_ID, plazaId).commit();
     }
 }

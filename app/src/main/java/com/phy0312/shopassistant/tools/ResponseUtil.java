@@ -46,8 +46,7 @@ public class ResponseUtil {
         if (headers.containsKey(SET_COOKIE_KEY)) {
             String cookie = headers.get(SET_COOKIE_KEY);
             if (cookie.length() > 0) {
-                MainSp mainSp = new MainSp(MainApplication.appContext);
-                mainSp.setCookie(cookie);
+                MainSp.getInstance(MainApplication.appContext).setCookie(cookie);
             }
         }
     }
@@ -57,8 +56,7 @@ public class ResponseUtil {
      * @param headers
      */
     public static void addCookieIfHave(Map<String, String> headers){
-        MainSp mainSp = new MainSp(MainApplication.appContext);
-        String cookie = mainSp.getCookie();
+        String cookie = MainSp.getInstance(MainApplication.appContext).getCookie();
         if(!StringUtils.isEmpty(cookie)) {
             headers.put(COOKIE_KEY, cookie);
         }

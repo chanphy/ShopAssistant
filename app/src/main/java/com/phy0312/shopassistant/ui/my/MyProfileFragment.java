@@ -65,8 +65,7 @@ public class MyProfileFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainSp mainSp = new MainSp(this.getActivity());
-        if(StringUtils.isEmpty(mainSp.getCookie())) {
+        if(StringUtils.isEmpty(MainSp.getInstance(this.getActivity()).getCookie())) {
             loginState = false;
         }else{//使用cookie自动登录
 
@@ -135,9 +134,8 @@ public class MyProfileFragment extends BaseFragment {
                             public void parseResponseDataSection(JSONObject dataJsonObject) {//登录成功处理
                                 loginState = true;
                                 String userName = dataJsonObject.optString("userName");
-                                MainSp sp = new MainSp(getActivity());
-                                sp.setPhone(phoneNum);
-                                sp.setUserName(userName);
+                                MainSp.getInstance(getActivity()).setPhone(phoneNum);
+                                MainSp.getInstance(getActivity()).setUserName(userName);
                                 updateView();
                             }
                         }.onResponse(jsonObject);
@@ -157,8 +155,7 @@ public class MyProfileFragment extends BaseFragment {
         if(loginState) {
             login_area_layout.setVisibility(View.GONE);
             login_data_layout.setVisibility(View.VISIBLE);
-            MainSp sp = new MainSp(getActivity());
-            tv_myprofile_name.setText(sp.getUserName());
+            tv_myprofile_name.setText(MainSp.getInstance(getActivity()).getUserName());
             tv_myprofile_logout.setVisibility(View.VISIBLE);
         }else{
             login_area_layout.setVisibility(View.VISIBLE);

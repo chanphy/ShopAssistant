@@ -107,10 +107,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         MainFragment mainFragment = new MainFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
 
-        MainSp sp = new MainSp(this);
-        if (sp.isFirstUse()) {
+        if (MainSp.getInstance(this).isFirstUse()) {
             drawerLayout.openDrawer(Gravity.LEFT);
-            sp.setFirstUse(false);
+            MainSp.getInstance(this).setFirstUse(false);
         }
     }
 

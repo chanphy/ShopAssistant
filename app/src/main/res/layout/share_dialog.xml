@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10.0dip">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20.0dip">
+
+        <TextView
+            android:id="@+id/share_wechat"
+            style="@style/ShareButtonStyle"
+            android:drawableTop="@drawable/share_wechat_selector"
+            android:text="@string/share_wechat" />
+
+        <TextView
+            android:id="@+id/share_wechat_timeline"
+            style="@style/ShareButtonStyle"
+            android:drawableTop="@drawable/share_wechat_timeline_selector"
+            android:text="@string/share_wechat_timeline" />
+
+        <TextView
+            android:id="@+id/share_qq"
+            style="@style/ShareButtonStyle"
+            android:drawableTop="@drawable/share_qq_selector"
+            android:text="@string/share_qq" />
+
+        <TextView
+            android:id="@+id/share_weibo"
+            style="@style/ShareButtonStyle"
+            android:drawableTop="@drawable/share_weibo_selector"
+            android:text="@string/share_weibo" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/share_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="30.0dip"
+        android:background="@drawable/share_cancel_button_selector"
+        android:shadowColor="@color/black"
+        android:text="@string/dialog_cancel"
+        android:textColor="@color/c1"
+        android:textSize="@dimen/h3" />
+</LinearLayout>
