@@ -18,7 +18,7 @@ import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.ProductAdapter;
 import com.phy0312.shopassistant.data.DataManager;
-import com.phy0312.shopassistant.db.Product;
+import com.phy0312.shopassistant.model.Product;
 import com.phy0312.shopassistant.net.JsonCookieSupportRequest;
 import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;

@@ -98,7 +98,7 @@ public class MainFragment extends BaseFragment{
         });
 
         viewPager = (ViewPager)headerView.findViewById(R.id.pager);
-        UIUtil.initAdsBanner(getActivity(), viewPager);
+        UIUtil.initAdsBanner(viewPager);
         indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
         startLoad(false, false);

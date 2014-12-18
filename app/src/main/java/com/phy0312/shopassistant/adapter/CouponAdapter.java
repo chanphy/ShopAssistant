@@ -10,9 +10,8 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.db.Coupon;
+import com.phy0312.shopassistant.model.Coupon;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 
 import java.util.List;

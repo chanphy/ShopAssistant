@@ -26,9 +26,9 @@ import com.phy0312.shopassistant.adapter.ActivityAdapter;
 import com.phy0312.shopassistant.adapter.CouponAdapter;
 import com.phy0312.shopassistant.adapter.FoodStoreAdapter;
 import com.phy0312.shopassistant.data.DataManager;
-import com.phy0312.shopassistant.db.Coupon;
-import com.phy0312.shopassistant.db.HuoDong;
-import com.phy0312.shopassistant.db.Store;
+import com.phy0312.shopassistant.model.Coupon;
+import com.phy0312.shopassistant.model.HuoDong;
+import com.phy0312.shopassistant.model.Store;
 import com.phy0312.shopassistant.net.JsonCookieSupportRequest;
 import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
 import com.phy0312.shopassistant.net.URLManager;
@@ -115,7 +115,7 @@ public class FoodActivity extends BaseFragmentActivity {
             lv_content.setOnItemClickListener(this);
 
             ViewPager viewPager = (ViewPager) headerView.findViewById(R.id.pager);
-            UIUtil.initAdsBanner(getActivity(), viewPager);
+            UIUtil.initAdsBanner(viewPager);
             CirclePageIndicator indicator = (CirclePageIndicator) headerView.findViewById(R.id.indicator);
             indicator.setViewPager(viewPager);
             startLoad(false, false, false);

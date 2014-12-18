@@ -1,4 +1,4 @@
-package com.phy0312.shopassistant.db;
+package com.phy0312.shopassistant.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -45,6 +45,11 @@ public class Constants {
 
     public static final int TIMELINE_SUPPORTED_VERSION = 0x21020001;
 
+    /**
+     * QQ APPID
+     */
+    public static final String CONNECT_APP_ID = "222222";
+
     public static final String SHARE_LINK_SERVERURL = "http://www.baidu.com";
 
 }

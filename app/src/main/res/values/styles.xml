@@ -94,7 +94,7 @@
         <item name="android:layout_width">@dimen/listitem_default_image_size</item>
         <item name="android:layout_height">@dimen/listitem_default_image_size</item>
         <item name="android:layout_marginRight">@dimen/listitem_photo_margin_right</item>
-        <item name="android:scaleType">fitXY</item>
+        <item name="android:scaleType">fitCenter</item>
         <item name="android:cropToPadding">true</item>
         <item name="android:contentDescription">@string/image_description</item>
     </style>

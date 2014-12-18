@@ -16,7 +16,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.CouponAdapter;
-import com.phy0312.shopassistant.db.Store;
+import com.phy0312.shopassistant.model.Store;
 import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.view.PullToRefreshLayout;

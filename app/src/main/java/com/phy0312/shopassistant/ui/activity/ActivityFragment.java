@@ -18,7 +18,7 @@ import android.widget.RadioGroup;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.ActivityAdapter;
 import com.phy0312.shopassistant.data.DataManager;
-import com.phy0312.shopassistant.db.HuoDong;
+import com.phy0312.shopassistant.model.HuoDong;
 import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
@@ -92,7 +92,7 @@ public class ActivityFragment extends BaseFragment{
         lv_content.setOnItemClickListener(this);
 
         ViewPager viewPager = (ViewPager)headerView.findViewById(R.id.pager);
-        UIUtil.initAdsBanner(getActivity(), viewPager);
+        UIUtil.initAdsBanner(viewPager);
         CirclePageIndicator indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
         startLoad(false, false, false);

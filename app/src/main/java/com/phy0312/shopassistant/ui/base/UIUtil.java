@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
@@ -40,8 +41,8 @@ public class UIUtil {
 
     public static final int NET_BREAK_VIEW = 3;
 
-    public static void initAdsBanner(Context context,  final ViewPager viewPager) {
-        final LayoutInflater mInflater = LayoutInflater.from(context);
+    public static void initAdsBanner(final ViewPager viewPager) {
+        final LayoutInflater mInflater = LayoutInflater.from(MainApplication.appContext);
 
         final List<String> datas = new ArrayList<String>();
         datas.add("http://jingdongquan.net/sites/default/files/imagecache/512/auto_img/2012/10/31/20121031124351.jpg");

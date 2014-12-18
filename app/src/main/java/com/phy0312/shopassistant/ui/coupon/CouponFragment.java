@@ -18,7 +18,7 @@ import android.widget.Spinner;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.CouponAdapter;
 import com.phy0312.shopassistant.data.DataManager;
-import com.phy0312.shopassistant.db.Coupon;
+import com.phy0312.shopassistant.model.Coupon;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.base.UIUtil;
@@ -75,7 +75,7 @@ public class CouponFragment extends BaseFragment{
         lv_content.setOnItemClickListener(this);
 
         viewPager = (ViewPager)headerView.findViewById(R.id.pager);
-        UIUtil.initAdsBanner(getActivity(), viewPager);
+        UIUtil.initAdsBanner(viewPager);
         indicator = (CirclePageIndicator)headerView.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
 

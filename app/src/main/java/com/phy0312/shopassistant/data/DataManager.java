@@ -1,10 +1,10 @@
 package com.phy0312.shopassistant.data;
 
-import com.phy0312.shopassistant.db.Product;
+import com.phy0312.shopassistant.model.Product;
 import com.phy0312.shopassistant.tools.Constants;
-import com.phy0312.shopassistant.db.Coupon;
-import com.phy0312.shopassistant.db.HuoDong;
-import com.phy0312.shopassistant.db.Store;
+import com.phy0312.shopassistant.model.Coupon;
+import com.phy0312.shopassistant.model.HuoDong;
+import com.phy0312.shopassistant.model.Store;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
 

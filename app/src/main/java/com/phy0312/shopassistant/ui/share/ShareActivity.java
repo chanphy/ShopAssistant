@@ -21,6 +21,11 @@ import com.phy0312.shopassistant.sns.ShareCallback;
 import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.tools.WeChatShareUtil;
+import com.tencent.connect.auth.QQAuth;
+import com.tencent.connect.share.QQShare;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 
 /**
  * description: <br/>
@@ -43,6 +48,10 @@ public class ShareActivity extends Activity {
     private String mTitle;
     private final int WXCHAT = 1;
     private final int WXCHAT_TIMELINE = 2;
+    private Tencent mTencent;
+    private QQAuth mQQAuth;
+    private QQShare mQQShare = null;
+    private int shareType = QQShare.SHARE_TO_QQ_TYPE_DEFAULT;
 
     public static Intent buildIntent(Context context, int shareType, String shareId, String shareTitle, String shareDesc, String shareImageUrl) {
         return buildIntent(context, shareType, shareId, shareTitle, shareDesc, shareImageUrl, "");
@@ -67,6 +76,10 @@ public class ShareActivity extends Activity {
         View contentView = LayoutInflater.from(this).inflate(R.layout.share_dialog, null);
         contentView.setMinimumWidth(getResources().getDisplayMetrics().widthPixels);
         setContentView(contentView);
+
+        mTencent = Tencent.createInstance(Constants.CONNECT_APP_ID, this.getApplicationContext());
+        mQQAuth = QQAuth.createInstance(Constants.CONNECT_APP_ID, this.getApplicationContext());
+        if(mQQAuth != null) mQQShare = new QQShare(this, mQQAuth.getQQToken());
 
         Intent localIntent = getIntent();
         this.mShareType = localIntent.getIntExtra("share_type_key", 0);
@@ -161,13 +174,14 @@ public class ShareActivity extends Activity {
                     break;
                 case R.id.share_qq:
                     buildShareLinkAddr();
-                    ShareContent.Builder builder = new ShareContent.Builder();
-                    builder.setTitle(ShareActivity.this.mTitle);
-                    builder.setWebUrl(ShareActivity.this.mLinkAddress + "-tqq");
-                    builder.setComment(ShareActivity.this.mLinkAddress);
-                    builder.setDescription(ShareActivity.this.mDescription);
-                    builder.setImageUrl(ShareActivity.this.mImageUrl);
-                    ShareContent shareContent = builder.build();
+                    final Bundle params = new Bundle();
+                    params.putString(QQShare.SHARE_TO_QQ_TITLE, ShareActivity.this.mTitle);
+                    params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, ShareActivity.this.mLinkAddress);
+                    params.putString(QQShare.SHARE_TO_QQ_SUMMARY, ShareActivity.this.mDescription);
+                    params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, ShareActivity.this.mImageUrl);
+                    params.putString(QQShare.SHARE_TO_QQ_APP_NAME, getApplicationContext().getString(R.string.app_name));
+                    params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, shareType);
+                    doShareToQQ(params);
                     break;
                 case R.id.share_weibo:
                     buildShareLinkAddr();
@@ -224,7 +238,41 @@ public class ShareActivity extends Activity {
                 this.mLinkAddress = String.format("%1$s/product/detail-w%2$s-p%3$s/?from=share-pandroid-u%4$s", arrayOfObject2);
                 return;
             default:
-                return;
         }
+    }
+
+
+    /**
+     * 用异步方式启动分享
+     *
+     * @param params Bundle
+     */
+    private void doShareToQQ(final Bundle params) {
+        final Activity activity = ShareActivity.this;
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                mQQShare.shareToQQ(activity, params, new IUiListener() {
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+
+                    @Override
+                    public void onComplete(Object response) {
+
+                    }
+
+                    @Override
+                    public void onError(UiError e) {
+
+                    }
+
+                });
+            }
+        }).start();
     }
 }

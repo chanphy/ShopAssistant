@@ -7,7 +7,8 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.db.Product;
+import com.phy0312.shopassistant.model.Product;
+import com.phy0312.shopassistant.ui.share.ShareActivity;
 
 /**
  * description: 商品详情<br/>
@@ -37,7 +38,7 @@ public class ProductDetailActivity extends Activity {
         findViewById(R.id.iv_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductDetailActivity.this.finish();
+              startActivity(ShareActivity.buildIntent(ProductDetailActivity.this, 4, "", "商品", "商品描述", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg"));
             }
         });
     }
