@@ -6,22 +6,12 @@ import java.util.concurrent.Executors;
  * 线程池管理工具类
  */
 public class ThreadUtil {
-	/**
-	 * 固定数量线程池
-	 */
+
 	private static ExecutorService executorService;
-	/**
-	 * 匣子专用线程池
-	 */
-	private static ExecutorService drawerExecutorService;
-	/**
-	 * 非固定数量线程池
-	 */
+
 	private static ExecutorService moreExecutorService;
 	
-	/**
-	 * 其它固定数量线程池
-	 */
+
 	private static ExecutorService otherExecutorService;
 	
 	/**
@@ -34,17 +24,7 @@ public class ThreadUtil {
 		
 		executorService.execute(command);
 	}
-	
-	/**
-	 * 该方法仅为匣子应用程序图标刷新
-	 * @param command
-	 */
-	public static void executeDrawer(Runnable command) {
-		if (drawerExecutorService == null)
-			drawerExecutorService = Executors.newFixedThreadPool(1);
-		
-		drawerExecutorService.execute(command);
-	}
+
 
 	/**
 	 * 非固定数量线程池

@@ -1,7 +1,6 @@
 package com.phy0312.shopassistant.ui.coupon;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
 import com.phy0312.shopassistant.R;
@@ -14,7 +13,6 @@ import com.phy0312.shopassistant.ui.base.BaseActivity;
  */
 public class CouponActivity extends BaseActivity {
 
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,44 +20,30 @@ public class CouponActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         overridePendingTransition(0, 0);
 
-        ActionBar ab = getSupportActionBar();
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setTitle(getString(R.string.app_name));
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(getDrawTitle());
 
         CouponFragment couponFragment = new CouponFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, couponFragment).commit();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        updateActionBarNavigation();
-    }
+
 
     @Override
     protected int getSelfNavDrawerItem() {
-        return super.NAVDRAWER_ITEM_COUPON;
+        return BaseActivity.NAVDRAWER_ITEM_COUPON;
     }
+
 
     @Override
-    protected void onNavDrawerStateChanged(boolean isOpen, boolean isAnimating) {
-        super.onNavDrawerStateChanged(isOpen, isAnimating);
-        updateActionBarNavigation();
+    public String getDrawTitle() {
+        return getString(R.string.navdrawer_item_coupon);
     }
 
-    private void updateActionBarNavigation() {
-        boolean show = !isNavDrawerOpen();
 
-        ActionBar ab = getSupportActionBar();
-        if (show) {
-            ab.setDisplayShowTitleEnabled(false);
-        } else {
-            ab.setDisplayShowTitleEnabled(true);
-        }
-    }
+
 }

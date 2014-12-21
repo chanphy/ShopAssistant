@@ -131,6 +131,7 @@ public class BaseActivity extends ActionBarActivity {
                 }
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
                 onNavDrawerStateChanged(false, false);
+                getSupportActionBar().setTitle(getDrawTitle());
             }
 
             public void onDrawerOpened(View drawerView) {
@@ -177,7 +178,7 @@ public class BaseActivity extends ActionBarActivity {
     }
 
     private View makeNavDrawerItem(final int itemId, ViewGroup container) {
-        boolean selected = itemId == NAVDRAWER_ITEM_MAIN;
+        boolean selected = itemId == getSelfNavDrawerItem();
         int layoutToInflate = 0;
 
         layoutToInflate = R.layout.navdrawer_item;
@@ -232,6 +233,8 @@ public class BaseActivity extends ActionBarActivity {
             return;
         }
 
+        setSelectedNavDrawerItem(itemId);
+
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -239,7 +242,7 @@ public class BaseActivity extends ActionBarActivity {
             }
         }, NAVDRAWER_LAUNCH_DELAY);
 
-        setSelectedNavDrawerItem(itemId);
+
         // fade out the main content
         View mainContent = findViewById(R.id.flv_main_content);
         if (mainContent != null) {
@@ -313,4 +316,7 @@ public class BaseActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public String getDrawTitle(){
+        return this.getString(R.string.app_name);
+    }
 }

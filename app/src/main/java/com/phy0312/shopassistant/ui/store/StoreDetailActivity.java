@@ -56,7 +56,7 @@ public class StoreDetailActivity extends ActionBarActivity {
         DisplayImageOptions options;
         private LinearLayout ll_empty_view;
 
-        Store store = new Store(1L, "1", "1", 1, "大丰收","3F-306", 75, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", "0591-83956234", 3, 1, new Date(), "年年大丰收");
+        Store store = new Store("1", "1", 1, "大丰收","3F-306", 75, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", "0591-83956234", 3, 1, "年年大丰收");
 
         private CouponAdapter adapter;
 

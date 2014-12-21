@@ -2,26 +2,36 @@ package com.phy0312.shopassistant;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.baidu.location.BDGeofence;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
+import com.baidu.location.BDLocationStatusCodes;
+import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.phy0312.shopassistant.data.DataManager;
+import com.phy0312.shopassistant.model.Plaza;
 import com.phy0312.shopassistant.tools.CrashHandler;
 import com.phy0312.shopassistant.tools.LocationUtil;
+import com.phy0312.shopassistant.tools.ThreadUtil;
+
+import java.util.List;
 
 /**
  * description: <br/>
  * author: dingdj<br/>
  * date: 2014/11/24<br/>
  */
-public class MainApplication extends Application {
+public class MainApplication extends Application implements GeofenceClient.OnGeofenceTriggerListener,
+        GeofenceClient.OnAddBDGeofencesResultListener {
     private static final String TAG = "MainApplication";
 
     private RequestQueue requestQueue;
@@ -32,6 +42,9 @@ public class MainApplication extends Application {
     public double[] curLatLng; //当前位置的经纬度信息
     private LocationChange locationChange;
     private boolean isLocation = false;
+    public GeofenceClient mGeofenceClient = null;
+    private Handler handler;
+    private boolean isExecute = false;
 
     public void onCreate() {
         super.onCreate();
@@ -41,6 +54,11 @@ public class MainApplication extends Application {
         mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
         LocationUtil.setLocationOption(mLocationClient);                   //设置定位参数
         mLocationClient.registerLocationListener(myListener);              //注册监听函数
+        mGeofenceClient = new GeofenceClient(getApplicationContext());     //注册地址围栏
+        //注册并开启围栏扫描服务
+        mGeofenceClient.registerGeofenceTriggerListener(this);
+        handler = new Handler();
+
         isLocation = true;
         appContext = this;
     }
@@ -104,6 +122,37 @@ public class MainApplication extends Application {
             curLatLng[1] = location.getLongitude();
             notityLocationChange();
             isLocation = false;
+
+            if(!isExecute) {
+                isExecute = true;
+                Log.e(TAG, "isExecute = true");
+                ThreadUtil.executeMore(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<Plaza> list = DataManager.getPlazas();
+                        for (Plaza plaza : list) {
+                            final BDGeofence fence = new BDGeofence.Builder().setGeofenceId(plaza.getPlazaId())
+                                    .setCircularRegion(plaza.getLongitude(), plaza.getLatitude(), BDGeofence.RADIUS_TYPE_SMALL)
+                                    .setExpirationDruation(3600 * 1000 * 24 * 30)
+                                    .setCoordType(BDGeofence.COORD_TYPE_GCJ)
+                                    .build();
+                            mGeofenceClient.setInterval(199009999);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        mGeofenceClient.addBDGeofence(fence, MainApplication.this);
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            });
+                        }
+
+                    }
+                });
+            }
         }
     }
 
@@ -130,5 +179,33 @@ public class MainApplication extends Application {
 
     public static interface LocationChange {
         public void locationChange();
+    }
+
+    /**
+     * 进入地址围栏
+     * @param geofenceRequestId
+     */
+    @Override
+    public void onGeofenceTrigger(String geofenceRequestId) {
+        Log.e(TAG, "geofenceRequestId");
+    }
+
+    /**
+     * 离开地址围栏
+     * @param geofenceRequestId
+     */
+    @Override
+    public void onGeofenceExit(String geofenceRequestId) {
+
+    }
+
+    @Override
+    public void onAddBDGeofencesResult(int statusCode, String geofenceRequestId) {
+        if (statusCode == BDLocationStatusCodes.SUCCESS) {
+            Log.e(TAG, "添加围栏成功" + geofenceRequestId);
+            mGeofenceClient.start();
+        }else {
+            Log.e(TAG, "添加围栏失败" + geofenceRequestId);
+        }
     }
 }

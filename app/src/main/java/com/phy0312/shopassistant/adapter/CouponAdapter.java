@@ -67,7 +67,7 @@ public class CouponAdapter extends BaseAdapter {
         }
         Coupon coupon = list.get(position);
         viewHolder =  (ViewHolder)convertView.getTag();
-        ImageLoader.getInstance().displayImage(coupon.getIconPath(), viewHolder.iv_coupon_photo, options);
+        ImageLoader.getInstance().displayImage(coupon.getIcon(), viewHolder.iv_coupon_photo, options);
         viewHolder.tv_coupon_name.setText(coupon.getName());
         viewHolder.tv_coupon_summary.setText(coupon.getDescription());
         viewHolder.tv_coupon_type.setText(coupon.getCategory()+"");
