@@ -151,4 +151,26 @@ public class DataManager {
         return plazas;
     }
 
+
+    public static HuoDong getHuoDongById(String id) {
+        HuoDong huoDong = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
+        return huoDong;
+    }
+
+    public static Coupon getCouponById(String id) {
+        Coupon coupon = new Coupon("1", "1","优惠券", System.currentTimeMillis(),
+                System.currentTimeMillis(), 0, "优惠券描述",  "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
+        return coupon;
+    }
+
+    public static Product getProductById(String id) {
+        Product product = new Product("1", "太平鸟男装2014新款",1, 1000,880,"太平鸟男装", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");
+        return product;
+    }
+
+    public static Store getStoreById(String id) {
+        Store store = new Store("1", "1", 1, "大丰收","3F-306", 75, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", "0591-83956234", 3, 1, "年年大丰收");
+        return store;
+    }
+
 }

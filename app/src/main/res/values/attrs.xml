@@ -83,5 +83,12 @@
         <attr name="textSize" format="reference|dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="LoadingProgressBar">
+        <attr name="drawableAbove" format="reference"/>
+        <attr name="drawableBehind" format="reference"/>
+        <attr name="lpr_drawableHeight" format="reference|dimension"/>
+        <attr name="lpr_drawableWidth" format="reference|dimension"/>
+    </declare-styleable>
+
 
 </resources>

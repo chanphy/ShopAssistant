@@ -63,7 +63,7 @@ public class ActivityAdapter extends BaseAdapter{
         viewHolder =  (ViewHolder)view.getTag();
         HuoDong huoDong = list.get(i);
         viewHolder.tv_activity_name.setText(huoDong.getName());
-        ImageLoader.getInstance().displayImage(huoDong.getIcon(), viewHolder.iv_activity_photo, options);
+        ImageLoader.getInstance().displayImage(huoDong.getIconPath(), viewHolder.iv_activity_photo, options);
         viewHolder.tv_activity_valid_time.setText(DateUtil.parseLongToDate(huoDong.getStartTime())+"-"+
         DateUtil.parseLongToDate(huoDong.getEndTime()));
         return view;

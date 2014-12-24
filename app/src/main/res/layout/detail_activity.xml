@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <include layout="@layout/common_header"/>
+    <include layout="@layout/loading_progress_bar"/>
 
     <ScrollView
         android:layout_width="fill_parent"

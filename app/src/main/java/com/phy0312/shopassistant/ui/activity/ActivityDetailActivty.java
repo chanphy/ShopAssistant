@@ -3,6 +3,7 @@ package com.phy0312.shopassistant.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -18,8 +19,6 @@ import com.phy0312.shopassistant.tools.DateUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.ui.share.ShareActivity;
 
-import java.util.Date;
-
 /**
  * description: 活动详情页面<br/>
  * author: dingdj<br/>
@@ -27,6 +26,8 @@ import java.util.Date;
  */
 public class ActivityDetailActivty extends Activity {
 
+    public final String KEY_ACTIVITY_ID = "key_activity_id";
+    public final String KEY_STORE_ID = "key_store_id";
 
     private HuoDong huoDong;
     private Store store;
@@ -43,6 +44,11 @@ public class ActivityDetailActivty extends Activity {
 
     DisplayImageOptions options;
 
+    private String huodongId;
+    private String storeId;
+
+    private Handler handler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +56,16 @@ public class ActivityDetailActivty extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.detail_activity);
         ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.title_activity_huo_dong_detail));
+        handler = new Handler();
+
+        String huodongId = getIntent().getStringExtra(KEY_ACTIVITY_ID);
+        String storeId = getIntent().getStringExtra(KEY_STORE_ID);
+
+
+
         initData();
         iv_activity_photo = (ImageView) findViewById(R.id.iv_activity_photo);
-        ImageLoader.getInstance().displayImage(huoDong.getIcon(), iv_activity_photo, options);
+        ImageLoader.getInstance().displayImage(huoDong.getIconPath(), iv_activity_photo, options);
         ((TextView) findViewById(R.id.tv_activity_name)).setText(huoDong.getName());
         ((TextView) findViewById(R.id.tv_activity_description)).setText(huoDong.getName());
         ((TextView) findViewById(R.id.tv_activity_valid_time)).setText(DateUtil.parseLongToDate(huoDong.getStartTime()) + "至" +
@@ -77,6 +90,15 @@ public class ActivityDetailActivty extends Activity {
               startActivity(ShareActivity.buildIntent(ActivityDetailActivty.this, 4, "", "商品", "商品描述", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg"));
             }
         });
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dismissLoadingView();
+            }
+        }, 5000);
+
+
     }
 
 
@@ -87,6 +109,18 @@ public class ActivityDetailActivty extends Activity {
                 "0591-839236541", 1, 1, "");
 
         options = ImageLoaderUtil.newDisplayImageOptionsInstance();
+    }
+
+    /**
+     * 消除加载的view
+     */
+    private void dismissLoadingView(){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.ll_wait_layout).setVisibility(View.GONE);
+            }
+        });
     }
 
 }

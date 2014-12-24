@@ -6,22 +6,43 @@ import android.os.Parcelable;
 /**
  * description: <br/>
  * author: dingdj<br/>
- * data: 2014/12/4<br/>
+ * date: 2014/12/4<br/>
  */
 public class Product implements Parcelable{
 
+    /**
+     * 产品ID
+     */
     private String productId;
 
+    /**
+     * 产品名称
+     */
     private String productName;
 
+    /**
+     * 产品类型
+     */
     private int productCategory;
 
+    /**
+     * 产品初始价格
+     */
     private int productPrice;
 
+    /**
+     * 产品打折价格
+     */
     private int productDiscountPrice;
 
+    /**
+     * 产品品牌名称
+     */
     private String productBrand;
 
+    /**
+     * 产品缩略图
+     */
     private String iconUrl;
 
     public Product(String productId, String productName, int productCategory, int productPrice, int productDiscountPrice, String productBrand, String iconUrl) {

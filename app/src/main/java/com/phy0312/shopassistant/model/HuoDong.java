@@ -37,7 +37,7 @@ public class HuoDong implements Parcelable{
     /**
      * 活动缩略图
      */
-    private String Icon;
+    private String IconPath;
     /**
      * 活动状态
      */
@@ -55,7 +55,7 @@ public class HuoDong implements Parcelable{
         Category = category;
         Description = description;
         Name = name;
-        Icon = icon;
+        IconPath = icon;
         Status = status;
     }
 
@@ -115,12 +115,12 @@ public class HuoDong implements Parcelable{
         this.Name = Name;
     }
 
-    public String getIcon() {
-        return Icon;
+    public String getIconPath() {
+        return IconPath;
     }
 
-    public void setIcon(String Icon) {
-        this.Icon = Icon;
+    public void setIconPath(String Icon) {
+        this.IconPath = Icon;
     }
 
     public Integer getStatus() {
@@ -146,7 +146,7 @@ public class HuoDong implements Parcelable{
         dest.writeValue(this.Category);
         dest.writeString(this.Description);
         dest.writeString(this.Name);
-        dest.writeString(this.Icon);
+        dest.writeString(this.IconPath);
         dest.writeValue(this.Status);
     }
 
@@ -158,7 +158,7 @@ public class HuoDong implements Parcelable{
         this.Category = (Integer) in.readValue(Integer.class.getClassLoader());
         this.Description = in.readString();
         this.Name = in.readString();
-        this.Icon = in.readString();
+        this.IconPath = in.readString();
         this.Status = (Integer) in.readValue(Integer.class.getClassLoader());
         long tmpCreateTime = in.readLong();
     }

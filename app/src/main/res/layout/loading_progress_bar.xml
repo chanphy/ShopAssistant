@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_wait_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_progressive_dialog_bg"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.phy0312.shopassistant.view.LoadingProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ptr:drawableAbove="@drawable/icon_loading_above"
+        ptr:drawableBehind="@drawable/icon_loading_behind" />
+</LinearLayout>
