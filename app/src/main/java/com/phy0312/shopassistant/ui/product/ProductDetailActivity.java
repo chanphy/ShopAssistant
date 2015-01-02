@@ -17,6 +17,8 @@ import com.phy0312.shopassistant.ui.share.ShareActivity;
  */
 public class ProductDetailActivity extends Activity {
 
+    public static final  String EXTRA_KEY_PRODUCT_ID = "product_id";
+
     private Product product;
 
     @Override

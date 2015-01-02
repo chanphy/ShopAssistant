@@ -1,5 +1,6 @@
 package com.phy0312.shopassistant.ui.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -18,8 +19,13 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
+import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.tools.AndroidUtil;
+import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
+import com.phy0312.shopassistant.ui.activity.ActivityDetailActivty;
+import com.phy0312.shopassistant.ui.coupon.CouponDetailActivity;
+import com.phy0312.shopassistant.ui.product.ProductDetailActivity;
 import com.phy0312.shopassistant.view.WarningInfoTextView;
 
 import java.util.ArrayList;
@@ -44,10 +50,7 @@ public class UIUtil {
     public static void initAdsBanner(final ViewPager viewPager) {
         final LayoutInflater mInflater = LayoutInflater.from(MainApplication.appContext);
 
-        final List<String> datas = new ArrayList<String>();
-        datas.add("http://jingdongquan.net/sites/default/files/imagecache/512/auto_img/2012/10/31/20121031124351.jpg");
-        datas.add("http://www.yihaodianquan.com/sites/yihaodianquan.com/files/imagecache/512/2010/12/jizhongri-youhuiquan.jpg");
-        datas.add("http://jingdongquan.net/sites/default/files/imagecache/512/2011/10/360buy-baihuo.jpg");
+        final List<AdsItemType> datas = DataManager.getAdsItemTypes();
 
         viewPager.setTag(datas.size());
         viewPager.setAdapter(new PagerAdapter() {
@@ -64,10 +67,16 @@ public class UIUtil {
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
 
-                int realPostion = getRealPostion(position, datas.size());
+                final int realPostion = getRealPostion(position, datas.size());
                 ImageView imageView = (ImageView)mInflater.inflate(R.layout.banner_ads, null);
                 container.addView(imageView);
-                ImageLoader.getInstance().displayImage(datas.get(realPostion), imageView, ImageLoaderUtil.newDisplayImageOptionsInstance());
+                ImageLoader.getInstance().displayImage(datas.get(realPostion).iconUrl, imageView, ImageLoaderUtil.newDisplayImageOptionsInstance());
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        gotoIntent(MainApplication.appContext, datas.get(realPostion).type, datas.get(realPostion).id);
+                    }
+                });
                 return imageView;
             }
 
@@ -174,6 +183,54 @@ public class UIUtil {
     public static int getNavDrawerWidth(Context context) {
         int width = AndroidUtil.getScreenWH(context)[0];
         return width - AndroidUtil.dip2px(context, 56);
+    }
+
+    public static class AdsItemType {
+        /**
+         * item 类型
+         * Constants.CATEGORY_COUPON
+         * Constants.CATEGOTY_ACTIVITY
+         * Constants.CATEGOTY_PRODUCT
+         */
+        public int type;
+        /**
+         * 图片URL
+         */
+        public String iconUrl;
+
+        /**
+         * 类型对应的ID
+         */
+        public String id;
+    }
+
+    public static void gotoIntent(Context context, int type, String id) {
+        switch (type) {
+            case Constants.CATEGORY_COUPON:
+                Intent intent = new Intent();
+                intent.setClass(context, CouponDetailActivity.class);
+                intent.putExtra(CouponDetailActivity.EXTRA_KEY_COUPON_ID, id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                AndroidUtil.startActivity(context, intent);
+                break;
+            case Constants.CATEGOTY_ACTIVITY:
+                intent = new Intent();
+                intent.setClass(context, ActivityDetailActivty.class);
+                intent.putExtra(ActivityDetailActivty.EXTRA_KEY_ACTIVITY_ID, id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                AndroidUtil.startActivity(context, intent);
+
+                break;
+            case Constants.CATEGOTY_PRODUCT:
+                intent = new Intent();
+                intent.setClass(context, ProductDetailActivity.class);
+                intent.putExtra(ProductDetailActivity.EXTRA_KEY_PRODUCT_ID, id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                AndroidUtil.startActivity(context, intent);
+                break;
+            default:
+                break;
+        }
     }
 
 }

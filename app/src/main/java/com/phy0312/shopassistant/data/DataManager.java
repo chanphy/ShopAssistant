@@ -8,6 +8,7 @@ import com.phy0312.shopassistant.model.HuoDong;
 import com.phy0312.shopassistant.model.Store;
 import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
+import com.phy0312.shopassistant.ui.base.UIUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -171,6 +172,31 @@ public class DataManager {
     public static Store getStoreById(String id) {
         Store store = new Store("1", "1", 1, "大丰收","3F-306", 75, "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", "0591-83956234", 3, 1, "年年大丰收");
         return store;
+    }
+
+    public static List<UIUtil.AdsItemType> getAdsItemTypes() {
+        UIUtil.AdsItemType couponItemType = new UIUtil.AdsItemType();
+        couponItemType.iconUrl = "http://jingdongquan.net/sites/default/files/imagecache/512/auto_img/2012/10/31/20121031124351.jpg";
+        couponItemType.type = Constants.CATEGORY_COUPON;
+        couponItemType.id = "1";
+
+        UIUtil.AdsItemType activityItemType = new UIUtil.AdsItemType();
+        activityItemType.iconUrl = "http://www.yihaodianquan.com/sites/yihaodianquan.com/files/imagecache/512/2010/12/jizhongri-youhuiquan.jpg";
+        activityItemType.type = Constants.CATEGOTY_ACTIVITY;
+        activityItemType.id = "1";
+
+        UIUtil.AdsItemType productItemType = new UIUtil.AdsItemType();
+        productItemType.iconUrl = "http://jingdongquan.net/sites/default/files/imagecache/512/2011/10/360buy-baihuo.jpg";
+        productItemType.type = Constants.CATEGOTY_PRODUCT;
+        couponItemType.id = "1";
+
+        List<UIUtil.AdsItemType> list = new ArrayList<>();
+
+        list.add(couponItemType);
+        list.add(activityItemType);
+        list.add(productItemType);
+
+        return list;
     }
 
 }

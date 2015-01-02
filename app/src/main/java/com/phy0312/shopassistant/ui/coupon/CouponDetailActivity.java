@@ -16,6 +16,8 @@ import com.phy0312.shopassistant.ui.share.ShareActivity;
 
 public class CouponDetailActivity extends FragmentActivity {
 
+    public static String EXTRA_KEY_COUPON_ID = "coupon_id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

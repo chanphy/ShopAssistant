@@ -26,8 +26,8 @@ import com.phy0312.shopassistant.ui.share.ShareActivity;
  */
 public class ActivityDetailActivty extends Activity {
 
-    public final String KEY_ACTIVITY_ID = "key_activity_id";
-    public final String KEY_STORE_ID = "key_store_id";
+    public static final String EXTRA_KEY_ACTIVITY_ID = "key_activity_id";
+    public static final String KEY_STORE_ID = "key_store_id";
 
     private HuoDong huoDong;
     private Store store;
@@ -58,7 +58,7 @@ public class ActivityDetailActivty extends Activity {
         ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.title_activity_huo_dong_detail));
         handler = new Handler();
 
-        String huodongId = getIntent().getStringExtra(KEY_ACTIVITY_ID);
+        String huodongId = getIntent().getStringExtra(EXTRA_KEY_ACTIVITY_ID);
         String storeId = getIntent().getStringExtra(KEY_STORE_ID);
 
 

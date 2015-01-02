@@ -10,6 +10,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,10 +22,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.location.BDGeofence;
+import com.baidu.location.BDLocationStatusCodes;
+import com.baidu.location.GeofenceClient;
 import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
 import com.phy0312.shopassistant.config.MainSp;
+import com.phy0312.shopassistant.data.DataManager;
+import com.phy0312.shopassistant.model.Plaza;
+import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.ui.activity.ActivityFragment;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.coupon.CouponFragment;
@@ -32,11 +39,16 @@ import com.phy0312.shopassistant.ui.deal.DealFragment;
 import com.phy0312.shopassistant.ui.my.MyProfileFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 主activity
  */
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener, MainApplication.LocationChange {
+public class MainActivity extends ActionBarActivity implements ActionBar.TabListener, MainApplication.LocationChange
+         ,GeofenceClient.OnGeofenceTriggerListener
+        ,GeofenceClient.OnAddBDGeofencesResultListener{
+
+
 
     private static final String TAG = "MainActivity";
     private final int waitTime = 2000;
@@ -111,6 +123,36 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             drawerLayout.openDrawer(Gravity.LEFT);
             MainSp.getInstance(this).setFirstUse(false);
         }
+
+        //注册并开启围栏扫描服务
+        MainApplication.appContext.mGeofenceClient.registerGeofenceTriggerListener(this);
+
+        ThreadUtil.executeMore(new Runnable() {
+            @Override
+            public void run() {
+                final List<Plaza> list = DataManager.getPlazas();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (Plaza plaza : list) {
+                                final BDGeofence fence = new BDGeofence.Builder().setGeofenceId(plaza.getPlazaId())
+                                        .setCircularRegion(plaza.getLongitude(), plaza.getLatitude(), BDGeofence.RADIUS_TYPE_SMALL)
+                                        .setExpirationDruation(10L * (3600 * 1000))
+                                        .setCoordType(BDGeofence.COORD_TYPE_GCJ)
+                                        .build();
+                                MainApplication.appContext.mGeofenceClient.setInterval(199009999);
+                                MainApplication.appContext.mGeofenceClient.addBDGeofence(fence, MainActivity.this);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+            }
+        });
     }
 
 
@@ -408,4 +450,33 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
 
+    /**
+     * 进入地址围栏
+     *
+     * @param geofenceRequestId
+     */
+    @Override
+    public void onGeofenceTrigger(String geofenceRequestId) {
+        Log.e(TAG, "geofenceRequestId");
+    }
+
+    /**
+     * 离开地址围栏
+     *
+     * @param geofenceRequestId
+     */
+    @Override
+    public void onGeofenceExit(String geofenceRequestId) {
+
+    }
+
+    @Override
+    public void onAddBDGeofencesResult(int statusCode, String geofenceRequestId) {
+        if (statusCode == BDLocationStatusCodes.SUCCESS) {
+            Log.e(TAG, "添加围栏成功" + geofenceRequestId);
+            MainApplication.appContext.mGeofenceClient.start();
+        } else {
+            Log.e(TAG, "添加围栏失败" + geofenceRequestId);
+        }
+    }
 }
