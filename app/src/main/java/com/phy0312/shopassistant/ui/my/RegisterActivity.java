@@ -18,6 +18,7 @@ public class RegisterActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_register);
         ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.user_register));
+        findViewById(R.id.iv_share).setVisibility(View.GONE);
 
         //后退按钮
         findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {

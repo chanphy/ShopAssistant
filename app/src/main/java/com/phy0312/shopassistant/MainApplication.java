@@ -15,8 +15,10 @@ import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.phy0312.shopassistant.config.MainSp;
 import com.phy0312.shopassistant.tools.CrashHandler;
 import com.phy0312.shopassistant.tools.LocationUtil;
+import com.phy0312.shopassistant.tools.LoginUtil;
 
 /**
  * description: <br/>
@@ -51,6 +53,15 @@ public class MainApplication extends Application {
 
         isLocation = true;
         appContext = this;
+        //用户自动登录
+        tryAutoLogin();
+    }
+
+    private void tryAutoLogin() {
+        String cookie = MainSp.getInstance(this).getCookie();
+        //if(StringUtils.isEmpty(cookie)) return;
+        // todo
+        LoginUtil.tryLogin();
     }
 
     public static void initImageLoader(Context context) {

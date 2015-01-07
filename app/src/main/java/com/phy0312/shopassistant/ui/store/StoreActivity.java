@@ -70,6 +70,7 @@ public class StoreActivity extends ListActivity implements AdapterView.OnItemCli
         getListView().setOnItemClickListener(this);
         ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.title_activity_store));
         tv_center_char = (TextView) findViewById(R.id.tv_center_char);
+        findViewById(R.id.iv_share).setVisibility(View.GONE);
 
         handler = new Handler();
         runnable = new Runnable() {

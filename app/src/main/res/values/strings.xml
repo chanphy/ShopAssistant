@@ -11,6 +11,7 @@
     <string name="navdrawer_item_huodong">活动</string>
     <string name="navdrawer_item_coupon">优惠券</string>
     <string name="navdrawer_item_tuangou">团购</string>
+    <string name="navdrawer_item_store">找商户</string>
     <string name="navdrawer_item_my_profile">我的助手</string>
     <string name="drawer_close">打开</string>
     <string name="drawer_open">关闭</string>

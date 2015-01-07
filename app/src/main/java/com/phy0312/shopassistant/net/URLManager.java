@@ -16,6 +16,7 @@ public class URLManager {
             "hasheader=1&category="+ utf8Encode("美食");
 
     public static String USER_LOGIN = "http://IP/action.ashx/commonaction/";
+    public static String USER_AUTO_LOGIN = "http://IP/action.ashx/commonaction/";
     public static String FOOD_STORE_LIST = "http://IP/action.ashx/commonaction/";
     public static String COUPON_LIST = "http://IP/action.ashx/commonaction/";
     public static String ACTIVITY_LIST = "http://IP/action.ashx/commonaction/";

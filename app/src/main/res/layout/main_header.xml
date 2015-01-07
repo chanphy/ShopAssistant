@@ -119,7 +119,7 @@
             android:id="@+id/tv_product_daily"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_parking"
-            android:text="@string/menu_title_daily" />
+            android:text="@string/navdrawer_item_store" />
     </LinearLayout>
 
 </LinearLayout>

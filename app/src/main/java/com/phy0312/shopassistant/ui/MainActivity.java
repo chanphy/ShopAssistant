@@ -1,7 +1,10 @@
 package com.phy0312.shopassistant.ui;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -28,14 +31,17 @@ import com.baidu.location.GeofenceClient;
 import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.adapter.PlazaAdapter;
+import com.phy0312.shopassistant.config.Global;
 import com.phy0312.shopassistant.config.MainSp;
 import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.model.Plaza;
+import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ThreadUtil;
 import com.phy0312.shopassistant.ui.activity.ActivityFragment;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 import com.phy0312.shopassistant.ui.coupon.CouponFragment;
 import com.phy0312.shopassistant.ui.deal.DealFragment;
+import com.phy0312.shopassistant.ui.my.LoginActivity;
 import com.phy0312.shopassistant.ui.my.MyProfileFragment;
 
 import java.util.ArrayList;
@@ -47,8 +53,6 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener, MainApplication.LocationChange
          ,GeofenceClient.OnGeofenceTriggerListener
         ,GeofenceClient.OnAddBDGeofencesResultListener{
-
-
 
     private static final String TAG = "MainActivity";
     private final int waitTime = 2000;
@@ -62,6 +66,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     private Toolbar toolbar;
     private Spinner sp_plazas;
     private ViewGroup mDrawerItemsListContainer;
+    private TextView profile_name_text;
+    private TextView tv_login;
 
 
     private ArrayList<Integer> mNavDrawerItems = new ArrayList<Integer>();
@@ -115,6 +121,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        profile_name_text = (TextView)findViewById(R.id.profile_name_text);
+        tv_login = (TextView)findViewById(R.id.tv_login);
+
+
         initDrawerMenu();
         MainFragment mainFragment = new MainFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flv_main_content, mainFragment).commit();
@@ -153,6 +163,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             }
         });
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onGeofenceTrigger("1");
+            }
+        }, 5000);
     }
 
 
@@ -198,6 +215,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 sp_plazas.setVisibility(View.GONE);
                 getSupportActionBar().setTitle(getString(R.string.app_name));
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                modifyLoginState();
             }
         };
 
@@ -206,6 +224,26 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
         populateNavDrawer();
+    }
+
+    private void modifyLoginState() {
+        if(Global.hasLogin()) {
+            tv_login.setVisibility(View.INVISIBLE);
+            profile_name_text.setVisibility(View.VISIBLE);
+            profile_name_text.setText(Global.userInfo.getUserName());
+        }else{
+            profile_name_text.setVisibility(View.GONE);
+            tv_login.setVisibility(View.VISIBLE);
+            tv_login.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    drawerLayout.closeDrawer(Gravity.START);
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, LoginActivity.class);
+                    AndroidUtil.startActivity(MainActivity.this, intent);
+                }
+            });
+        }
     }
 
     public void modifyTitle() {
@@ -220,8 +258,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
-
-
     }
 
 
@@ -452,12 +488,33 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     /**
      * 进入地址围栏
-     *
      * @param geofenceRequestId
      */
     @Override
-    public void onGeofenceTrigger(String geofenceRequestId) {
+    public void onGeofenceTrigger(final String geofenceRequestId) {
         Log.e(TAG, "geofenceRequestId");
+        Plaza plaza = DataManager.getPlazaById(geofenceRequestId);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("你已进入"+plaza.getName()+", 点确定切换吧。");
+        builder.setTitle("切换商场");
+        builder.setPositiveButton("切换", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                //切换商场
+                MainSp.getInstance(MainActivity.this).setPlazaId(geofenceRequestId);
+                //刷新界面
+                //todo
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.show();
     }
 
     /**
@@ -479,4 +536,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             Log.e(TAG, "添加围栏失败" + geofenceRequestId);
         }
     }
+
+
 }

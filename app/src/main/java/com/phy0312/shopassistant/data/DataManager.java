@@ -152,6 +152,11 @@ public class DataManager {
         return plazas;
     }
 
+    public static Plaza getPlazaById(String id) {
+        Plaza plaza = new Plaza("福州", new Date(), 26.086944, 119.320215, "东方百货", "db", "100001", "", "059183570737", 1);
+        return plaza;
+    }
+
 
     public static HuoDong getHuoDongById(String id) {
         HuoDong huoDong = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
