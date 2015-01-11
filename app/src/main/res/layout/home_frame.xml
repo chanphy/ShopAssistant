@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_frame"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/common_header" />
+
+    <FrameLayout
+        android:id="@+id/fragment_stub"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/fl_tab_bar"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_below="@id/title_bar" />
+
+    <FrameLayout
+        android:id="@+id/fl_tab_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/tab_height"
+        android:layout_alignParentBottom="true">
+
+        <RadioGroup
+            android:id="@id/rg_tab_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/app_bottom_bar_color_n"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_tab_index"
+                style="@style/HomeTabButtonStyle"
+                android:drawableTop="@drawable/ic_drawer_main"
+                android:text="@string/navdrawer_item_main" />
+
+            <RadioButton
+                android:id="@+id/rb_tab_index_lite"
+                style="@style/HomeTabButtonStyle"
+                android:drawableTop="@drawable/ic_drawer_main"
+                android:text="@string/navdrawer_item_main"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_tab_activity"
+                style="@style/HomeTabButtonStyle"
+                android:drawableTop="@drawable/ic_drawer_huodong"
+                android:text="@string/navdrawer_item_huodong" />
+
+            <RadioButton
+                android:id="@+id/rb_tab_coupon"
+                style="@style/HomeTabButtonStyle"
+                android:drawableTop="@drawable/ic_drawer_coupon"
+                android:text="@string/navdrawer_item_coupon" />
+
+            <RadioButton
+                android:id="@+id/rb_tab_food"
+                style="@style/HomeTabButtonStyle"
+                android:drawableTop="@drawable/ic_drawer_food"
+                android:text="@string/menu_title_food" />
+
+            <RadioButton
+                android:id="@+id/rb_tab_my_profile"
+                style="@style/HomeTabButtonStyle"
+                android:drawableTop="@drawable/ic_drawer_my_profile"
+                android:text="@string/navdrawer_item_my_profile" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="4.0"
+                android:visibility="invisible" />
+
+            <FrameLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false">
+
+                <TextView
+                    android:id="@+id/tv_home_profile_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="8.0dip"
+                    android:layout_marginTop="2.0dip"
+                    android:background="@drawable/new_message_count_bg"
+                    android:clickable="false"
+                    android:ellipsize="none"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textColor="@color/c1"
+                    android:textSize="8.0sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+</RelativeLayout>

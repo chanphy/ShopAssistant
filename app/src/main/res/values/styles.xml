@@ -335,4 +335,18 @@
         <item name="android:windowAnimationStyle">@style/BtnStyleAlertDialogAnimation</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+    <style name="HomeTabButtonStyle">
+        <item name="android:textSize">@dimen/h4</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/home_tab_selector</item>
+        <item name="android:paddingTop">8.0dip</item>
+        <item name="android:paddingBottom">8.0dip</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
 </resources>
