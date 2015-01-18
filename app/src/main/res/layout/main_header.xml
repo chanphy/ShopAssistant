@@ -35,17 +35,6 @@
         android:orientation="horizontal">
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/tv_food"
-            style="@style/MenuIconButtonStyle"
-            android:drawableTop="@drawable/menu_icon_member"
-            android:text="@string/menu_title_food" />
-
-        <View
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0" />
-
-        <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/tv_product_dress"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_product"
@@ -55,6 +44,7 @@
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
+
 
         <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/tv_product_shoes"
@@ -68,7 +58,18 @@
             android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/tv_product_digital"
+            android:id="@+id/tv_product_baby"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_wifi"
+            android:text="@string/menu_title_baby" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <com.phy0312.shopassistant.view.ScaleTextView
+            android:id="@+id/tv_product_liren"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_ktv"
             android:text="@string/menu_title_digital" />
@@ -83,32 +84,35 @@
         android:orientation="horizontal">
 
         <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/tv_product_baby"
+            android:id="@+id/tv_food"
             style="@style/MenuIconButtonStyle"
-            android:drawableTop="@drawable/menu_icon_wifi"
-            android:text="@string/menu_title_baby" />
+            android:drawableTop="@drawable/menu_icon_member"
+            android:text="@string/menu_title_food" />
+
+
 
         <View
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
 
-        <com.phy0312.shopassistant.view.ScaleTextView
-            android:id="@+id/tv_product_decorate"
-            style="@style/MenuIconButtonStyle"
-            android:drawableTop="@drawable/menu_icon_store"
-            android:text="@string/menu_title_decorate" />
-
-        <View
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0" />
 
         <com.phy0312.shopassistant.view.ScaleTextView
             android:id="@+id/tv_product_outside"
             style="@style/MenuIconButtonStyle"
             android:drawableTop="@drawable/menu_icon_augmented_reality"
-            android:text="@string/menu_title_outside" />
+            android:text="@string/menu_title_sport" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+
+        <com.phy0312.shopassistant.view.ScaleTextView
+            android:id="@+id/tv_product_other"
+            style="@style/MenuIconButtonStyle"
+            android:drawableTop="@drawable/menu_icon_augmented_reality"
+            android:text="@string/menu_title_other" />
 
         <View
             android:layout_width="0.0dip"

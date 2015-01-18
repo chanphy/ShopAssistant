@@ -61,7 +61,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.HomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -104,11 +104,9 @@
             android:label="@string/menu_title_food" />
         <activity
             android:name=".ui.food.FoodStoreDetailActivity"
-            android:label="@string/title_activity_my"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.my.LoginActivity"
-            android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.my.RegisterActivity"
@@ -134,15 +132,6 @@
             android:name=".ui.share.ShareActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.CustomDialog.Share" >
-        </activity>
-        <activity
-            android:name=".ui.HomeActivity"
-            android:label="@string/title_activity_launcher" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

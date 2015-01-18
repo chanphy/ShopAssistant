@@ -51,14 +51,14 @@ public class ProductActivity extends BaseFragmentActivity {
      */
     public static class PlaceholderFragment extends BaseFragment {
 
-        public static final int HOT = 0;
-        public static final int PROMOTION = 1;
-        public static final int NEW = 2;
+        public static final int PROMOTION = 0;
+        public static final int NEW = 1;
+        public static final int RECOMMEND = 2;
 
         private PullToRefreshLayout ptl_container;
         private HeaderGridView gv_content;
         private ProductAdapter productAdapter;
-        private int type = HOT;
+        private int type = PROMOTION;
         private LinearLayout ll_empty_view;
 
         public PlaceholderFragment() {
@@ -108,9 +108,9 @@ public class ProductActivity extends BaseFragmentActivity {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             switch (checkedId) {
-                case R.id.rb_tab_product_hot:
-                    if (type != HOT) {
-                        type = HOT;
+                case R.id.rb_tab_product_recommend:
+                    if (type != RECOMMEND) {
+                        type = RECOMMEND;
                         gv_content.setAdapter(null);
                         startLoad(false, false, false);
                     }
@@ -149,8 +149,8 @@ public class ProductActivity extends BaseFragmentActivity {
             rg_tab_bar.setOnCheckedChangeListener(this);
 
             switch (type) {
-                case HOT:
-                    rg_tab_bar.check(R.id.rb_tab_product_hot);
+                case RECOMMEND:
+                    rg_tab_bar.check(R.id.rb_tab_product_recommend);
                     break;
                 case PROMOTION:
                     rg_tab_bar.check(R.id.rb_tab_product_promotion);
@@ -159,7 +159,7 @@ public class ProductActivity extends BaseFragmentActivity {
                     rg_tab_bar.check(R.id.rb_tab_product_new);
                     break;
                 default:
-                    rg_tab_bar.check(R.id.rb_tab_product_hot);
+                    rg_tab_bar.check(R.id.rb_tab_product_promotion);
                     break;
             }
         }

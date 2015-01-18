@@ -14,6 +14,7 @@ import android.webkit.WebViewClient;
 import com.phy0312.shopassistant.R;
 import com.phy0312.shopassistant.net.URLManager;
 import com.phy0312.shopassistant.tools.AndroidUtil;
+import com.phy0312.shopassistant.tools.LogUtil;
 import com.phy0312.shopassistant.ui.base.BaseFragment;
 
 public class DealFragment extends BaseFragment {
@@ -28,6 +29,7 @@ public class DealFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        LogUtil.e("onCreateView---------------------");
         View rootView = inflater.inflate(R.layout.fragment_deal, container, false);
         webView = (WebView) rootView.findViewById(R.id.webView);
         WebSettings webSettings = webView.getSettings();

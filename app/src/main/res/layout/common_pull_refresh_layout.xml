@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:dividerHeight="0.0dip"
-        android:layout_marginBottom="10dp"
         android:divider="@null"
         />
 

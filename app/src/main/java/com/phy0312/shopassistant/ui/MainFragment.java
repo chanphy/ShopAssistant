@@ -81,11 +81,10 @@ public class MainFragment extends BaseFragment{
 
         initProduct(R.id.tv_product_dress, headerView);
         initProduct(R.id.tv_product_shoes, headerView);
-        initProduct(R.id.tv_product_digital, headerView);
+        initProduct(R.id.tv_product_liren, headerView);
         initProduct(R.id.tv_product_baby, headerView);
-        initProduct(R.id.tv_product_decorate, headerView);
         initProduct(R.id.tv_product_outside, headerView);
-        //initProduct(R.id.tv_product_daily, headerView);
+        initProduct(R.id.tv_product_other, headerView);
 
         TextView textView = (TextView)headerView.findViewById(R.id.tv_product_daily);
         textView.setOnClickListener(new View.OnClickListener(){

@@ -4,17 +4,59 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <include
-        android:id="@+id/title_bar"
-        layout="@layout/common_header" />
+    <RelativeLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_marginRight="8dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:text="tv_title"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/sp_plazas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:layout_centerInParent="true"
+            android:dropDownSelector="?android:selectableItemBackground" />
+
+        <TextView
+            android:id="@+id/tv_map"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:singleLine="true"
+            android:textColor="@color/purple_500"
+            android:text="@string/plaza_map"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
 
     <FrameLayout
-        android:id="@+id/fragment_stub"
+        android:id="@+id/flv_main_content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/fl_tab_bar"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_below="@id/title_bar" />
+        android:layout_below="@id/ll_header" />
 
     <FrameLayout
         android:id="@+id/fl_tab_bar"
@@ -23,7 +65,7 @@
         android:layout_alignParentBottom="true">
 
         <RadioGroup
-            android:id="@id/rg_tab_bar"
+            android:id="@+id/rg_tab_bar"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/app_bottom_bar_color_n"
@@ -35,12 +77,6 @@
                 android:drawableTop="@drawable/ic_drawer_main"
                 android:text="@string/navdrawer_item_main" />
 
-            <RadioButton
-                android:id="@+id/rb_tab_index_lite"
-                style="@style/HomeTabButtonStyle"
-                android:drawableTop="@drawable/ic_drawer_main"
-                android:text="@string/navdrawer_item_main"
-                android:visibility="gone" />
 
             <RadioButton
                 android:id="@+id/rb_tab_activity"

@@ -10,12 +10,6 @@
         android:layout_marginBottom="0.0dip">
 
         <RadioButton
-            android:id="@+id/rb_tab_product_hot"
-            style="@style/UnderlineTabItemStyle"
-            android:checked="true"
-            android:text="@string/tab_product_hot" />
-
-        <RadioButton
             android:id="@+id/rb_tab_product_promotion"
             style="@style/UnderlineTabItemStyle"
             android:text="@string/tab_product_promotion" />
@@ -24,6 +18,13 @@
             android:id="@+id/rb_tab_product_new"
             style="@style/UnderlineTabItemStyle"
             android:text="@string/tab_product_new" />
+
+        <RadioButton
+            android:id="@+id/rb_tab_product_recommend"
+            style="@style/UnderlineTabItemStyle"
+            android:checked="true"
+            android:text="@string/tab_product_recommend" />
+
     </RadioGroup>
     <include layout="@layout/list_empty_view"/>
 
