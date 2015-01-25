@@ -61,40 +61,12 @@ public class DataManager {
     public static List<HuoDong> getHuoDongs(int type) {
         List<HuoDong> huoDongs = new ArrayList<HuoDong>();
 
-        HuoDong huoDong1 = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong2 = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong3 = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong4 = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        HuoDong huoDong5 = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-
-        huoDongs.add(huoDong1);
-        huoDongs.add(huoDong2);
-        huoDongs.add(huoDong3);
-        huoDongs.add(huoDong4);
-        huoDongs.add(huoDong5);
 
         return huoDongs;
     }
 
     public static List<Coupon> getCoupons() {
         List<Coupon> coupons = new ArrayList<Coupon>();
-
-        Coupon coupon1 = new Coupon("1", "1","优惠券", System.currentTimeMillis(),
-                System.currentTimeMillis(), 0, "优惠券描述",  "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
-        Coupon coupon2 = new Coupon("1", "1","优惠券", System.currentTimeMillis(),
-                System.currentTimeMillis(), 0, "优惠券描述", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
-        Coupon coupon3 = new Coupon("1","1","优惠券", System.currentTimeMillis(),
-                System.currentTimeMillis(), 0, "优惠券描述","http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
-        Coupon coupon4 = new Coupon("1", "1","优惠券", System.currentTimeMillis(),
-                System.currentTimeMillis(), 0, "优惠券描述", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
-        Coupon coupon5 = new Coupon( "1", "1","优惠券", System.currentTimeMillis(),
-                System.currentTimeMillis(), 0, "优惠券描述",  "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
-
-        coupons.add(coupon1);
-        coupons.add(coupon2);
-        coupons.add(coupon3);
-        coupons.add(coupon4);
-        coupons.add(coupon5);
 
         return coupons;
     }
@@ -158,16 +130,6 @@ public class DataManager {
     }
 
 
-    public static HuoDong getHuoDongById(String id) {
-        HuoDong huoDong = new HuoDong("1", "1",  System.currentTimeMillis(), System.currentTimeMillis(), Constants.HOT,  "", "闲逛记", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 1);
-        return huoDong;
-    }
-
-    public static Coupon getCouponById(String id) {
-        Coupon coupon = new Coupon("1", "1","优惠券", System.currentTimeMillis(),
-                System.currentTimeMillis(), 0, "优惠券描述",  "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg", 100);
-        return coupon;
-    }
 
     public static Product getProductById(String id) {
         Product product = new Product("1", "太平鸟男装2014新款",1, 1000,880,"太平鸟男装", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg");

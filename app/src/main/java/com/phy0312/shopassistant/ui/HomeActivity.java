@@ -33,7 +33,7 @@ import com.phy0312.shopassistant.ui.my.MyProfileFragment;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener
+public class HomeActivity extends FragmentActivity implements View.OnClickListener
         , MainApplication.LocationChange
         , GeofenceClient.OnGeofenceTriggerListener
         , GeofenceClient.OnAddBDGeofencesResultListener {
@@ -85,9 +85,16 @@ public class HomeActivity extends FragmentActivity implements RadioGroup.OnCheck
         updateViewState("");
 
         rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
+        findViewById(R.id.rb_home_tab_index).setOnClickListener(this);
+        findViewById(R.id.rb_home_tab_activity).setOnClickListener(this);
+        findViewById(R.id.rb_home_tab_coupon).setOnClickListener(this);
+        findViewById(R.id.rb_home_tab_food).setOnClickListener(this);
+        findViewById(R.id.rb_home_tab_my_profile).setOnClickListener(this);
 
-        rg_tab_bar.setOnCheckedChangeListener(this);
-        rg_tab_bar.check(R.id.rb_tab_index);
+
+        rg_tab_bar.check(R.id.rb_home_tab_index);
+        tab = NAVDRAWER_ITEM_MAIN;
+        loadFragment();
     }
 
 
@@ -165,39 +172,6 @@ public class HomeActivity extends FragmentActivity implements RadioGroup.OnCheck
     }
 
 
-
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        LogUtil.e("checkedId:" + checkedId);
-        switch (checkedId) {
-            case R.id.rb_tab_index:
-                tab = NAVDRAWER_ITEM_MAIN;
-                loadFragment();
-                break;
-            case R.id.rb_tab_activity:
-                tab = NAVDRAWER_ITEM_HUODONG;
-                loadFragment();
-                break;
-            case R.id.rb_tab_coupon:
-                tab = NAVDRAWER_ITEM_COUPON;
-                loadFragment();
-                break;
-            case R.id.rb_tab_food:
-                tab = NAVDRAWER_ITEM_TUANGOU;
-                loadFragment();
-                break;
-            case R.id.rb_tab_my_profile:
-                tab = NAVDRAWER_ITEM_MY_PROFILE;
-                loadFragment();
-                break;
-            default:
-                tab = NAVDRAWER_ITEM_MAIN;
-                loadFragment();
-                break;
-        }
-    }
-
     @Override
     public void onBackPressed() {
         BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentById(R.id.flv_main_content);
@@ -206,7 +180,9 @@ public class HomeActivity extends FragmentActivity implements RadioGroup.OnCheck
         }
 
         if (!(fragment instanceof MainFragment)) {
-            rg_tab_bar.check(R.id.rb_tab_index);
+            rg_tab_bar.check(R.id.rb_home_tab_index);
+            tab = NAVDRAWER_ITEM_MAIN;
+            loadFragment();
             return;
         }
         long currentTime = System.currentTimeMillis();
@@ -278,4 +254,48 @@ public class HomeActivity extends FragmentActivity implements RadioGroup.OnCheck
             Log.e(TAG, "添加围栏失败" + geofenceRequestId);
         }
     }
+
+    @Override
+    public void onClick(View view) {
+        int checkedId = view.getId();
+        switch (checkedId) {
+            case R.id.rb_home_tab_index:
+                tab = NAVDRAWER_ITEM_MAIN;
+                loadFragment();
+                break;
+            case R.id.rb_home_tab_activity:
+                tab = NAVDRAWER_ITEM_HUODONG;
+                loadFragment();
+                break;
+            case R.id.rb_home_tab_coupon:
+                tab = NAVDRAWER_ITEM_COUPON;
+                loadFragment();
+                break;
+            case R.id.rb_home_tab_food:
+                tab = NAVDRAWER_ITEM_TUANGOU;
+                loadFragment();
+                break;
+            case R.id.rb_home_tab_my_profile:
+                tab = NAVDRAWER_ITEM_MY_PROFILE;
+                loadFragment();
+                break;
+            default:
+                tab = NAVDRAWER_ITEM_MAIN;
+                loadFragment();
+                break;
+        }
+    }
+
+    public void gotoActivity() {
+        rg_tab_bar.check(R.id.rb_home_tab_activity);
+        tab = NAVDRAWER_ITEM_HUODONG;
+        loadFragment();
+    }
+
+    public void gotoCoupon() {
+        rg_tab_bar.check(R.id.rb_home_tab_coupon);
+        tab = NAVDRAWER_ITEM_COUPON;
+        loadFragment();
+    }
+
 }

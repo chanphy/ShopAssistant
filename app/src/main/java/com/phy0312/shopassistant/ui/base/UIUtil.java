@@ -1,6 +1,5 @@
 package com.phy0312.shopassistant.ui.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
-import com.phy0312.shopassistant.data.DataManager;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.Constants;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
@@ -28,7 +26,6 @@ import com.phy0312.shopassistant.ui.coupon.CouponDetailActivity;
 import com.phy0312.shopassistant.ui.product.ProductDetailActivity;
 import com.phy0312.shopassistant.view.WarningInfoTextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,13 +44,18 @@ public class UIUtil {
 
     public static final int NET_BREAK_VIEW = 3;
 
-    public static void initAdsBanner(final ViewPager viewPager) {
+    public static void initAdsBanner(final ViewPager viewPager, final List<AdsItemType> datas) {
+
         final LayoutInflater mInflater = LayoutInflater.from(MainApplication.appContext);
 
-        final List<AdsItemType> datas = DataManager.getAdsItemTypes();
-
         viewPager.setTag(datas.size());
-        viewPager.setAdapter(new PagerAdapter() {
+        PagerAdapter pagerAdapter = new PagerAdapter() {
+
+            @Override
+            public int getItemPosition(Object object) {
+                return POSITION_NONE;
+            }
+
             @Override
             public int getCount() {
                 return Integer.MAX_VALUE;
@@ -82,13 +84,14 @@ public class UIUtil {
 
             @Override
             public void destroyItem(ViewGroup container, int position, Object object) {
-                if(object instanceof View) {
-                    container.removeView((View)object);
+                if (object instanceof View) {
+                    container.removeView((View) object);
                 }
             }
-        });
-
-        viewPager.setCurrentItem(Integer.MAX_VALUE/2);
+        };
+        viewPager.setAdapter(pagerAdapter);
+        pagerAdapter.notifyDataSetChanged();
+        viewPager.setCurrentItem(Integer.MAX_VALUE / 2);
         final Handler handler = new Handler();
         final Runnable r = new Runnable() {
             @Override
@@ -101,11 +104,11 @@ public class UIUtil {
     }
 
     public static int getRealPostion(int position, int count) {
-        int realPostion = position - Integer.MAX_VALUE/2;
-        if(realPostion >= 0) {
-            realPostion = realPostion%count;
-        }else{
-            realPostion = realPostion%count + count-1;
+        int realPostion = position - Integer.MAX_VALUE / 2;
+        if (realPostion >= 0) {
+            realPostion = realPostion % count;
+        } else {
+            realPostion = realPostion % count + count - 1;
         }
         return realPostion;
     }
@@ -177,6 +180,7 @@ public class UIUtil {
 
     /**
      * 获取NavDrawer主题
+     *
      * @param context
      * @return
      */

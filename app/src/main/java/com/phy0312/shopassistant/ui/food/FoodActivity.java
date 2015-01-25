@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,11 @@ import com.phy0312.shopassistant.view.PullToRefreshLayout;
 import com.phy0312.shopassistant.view.smoothprogressbar.SmoothProgressBar;
 import com.phy0312.shopassistant.view.viewpagerindicator.CirclePageIndicator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -114,10 +119,45 @@ public class FoodActivity extends BaseFragmentActivity {
             lv_content.setAdapter(null);
             lv_content.setOnItemClickListener(this);
 
-            ViewPager viewPager = (ViewPager) headerView.findViewById(R.id.pager);
-            UIUtil.initAdsBanner(viewPager);
-            CirclePageIndicator indicator = (CirclePageIndicator) headerView.findViewById(R.id.indicator);
-            indicator.setViewPager(viewPager);
+            final ViewPager viewPager = (ViewPager) headerView.findViewById(R.id.pager);
+            final CirclePageIndicator indicator = (CirclePageIndicator) headerView.findViewById(R.id.indicator);
+            JsonCookieSupportRequest request = new JsonCookieSupportRequest(Request.Method.GET, URLManager.ADS_URL, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject jsonObject) {
+                            new RequestResponseDataParseUtil.ResponseParse() {
+                                @Override
+                                public void parseResponseDataSection(JSONObject dataJsonObject) {//登录成功处理
+                                    try {
+                                        JSONArray jsonArray = dataJsonObject.getJSONArray("list");
+                                        final List<UIUtil.AdsItemType> datas = new ArrayList<>();
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                            UIUtil.AdsItemType itemType = new UIUtil.AdsItemType();
+                                            datas.add(itemType);
+                                            itemType.id = jsonObject.optString("ID");
+                                            itemType.iconUrl = jsonObject.optString("IconUrl");
+                                            itemType.type = jsonObject.optInt("Category");
+                                            Log.e("dsdf", itemType.iconUrl);
+                                        }
+
+                                        UIUtil.initAdsBanner(viewPager, datas);
+                                        indicator.setViewPager(viewPager);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }.onResponse(jsonObject);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+
+                        }
+                    });
+            MainApplication.appContext.getRequestQueue().add(request);
             startLoad(false, false, false);
 
             return view;

@@ -61,7 +61,7 @@ public class MainApplication extends Application {
         String cookie = MainSp.getInstance(this).getCookie();
         //if(StringUtils.isEmpty(cookie)) return;
         // todo
-        LoginUtil.tryLogin();
+        //LoginUtil.tryLogin();
     }
 
     public static void initImageLoader(Context context) {

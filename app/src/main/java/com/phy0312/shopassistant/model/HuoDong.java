@@ -17,11 +17,11 @@ public class HuoDong implements Parcelable{
     /**
      * 活动开始时间
      */
-    private Long StartTime;
+    private String StartTime;
     /**
      * 活动结束时间
      */
-    private Long EndTime;
+    private String EndTime;
     /**
      * 活动所属类型
      */
@@ -47,7 +47,7 @@ public class HuoDong implements Parcelable{
     }
 
 
-    public HuoDong(String huoDongId, String storeId, Long startTime, Long endTime, Integer category, String description, String name, String icon, Integer status) {
+    public HuoDong(String huoDongId, String storeId, String startTime, String endTime, Integer category, String description, String name, String icon, Integer status) {
         HuoDongId = huoDongId;
         StoreId = storeId;
         StartTime = startTime;
@@ -75,19 +75,19 @@ public class HuoDong implements Parcelable{
         this.StoreId = StoreId;
     }
 
-    public Long getStartTime() {
+    public String getStartTime() {
         return StartTime;
     }
 
-    public void setStartTime(Long StartTime) {
+    public void setStartTime(String StartTime) {
         this.StartTime = StartTime;
     }
 
-    public Long getEndTime() {
+    public String getEndTime() {
         return EndTime;
     }
 
-    public void setEndTime(Long EndTime) {
+    public void setEndTime(String EndTime) {
         this.EndTime = EndTime;
     }
 
@@ -153,8 +153,8 @@ public class HuoDong implements Parcelable{
     private HuoDong(Parcel in) {
         this.HuoDongId = in.readString();
         this.StoreId = in.readString();
-        this.StartTime = (Long) in.readValue(Long.class.getClassLoader());
-        this.EndTime = (Long) in.readValue(Long.class.getClassLoader());
+        this.StartTime = (String) in.readValue(String.class.getClassLoader());
+        this.EndTime = (String) in.readValue(String.class.getClassLoader());
         this.Category = (Integer) in.readValue(Integer.class.getClassLoader());
         this.Description = in.readString();
         this.Name = in.readString();

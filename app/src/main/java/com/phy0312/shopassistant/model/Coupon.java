@@ -21,11 +21,11 @@ public class Coupon implements Parcelable {
     /**
      * 优惠券开始时间
      */
-    private Long StartTime;
+    private String StartTime;
     /**
      * 优惠券结束时间
      */
-    private Long EndTime;
+    private String EndTime;
     /**
      * 优惠券类型
      */
@@ -46,7 +46,7 @@ public class Coupon implements Parcelable {
     public Coupon() {
     }
 
-    public Coupon(String CouponId, String StoreId, String Name, Long StartTime, Long EndTime,
+    public Coupon(String CouponId, String StoreId, String Name, String StartTime, String EndTime,
                   Integer Category, String Description,
                   String iconPath, int count) {
         this.couponId = CouponId;
@@ -84,19 +84,19 @@ public class Coupon implements Parcelable {
         this.name = Name;
     }
 
-    public Long getStartTime() {
+    public String getStartTime() {
         return StartTime;
     }
 
-    public void setStartTime(Long StartTime) {
+    public void setStartTime(String StartTime) {
         this.StartTime = StartTime;
     }
 
-    public Long getEndTime() {
+    public String getEndTime() {
         return EndTime;
     }
 
-    public void setEndTime(Long EndTime) {
+    public void setEndTime(String EndTime) {
         this.EndTime = EndTime;
     }
 
@@ -155,8 +155,8 @@ public class Coupon implements Parcelable {
         this.couponId = in.readString();
         this.storeId = in.readString();
         this.name = in.readString();
-        this.StartTime = (Long) in.readValue(Long.class.getClassLoader());
-        this.EndTime = (Long) in.readValue(Long.class.getClassLoader());
+        this.StartTime = (String) in.readValue(String.class.getClassLoader());
+        this.EndTime = (String) in.readValue(String.class.getClassLoader());
         this.Category = (Integer) in.readValue(Integer.class.getClassLoader());
         this.Description = in.readString();
         this.icon = in.readString();

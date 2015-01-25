@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.Constants;
+import com.phy0312.shopassistant.tools.LogUtil;
 import com.phy0312.shopassistant.tools.ResponseUtil;
 
 import org.json.JSONException;
@@ -75,9 +76,11 @@ public class JsonCookieSupportRequest extends JsonObjectRequest {
 
             if (bodyEncryptType == ResponseUtil.ENCRYPT_GZIP) {
                 String jsonString = getRealString(response.data, HttpHeaderParser.parseCharset(response.headers));
+                LogUtil.e(jsonString);
                 jsonObject.put(ResponseUtil.RESULT_BODY, new JSONObject(jsonString));
             } else {
                 String jsonString = new String(response.data,  HttpHeaderParser.parseCharset(response.headers));
+                LogUtil.e(jsonString);
                 jsonObject.put(ResponseUtil.RESULT_BODY, new JSONObject(jsonString));
             }
             return Response.success(jsonObject, parseCacheHeaders(response));

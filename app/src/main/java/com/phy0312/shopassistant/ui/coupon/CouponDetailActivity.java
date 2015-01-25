@@ -1,84 +1,127 @@
 package com.phy0312.shopassistant.ui.coupon;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.phy0312.shopassistant.MainApplication;
 import com.phy0312.shopassistant.R;
+import com.phy0312.shopassistant.model.Coupon;
+import com.phy0312.shopassistant.net.JsonCookieSupportRequest;
+import com.phy0312.shopassistant.net.RequestResponseDataParseUtil;
+import com.phy0312.shopassistant.net.URLManager;
+import com.phy0312.shopassistant.tools.ImageLoaderUtil;
 import com.phy0312.shopassistant.ui.share.ShareActivity;
 
-public class CouponDetailActivity extends FragmentActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class CouponDetailActivity extends Activity {
 
     public static String EXTRA_KEY_COUPON_ID = "coupon_id";
+    DisplayImageOptions options;
+    private ImageView iv_coupon_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.common_activity_fragment_container);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
+        setContentView(R.layout.fragment_coupon_detail);
+        iv_coupon_photo = (ImageView) findViewById(R.id.iv_coupon_photo);
+        options = ImageLoaderUtil.newDisplayImageOptionsInstance();
+        ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.title_activity_coupon_detail));
+        int couponId = getIntent().getIntExtra(EXTRA_KEY_COUPON_ID, -1);
+        if (couponId != -1) {
+            loadData(couponId);
         }
+
+        //后退按钮
+        findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.iv_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ShareActivity.buildIntent(CouponDetailActivity.this, 4, "", "商品", "商品描述", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg"));
+            }
+        });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.coupon_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+    private void loadData(int couponId) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("CouponId", couponId);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return super.onOptionsItemSelected(item);
+        JsonCookieSupportRequest request = new JsonCookieSupportRequest(Request.Method.GET, URLManager.COUPON_DETAIL_LIST, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        new RequestResponseDataParseUtil.ResponseParse() {
+                            @Override
+                            public void parseResponseDataSection(JSONObject dataJsonObject) {
+                                try {
+                                    Coupon coupon = new Coupon();
+                                    coupon.setName(dataJsonObject.optString("Name"));
+                                    coupon.setStartTime(dataJsonObject.optString("StartDate"));
+                                    coupon.setEndTime(dataJsonObject.optString("EndDate"));
+                                    coupon.setDescription(dataJsonObject.optString("Desc"));
+
+                                    JSONArray jsonArray = dataJsonObject.getJSONArray("list");
+                                    if(jsonArray.length() > 0) {
+                                        JSONObject imgObject = jsonArray.getJSONObject(0);
+                                        String iconUrl = imgObject.optString("IconUrl");
+                                        ImageLoader.getInstance().displayImage(iconUrl, iv_coupon_photo, options);
+                                    }
+
+                                    //更新数据
+                                    ((TextView) findViewById(R.id.tv_coupon_name)).setText(coupon.getName());
+                                    ((TextView) findViewById(R.id.tv_coupon_summary)).setText(coupon.getName());
+                                    ((TextView) findViewById(R.id.tv_coupon_valid_time)).setText(coupon.getStartTime() + "至" +
+                                            coupon.getEndTime());
+                                    ((TextView) findViewById(R.id.tv_coupon_note)).setText(coupon.getDescription());
+
+                                    ((TextView) findViewById(R.id.tv_store_name)).setText(dataJsonObject.optString("ShopName"));
+                                    ((TextView) findViewById(R.id.tv_store_number)).setText(dataJsonObject.optString("ShopAddress"));
+                                    ((TextView) findViewById(R.id.tv_store_telephone)).setText(dataJsonObject.optString("ShopPhone"));
+                                    dismissLoadingView();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.onResponse(jsonObject);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+
+                    }
+                });
+        MainApplication.appContext.getRequestQueue().add(request);
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * 消除加载的view
      */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_coupon_detail, container, false);
-            //后退按钮
-            rootView.findViewById(R.id.iv_go_back).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getActivity().finish();
-                }
-            });
-            ((TextView) rootView.findViewById(R.id.tv_title)).setText(getString(R.string.coupon_detail));
-
-            rootView.findViewById(R.id.iv_share).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                startActivity(ShareActivity.buildIntent(getActivity(), 4, "", "商品","商品描述", "http://pic25.nipic.com/20121119/11328459_121121530346_2.jpg"));
-                }
-            });
-
-            return rootView;
-        }
+    private void dismissLoadingView() {
+        findViewById(R.id.ll_wait_layout).setVisibility(View.GONE);
     }
+
+
+
 }

@@ -16,7 +16,7 @@ import com.phy0312.shopassistant.model.MainColumnGroup;
 import com.phy0312.shopassistant.model.MainColumnInfo;
 import com.phy0312.shopassistant.tools.AndroidUtil;
 import com.phy0312.shopassistant.tools.ImageLoaderUtil;
-import com.phy0312.shopassistant.ui.MainActivity;
+import com.phy0312.shopassistant.ui.HomeActivity;
 import com.phy0312.shopassistant.ui.MainFragment;
 import com.phy0312.shopassistant.ui.activity.ActivityDetailActivty;
 import com.phy0312.shopassistant.ui.coupon.CouponDetailActivity;
@@ -123,9 +123,7 @@ public class MainItemAdpter extends BaseAdapter {
                 holder.tv_header_more.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)mainFragment.getActivity()).gotoCoupon();
-                        ((MainActivity)mainFragment.getActivity()).modifyTitle();
-                        ((MainActivity)mainFragment.getActivity()).setSelectedNavDrawerItem(MainActivity.NAVDRAWER_ITEM_COUPON);
+                        ((HomeActivity)mainFragment.getActivity()).gotoCoupon();
                     }
                 });
                 break;
@@ -136,9 +134,7 @@ public class MainItemAdpter extends BaseAdapter {
                 holder.tv_header_more.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)mainFragment.getActivity()).gotoActivity();
-                        ((MainActivity)mainFragment.getActivity()).modifyTitle();
-                        ((MainActivity)mainFragment.getActivity()).setSelectedNavDrawerItem(MainActivity.NAVDRAWER_ITEM_HUODONG);
+                        ((HomeActivity)mainFragment.getActivity()).gotoActivity();
                     }
                 });
                 break;
@@ -176,7 +172,7 @@ public class MainItemAdpter extends BaseAdapter {
         return convertView;
     }
 
-    public void setOnClickListener(ViewHolder holder, MainColumnInfo info, RelativeLayout rl) {
+    public void setOnClickListener(ViewHolder holder, final MainColumnInfo info, RelativeLayout rl) {
         switch(info.getType()) {
             case MainColumnInfo.TYPE_COUPON:
                 rl.setOnClickListener(new View.OnClickListener(){
@@ -193,6 +189,7 @@ public class MainItemAdpter extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent();
+                        intent.putExtra(ActivityDetailActivty.EXTRA_KEY_ACTIVITY_ID, info.getID());
                         intent.setClassName(context, ActivityDetailActivty.class.getName());
                         AndroidUtil.startActivity(context, intent);
                     }
